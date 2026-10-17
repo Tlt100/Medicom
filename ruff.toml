@@ -1,0 +1,13 @@
+line-length = 140
+target-version = "py39"
+src = ["backend"]
+
+[lint]
+select = ["E", "F", "W", "I", "B", "UP", "S"]
+# Keep typing.List/Optional so Pydantic works on Python 3.9 (local dev).
+ignore = ["UP006", "UP007", "UP035", "UP045"]
+
+[lint.per-file-ignores]
+"backend/tests/*" = ["S101"]
+# Verbatim legal excerpts are kept on one line so they can be compared with the source.
+"backend/patientshield/sources/registry.py" = ["E501"]
