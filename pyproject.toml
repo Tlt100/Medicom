@@ -1,0 +1,25 @@
+[project]
+name = "patientshield-backend"
+version = "0.1.0"
+description = "PatientShield NJ Denial Navigator API"
+requires-python = ">=3.9"
+
+[tool.pytest.ini_options]
+testpaths = ["backend/tests"]
+pythonpath = ["backend"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 140
+target-version = "py39"
+src = ["backend"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S"]
+# UP006/UP007/UP045: keep typing.List/Optional so Pydantic works on Python 3.9.
+ignore = ["UP006", "UP007", "UP035", "UP045"]
+
+[tool.ruff.lint.per-file-ignores]
+"backend/tests/*" = ["S101"]
+# Verbatim legal excerpts are kept on one line so they can be compared with the source.
+"backend/patientshield/sources/registry.py" = ["E501"]

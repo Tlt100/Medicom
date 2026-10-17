@@ -1,0 +1,107 @@
+# PatientShield
+
+**Understand your insurance denial, line by line.** PatientShield reads a health insurance denial letter, shows exactly where each
+detail appears, and explains which New Jersey or federal rules apply to the reader's type of plan, with a source for every claim.
+
+> **Portfolio prototype.** It uses synthetic sample letters only and is **not approved for real protected health information**.
+> It is an educational tool, not legal advice, and does not claim HIPAA compliance.
+
+## The problem
+
+Denials are common and appeals are rare. In 2024, insurers selling plans on HealthCare.gov denied **19% of in-network claims**, and
+consumers appealed **less than 1%** of those denials
+([KFF, *Claims Denials and Appeals in ACA Marketplace Plans in 2024*, March 24, 2026](https://www.kff.org/patient-consumer-protections/claims-denials-and-appeals-in-aca-marketplace-plans-in-2024/)).
+That data covers HealthCare.gov marketplace plans only. It excludes state-based marketplaces such as New Jersey's, and employer plans,
+so it is context, not a New Jersey figure.
+
+Existing tools mostly help write persuasive appeal letters. PatientShield focuses on the step before that, **understanding**:
+
+1. What does the denial letter actually say? (quoted, with page numbers)
+2. Which rules apply to *this* plan? (NJ-regulated, self-funded/ERISA, marketplace, Medicaid, Medicare, or unknown)
+3. What are the verified next steps, and which official body can help?
+
+The tone is calm and neutral. The goal is member clarity, not an adversarial stance toward insurers or providers.
+
+## Status
+
+| Milestone | Scope | Status |
+| --- | --- | --- |
+| 1 | Runnable skeleton, landing page, verified source registry API, deploy pipeline | **Done** |
+| 2 | Synthetic letters + extraction (reason, instructions, deadline, plan/insurer, reference numbers) | Planned |
+| 3 | Plan-type triage flow | Planned |
+| 4 | Results: "document says" vs. "rules say," cited checklist | Planned |
+| 5 | Source library UI | Planned |
+
+Later phases (not being built yet): medical-records access, privacy complaints, policy-document explorer, privacy-preserving analytics.
+
+## Run it locally
+
+Requirements: Node 20+ and Python 3.9+ (Vercel runs 3.12).
+
+```bash
+npm install
+```
+
+```bash
+python -m venv .venv
+```
+
+```bash
+.venv/Scripts/python -m pip install -r requirements-dev.txt
+```
+
+(On macOS/Linux use `.venv/bin/python`.) Then start the API and the web app in two terminals:
+
+```bash
+.venv/Scripts/python -m uvicorn patientshield.app:app --app-dir backend --port 8000 --reload
+```
+
+```bash
+npm run dev
+```
+
+Open http://localhost:5173. Vite proxies `/api` to the FastAPI app on port 8000. API docs are at http://localhost:8000/api/docs in
+development.
+
+No API keys or secrets are needed. See [`.env.example`](.env.example) for optional settings.
+
+## Test and lint
+
+```bash
+.venv/Scripts/python -m pytest
+```
+
+```bash
+.venv/Scripts/ruff check backend api
+```
+
+```bash
+npm test
+```
+
+```bash
+npm run lint
+```
+
+```bash
+npm run build
+```
+
+Frontend tests include automated accessibility checks with axe.
+
+## Architecture
+
+React + TypeScript (Vite) frontend and a FastAPI backend deployed together on Vercel. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+Legal sources and what was or wasn't verified: [docs/SOURCES.md](docs/SOURCES.md).
+
+## Limitations
+
+- New Jersey and U.S. federal law only. Medicare and Medicaid are routed to their own appeal systems, not fully modeled.
+- Deadlines are general rules from official sources. A plan's own documents and letters control.
+- Scanned (image-only) PDFs will not be readable until OCR is added.
+- Sources are checked by hand on the date shown; laws and agency pages change. Stale or uncertain items are flagged, not hidden.
+
+## Future work
+
+OCR for scanned letters; an optional, server-side AI explanation provider behind an interface, whose quotes must pass the same
+citation check as rule-based extraction; Spanish-language support; scheduled link and content checks for the source registry.
