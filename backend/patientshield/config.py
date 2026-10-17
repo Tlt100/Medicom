@@ -19,7 +19,10 @@ class Settings:
 
 
 def get_settings() -> Settings:
-    env = os.getenv("PATIENTSHIELD_ENV", "development")
+    # Vercel always sets VERCEL_ENV (production/preview/development); treat any Vercel deployment as
+    # production unless PATIENTSHIELD_ENV says otherwise, so docs are never exposed by accident.
+    default_env = "production" if os.getenv("VERCEL_ENV") in {"production", "preview"} else "development"
+    env = os.getenv("PATIENTSHIELD_ENV", default_env)
     return Settings(
         environment=env,
         # Vercel functions reject bodies over 4.5 MB; stay under it with headroom.

@@ -52,3 +52,16 @@ def test_oversized_request_is_rejected_before_reading_body(client):
 
 def test_docs_disabled_when_configured(client):
     assert client.get("/api/docs").status_code == 404
+
+
+def test_settings_default_to_production_on_vercel(monkeypatch):
+    from patientshield.config import get_settings
+
+    monkeypatch.delenv("PATIENTSHIELD_ENV", raising=False)
+    monkeypatch.delenv("PATIENTSHIELD_ENABLE_DOCS", raising=False)
+    monkeypatch.setenv("VERCEL_ENV", "preview")
+    settings = get_settings()
+    assert settings.environment == "production" and settings.enable_docs is False
+
+    monkeypatch.delenv("VERCEL_ENV")
+    assert get_settings().enable_docs is True
