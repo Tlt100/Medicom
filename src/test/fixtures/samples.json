@@ -1,0 +1,34 @@
+[
+ {
+  "id": "nj-prior-auth-mri",
+  "title": "Prior authorization denied (NJ fully insured plan)",
+  "description": "An MRI request denied as not medically necessary by a fully insured plan issued in New Jersey.",
+  "scenario": "nj-regulated",
+  "filename": "synthetic-nj-prior-auth-mri.pdf",
+  "page_count": 2
+ },
+ {
+  "id": "self-funded-out-of-network",
+  "title": "Out-of-network claim denied (self-funded employer plan)",
+  "description": "A physical therapy claim denied as out of network by a self-funded employer plan governed by ERISA.",
+  "scenario": "self-funded",
+  "filename": "synthetic-self-funded-out-of-network.pdf",
+  "page_count": 1
+ },
+ {
+  "id": "nj-familycare-home-health",
+  "title": "Home health hours reduced (NJ FamilyCare managed care)",
+  "description": "A Medicaid managed care plan reduces approved home health aide hours.",
+  "scenario": "medicaid",
+  "filename": "synthetic-nj-familycare-home-health.pdf",
+  "page_count": 1
+ },
+ {
+  "id": "vague-letter-missing-details",
+  "title": "Vague letter with missing details",
+  "description": "A short notice that leaves out the reason, deadline and appeal steps, and contains text aimed at software.",
+  "scenario": "unknown",
+  "filename": "synthetic-vague-letter-missing-details.pdf",
+  "page_count": 1
+ }
+]

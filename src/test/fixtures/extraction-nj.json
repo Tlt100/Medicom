@@ -1,0 +1,272 @@
+{
+ "document": {
+  "name": "synthetic-nj-prior-auth-mri.pdf",
+  "kind": "pdf",
+  "page_count": 2,
+  "size_bytes": 3753,
+  "synthetic": true,
+  "sample_id": "nj-prior-auth-mri"
+ },
+ "pages": [
+  {
+   "number": 1,
+   "text": "Pinebrook Health Plan\nP.O. Box 4400, Newark, NJ 07101 | Member Services: (800) 555-0142\nDate: September 15, 2026\nJordan Example\n12 Sample Street\nTrenton, NJ 08608\nMember ID: PBH-448210-01\nGroup Number: NJ-SG-7731\nClaim Number: CLM-2026-0915-3382\nPlan: Pinebrook Gold PPO (fully insured, issued in New Jersey)\nNOTICE OF ADVERSE BENEFIT DETERMINATION\nDear Jordan Example:\nWe reviewed the prior authorization request submitted by Dr. Casey Placeholder for an MRI of\nthe lumbar spine (CPT 72148), requested on September 8, 2026.\nReason for our decision\nYour request has been denied because the service is not medically necessary under our\nclinical policy for advanced imaging of the lower back. Our records do not show six weeks of\nconservative treatment, such as physical therapy, before imaging was requested.\nThis decision was made by a board-certified physician reviewer. You or your doctor may ask\nfor a copy of the clinical policy and any documents we used, free of charge.\nSYNTHETIC SAMPLE - NOT A REAL LETTER - created for PatientShield demo mode - Page 1 of 2"
+  },
+  {
+   "number": 2,
+   "text": "Your right to appeal\nIf you disagree with this decision, you have the right to file an internal appeal. You must\nsubmit your appeal within 180 calendar days of the date you receive this notice. Send your\nwritten appeal to Pinebrook Health Plan, Appeals Unit, P.O. Box 4410, Newark, NJ 07101, or\nfax it to (800) 555-0199.\nIf your condition is urgent, you or your doctor may request an expedited appeal by calling\n(800) 555-0142. We will decide expedited appeals within 72 hours.\nExternal review\nIf we uphold our decision after your internal appeal, you may request an independent\nexternal review through the New Jersey Department of Banking and Insurance Independent\nHealth Care Appeals Program (IHCAP). You must request external review within 4 months of\nreceiving our final internal appeal decision.\nQuestions? Call Member Services at (800) 555-0142, Monday through Friday, 8 a.m. to 6 p.m.\nSYNTHETIC SAMPLE - NOT A REAL LETTER - created for PatientShield demo mode - Page 2 of 2"
+  }
+ ],
+ "fields": [
+  {
+   "key": "denial_reason",
+   "label": "Stated reason for the denial",
+   "status": "found",
+   "value": "Your request has been denied because the service is not medically necessary under our clinical policy for advanced imaging of the lower back.",
+   "values": [
+    "Your request has been denied because the service is not medically necessary under our clinical policy for advanced imaging of the lower back."
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 1,
+     "start": 549,
+     "end": 690,
+     "quote": "Your request has been denied because the service is not medically necessary under our\nclinical policy for advanced imaging of the lower back."
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "appeal_instructions",
+   "label": "How to appeal",
+   "status": "found",
+   "value": "If you disagree with this decision, you have the right to file an internal appeal.",
+   "values": [
+    "If you disagree with this decision, you have the right to file an internal appeal.",
+    "You must submit your appeal within 180 calendar days of the date you receive this notice.",
+    "Send your written appeal to Pinebrook Health Plan, Appeals Unit, P.O. Box 4410, Newark, NJ 07101, or fax it to (800) 555-0199.",
+    "If your condition is urgent, you or your doctor may request an expedited appeal by calling (800) 555-0142."
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 2,
+     "start": 21,
+     "end": 103,
+     "quote": "If you disagree with this decision, you have the right to file an internal appeal."
+    },
+    {
+     "page": 2,
+     "start": 104,
+     "end": 193,
+     "quote": "You must\nsubmit your appeal within 180 calendar days of the date you receive this notice."
+    },
+    {
+     "page": 2,
+     "start": 194,
+     "end": 320,
+     "quote": "Send your\nwritten appeal to Pinebrook Health Plan, Appeals Unit, P.O. Box 4410, Newark, NJ 07101, or\nfax it to (800) 555-0199."
+    },
+    {
+     "page": 2,
+     "start": 321,
+     "end": 427,
+     "quote": "If your condition is urgent, you or your doctor may request an expedited appeal by calling\n(800) 555-0142."
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "appeal_deadline",
+   "label": "Appeal deadline stated in the letter",
+   "status": "found",
+   "value": "180 calendar days of the date you receive this notice",
+   "values": [
+    "180 calendar days of the date you receive this notice"
+   ],
+   "normalized": "180 calendar days",
+   "citations": [
+    {
+     "page": 2,
+     "start": 104,
+     "end": 193,
+     "quote": "You must\nsubmit your appeal within 180 calendar days of the date you receive this notice."
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "external_review_deadline",
+   "label": "External review or fair hearing deadline",
+   "status": "found",
+   "value": "4 months of receiving our final internal appeal decision",
+   "values": [
+    "4 months of receiving our final internal appeal decision"
+   ],
+   "normalized": "4 months",
+   "citations": [
+    {
+     "page": 2,
+     "start": 703,
+     "end": 800,
+     "quote": "You must request external review within 4 months of\nreceiving our final internal appeal decision."
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "letter_date",
+   "label": "Date of the letter",
+   "status": "found",
+   "value": "September 15, 2026",
+   "values": [
+    "September 15, 2026"
+   ],
+   "normalized": "2026-09-15",
+   "citations": [
+    {
+     "page": 1,
+     "start": 94,
+     "end": 112,
+     "quote": "September 15, 2026"
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "insurer_name",
+   "label": "Insurer or plan administrator",
+   "status": "found",
+   "value": "Pinebrook Health Plan",
+   "values": [
+    "Pinebrook Health Plan"
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 1,
+     "start": 0,
+     "end": 21,
+     "quote": "Pinebrook Health Plan"
+    }
+   ],
+   "confidence": "medium",
+   "note": "Taken from the letterhead at the top of the letter."
+  },
+  {
+   "key": "plan_name",
+   "label": "Plan name",
+   "status": "found",
+   "value": "Pinebrook Gold PPO (fully insured, issued in New Jersey)",
+   "values": [
+    "Pinebrook Gold PPO (fully insured, issued in New Jersey)"
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 1,
+     "start": 252,
+     "end": 308,
+     "quote": "Pinebrook Gold PPO (fully insured, issued in New Jersey)"
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "reference_numbers",
+   "label": "Reference numbers",
+   "status": "found",
+   "value": "Member ID: PBH-448210-01",
+   "values": [
+    "Member ID: PBH-448210-01",
+    "Group Number: NJ-SG-7731",
+    "Claim Number: CLM-2026-0915-3382"
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 1,
+     "start": 163,
+     "end": 187,
+     "quote": "Member ID: PBH-448210-01"
+    },
+    {
+     "page": 1,
+     "start": 188,
+     "end": 212,
+     "quote": "Group Number: NJ-SG-7731"
+    },
+    {
+     "page": 1,
+     "start": 213,
+     "end": 245,
+     "quote": "Claim Number: CLM-2026-0915-3382"
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  }
+ ],
+ "signals": [
+  {
+   "kind": "plan-type",
+   "code": "fully-insured",
+   "label": "Mentions a fully insured plan",
+   "citations": [
+    {
+     "page": 1,
+     "start": 246,
+     "end": 308,
+     "quote": "Plan: Pinebrook Gold PPO (fully insured, issued in New Jersey)"
+    }
+   ]
+  },
+  {
+   "kind": "plan-type",
+   "code": "new-jersey",
+   "label": "Mentions New Jersey or NJ DOBI",
+   "citations": [
+    {
+     "page": 1,
+     "start": 246,
+     "end": 308,
+     "quote": "Plan: Pinebrook Gold PPO (fully insured, issued in New Jersey)"
+    },
+    {
+     "page": 2,
+     "start": 494,
+     "end": 702,
+     "quote": "If we uphold our decision after your internal appeal, you may request an independent\nexternal review through the New Jersey Department of Banking and Insurance Independent\nHealth Care Appeals Program (IHCAP)."
+    }
+   ]
+  },
+  {
+   "kind": "urgent",
+   "code": "urgent",
+   "label": "Mentions expedited or urgent appeals",
+   "citations": [
+    {
+     "page": 2,
+     "start": 321,
+     "end": 427,
+     "quote": "If your condition is urgent, you or your doctor may request an expedited appeal by calling\n(800) 555-0142."
+    },
+    {
+     "page": 2,
+     "start": 428,
+     "end": 477,
+     "quote": "We will decide expedited appeals within 72 hours."
+    }
+   ]
+  }
+ ],
+ "warnings": [],
+ "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+}

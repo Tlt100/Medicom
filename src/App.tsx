@@ -3,6 +3,7 @@ import { Layout } from './components/Layout';
 import { About } from './pages/About';
 import { InDevelopment } from './pages/InDevelopment';
 import { Landing } from './pages/Landing';
+import { Navigator } from './pages/Navigator';
 import { NotFound } from './pages/NotFound';
 
 export function App() {
@@ -10,16 +11,7 @@ export function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Landing />} />
-        <Route
-          path="navigator"
-          element={
-            <InDevelopment
-              title="Denial Navigator"
-              description="Upload a synthetic denial letter, see each detail linked to its page and passage, identify your plan type, and get a cited checklist."
-              milestone="milestones 2–4"
-            />
-          }
-        />
+        <Route path="navigator" element={<Navigator />} />
         <Route
           path="sources"
           element={

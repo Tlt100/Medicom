@@ -10,6 +10,10 @@ Browser (React + TypeScript, Vite)
                └─ FastAPI app (backend/patientshield)
                     ├─ routers/health.py        GET /api/health
                     ├─ routers/sources.py       GET /api/sources, GET /api/sources/{id}
+                    ├─ routers/documents.py     POST /api/extract, GET /api/samples,
+                    │                           POST /api/samples/{id}/extract, GET /api/samples/{id}/pdf
+                    ├─ extraction/              documents → segment → fields → service
+                    ├─ samples/                 synthetic letters + in-memory PDF generator
                     ├─ sources/models.py        Pydantic models + validation rules
                     ├─ sources/registry.py      Verified source data (versioned)
                     └─ security.py              Security headers, body-size limit
@@ -26,11 +30,28 @@ Browser (React + TypeScript, Vite)
 | --- | --- |
 | `Source` | One official source: authority, URL (https only), jurisdiction, legal weight (`regulation`, `agency-guidance`, …), dated fields with labels, `last_checked`, verbatim `excerpts`, `verification` (`verified` / `needs-review`) with a required `review_note` when uncertain. |
 | `Coverage` | Counts of verified, flagged, binding, federal and NJ sources (shown on the landing page). |
-| Planned: `ExtractedField` | A field from the letter (denial reason, appeal instructions, deadline, plan/insurer, reference number) with the exact quote and page, or an explicit "not found." |
+| `ExtractedField` | One detail from the letter (denial reason, appeal instructions, appeal deadline, external review deadline, letter date, insurer, plan, reference numbers): `status` found / not_found, the value(s), a machine-readable `normalized` form where useful, and `citations`. A not-found field carries guidance instead of a guess. |
+| `Citation` | `page`, `start`, `end`, `quote`. Invariant enforced on the server **and** re-checked by the client schema: `pages[page-1].text[start:end] == quote`. |
+| `Signal` | Plan-type clues, urgent-appeal mentions, and text addressed to software (prompt-injection attempts), each cited. Clues are hints for the triage step, never conclusions. |
 | Planned: `TriageAnswers` → `ResultPlan` | Plan type and dates in; "document says" vs. "rules say," checklist, documents, questions, resources and uncertainties out. Every legal statement cites `Source` ids. |
 
 Validation rules enforced by Pydantic at startup (and tested): verified sources need an excerpt; needs-review sources need a note; dates
 need a label; URLs must be https; ids are unique.
+
+## Extraction pipeline
+
+1. **documents.py**: decide the file type from its bytes (`%PDF-` magic number), enforce a 4 MB, 30-page, 150k-character and 8-second
+   budget, extract text with pypdf (text only; encrypted PDFs rejected), and normalize it (NFKC, strip control and bidi characters).
+   The normalized text is what offsets refer to.
+2. **segment.py**: rebuild passages from line structure, because PDF extraction loses paragraph breaks and wraps sentences. Label lines
+   (`Claim Number: …`) and short headings stand alone; a line keeps a paragraph open only if it's near full width (it wrapped).
+   Sentences are split with an abbreviation list (`P.O.`, `Dr.`, `a.m.`).
+3. **fields.py**: fixed regex rules per field. The member's deadline is separated from the insurer's own decision timeline
+   ("we will decide within 72 hours"), and external-review deadlines are separated from internal ones.
+4. **service.py**: verifies every citation before returning, adds warnings, and states the retention behavior.
+
+Uploads are sent as the raw request body with an `X-File-Name` header (no multipart parser), read in chunks with a hard cap, and
+never written to disk or logged. Sample letters run through the same PDF path, using PDFs generated in memory.
 
 ## Security
 

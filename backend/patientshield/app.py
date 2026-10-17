@@ -10,7 +10,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from . import __version__
 from .config import Settings, get_settings
-from .routers import health, sources
+from .routers import documents, health, sources
 from .security import BodySizeLimitMiddleware, SecurityHeadersMiddleware
 from .sources.service import load_sources
 
@@ -50,6 +50,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
 
     app.include_router(health.router, prefix="/api")
     app.include_router(sources.router, prefix="/api")
+    app.include_router(documents.router, prefix="/api")
     return app
 
 

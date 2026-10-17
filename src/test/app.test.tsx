@@ -61,11 +61,11 @@ describe('Landing page', () => {
 });
 
 describe('Routing', () => {
-  it('shows an honest in-development state for the navigator, without fake controls', () => {
-    renderAt('/navigator');
-    expect(screen.getByRole('heading', { level: 1, name: 'Denial Navigator' })).toBeInTheDocument();
+  it('shows an honest in-development state for the source library, without fake controls', () => {
+    renderAt('/sources');
+    expect(screen.getByRole('heading', { level: 1, name: 'Source library' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /in development/i })).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: /upload/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('searchbox')).not.toBeInTheDocument();
   });
 
   it('renders the about page with limits and no accessibility violations', async () => {
