@@ -26,6 +26,11 @@ describe('fetchRegistry', () => {
     await expect(fetchRegistry()).rejects.toThrow('(500)');
   });
 
+  it('explains a platform-level 413 that has no JSON body', async () => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response('Request Entity Too Large', { status: 413 }));
+    await expect(fetchRegistry()).rejects.toThrow('too large. The limit is 4 MB');
+  });
+
   it('turns network failures into a readable message', async () => {
     vi.spyOn(globalThis, 'fetch').mockRejectedValue(new TypeError('Failed to fetch'));
     await expect(fetchRegistry()).rejects.toThrow('couldn’t reach');

@@ -71,7 +71,10 @@ async function request<T>(path: string, schema: z.ZodType<T>, init: RequestInit 
   if (!res.ok) {
     // The server's error messages are fixed, user-facing strings; show them when present.
     const err = ErrorBodySchema.safeParse(body);
-    throw new ApiError(err.success ? err.data.message : `The service returned an error (${res.status}). Please try again shortly.`, res.status);
+    if (err.success) throw new ApiError(err.data.message, res.status);
+    // Vercel rejects bodies over 4.5 MB itself, with a plain-text page, before the app sees them.
+    if (res.status === 413) throw new ApiError('This file is too large. The limit is 4 MB.', 413);
+    throw new ApiError(`The service returned an error (${res.status}). Please try again shortly.`, res.status);
   }
   if (body === undefined) throw new ApiError('The service sent a response we couldn’t read.');
   const parsed = schema.safeParse(body);

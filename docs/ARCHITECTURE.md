@@ -21,8 +21,8 @@ Browser (React + TypeScript, Vite)
 
 - **Frontend:** static SPA built by Vite, served by Vercel's CDN. Routes: `/`, `/navigator`, `/sources`, `/about`.
 - **Backend:** one FastAPI app. All routes are under `/api`, and Vercel rewrites `/api/(.*)` to the single Python function.
-- **No database.** The source registry is versioned data in code, reviewed through pull requests. Uploaded letters (milestone 2) will be
-  processed in memory within a single request and never written to disk, a database, or logs.
+- **No database.** The source registry is versioned data in code, reviewed through pull requests. Uploaded letters are processed in memory
+  within a single request and never written to disk, a database, or logs.
 
 ## Data model
 
@@ -55,7 +55,7 @@ never written to disk or logged. Sample letters run through the same PDF path, u
 
 ## Security
 
-- Uploads and extracted text are untrusted (milestone 2): type checked by magic bytes, size-capped below Vercel's 4.5 MB limit, page
+- Uploads and extracted text are untrusted: type checked by magic bytes, size-capped below Vercel's 4.5 MB limit, page
   and time limits, parsed without executing embedded content, rendered as text only (an ESLint rule bans `dangerouslySetInnerHTML`).
 - Prompt injection: the MVP uses no LLM. Document text is only ever quoted. Any future AI provider must sit behind an interface, run
   server-side, and have every quote verified against the document before display.
