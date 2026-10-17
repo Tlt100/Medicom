@@ -29,7 +29,7 @@ export function PlanResult({ result, onChangeAnswers, onBackToLetter }: Props) {
     <section aria-labelledby="plan-heading" className="plan-result">
       <div className="results-head">
         <div>
-          <p className="eyebrow">Step 2 · Your plan type</p>
+          <p className="eyebrow">Step 3 · What applies to your plan</p>
           <h2 id="plan-heading">{result.label}</h2>
           <p className={confirmed ? 'confidence confirmed' : 'confidence unconfirmed'}>
             <Icon name={confirmed ? 'checklist' : 'alert'} size={16} />
