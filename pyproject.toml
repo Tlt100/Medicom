@@ -2,7 +2,9 @@
 name = "patientshield-backend"
 version = "0.1.0"
 description = "PatientShield NJ Denial Navigator API"
-requires-python = ">=3.9"
+# Vercel reads this to choose its Python runtime (it picks the newest match, so keep an upper bound).
+# 3.9 stays allowed for local development; production runs 3.12.
+requires-python = ">=3.9,<3.13"
 
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]
