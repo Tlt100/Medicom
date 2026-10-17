@@ -1,8 +1,11 @@
-import { useCallback, useRef, useState, type DragEvent } from 'react';
+import { useCallback, useMemo, useRef, useState, type DragEvent } from 'react';
 import { DocumentViewer } from '../components/DocumentViewer';
 import { FieldCard } from '../components/FieldCard';
 import { Icon } from '../components/Icon';
-import { checkFile, extractSample, fetchSamples, samplePdfUrl, uploadDocument, type Extraction, type Sample } from '../lib/api';
+import { PlanResult } from '../components/PlanResult';
+import { Triage } from '../components/Triage';
+import { checkFile, extractSample, fetchSamples, samplePdfUrl, uploadDocument, type Extraction, type Sample, type TriageResult } from '../lib/api';
+import type { Answers } from '../lib/triage';
 import { useAsync } from '../lib/useAsync';
 
 type State =
@@ -13,18 +16,23 @@ type State =
 
 const PRIMARY = ['denial_reason', 'appeal_instructions', 'appeal_deadline', 'external_review_deadline'];
 
-function Steps() {
+type View = 'letter' | 'triage' | 'plan';
+
+const STEPS: { view: View; label: string; note?: string }[] = [
+  { view: 'letter', label: 'Add your letter' },
+  { view: 'triage', label: 'Identify your plan type' },
+  { view: 'plan', label: 'What applies to your plan' },
+];
+
+function Steps({ view }: { view: View }) {
+  const currentIndex = STEPS.findIndex((s) => s.view === view);
   return (
     <ol className="stepper" aria-label="Denial Navigator steps">
-      <li className="current" aria-current="step">
-        <span>1</span> Add your letter
-      </li>
-      <li>
-        <span>2</span> Identify your plan type <em>(milestone 3)</em>
-      </li>
-      <li>
-        <span>3</span> Cited next steps <em>(milestone 4)</em>
-      </li>
+      {STEPS.map((s, i) => (
+        <li key={s.view} className={i === currentIndex ? 'current' : i < currentIndex ? 'done' : undefined} aria-current={i === currentIndex ? 'step' : undefined}>
+          <span>{i + 1}</span> {s.label}
+        </li>
+      ))}
     </ol>
   );
 }
@@ -120,7 +128,7 @@ function UploadPanel({ onFile, disabled }: { onFile: (f: File) => void; disabled
   );
 }
 
-function Results({ result, onDelete }: { result: Extraction; onDelete: () => void }) {
+function Results({ result, onDelete, onContinue }: { result: Extraction; onDelete: () => void; onContinue: () => void }) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const primary = result.fields.filter((f) => PRIMARY.includes(f.key));
   const details = result.fields.filter((f) => !PRIMARY.includes(f.key));
@@ -200,9 +208,12 @@ function Results({ result, onDelete }: { result: Extraction; onDelete: () => voi
           <div className="next-step">
             <h3>Next: identify your plan type</h3>
             <p className="muted">
-              Appeal rights depend on whether your plan is New Jersey-regulated, self-funded, Medicaid, Medicare, or a marketplace plan. That step
-              is being built in milestone 3.
+              Appeal rights depend on whether your plan is New Jersey-regulated, self-funded, Medicaid, Medicare, or a marketplace plan. A few
+              questions will sort it out.
             </p>
+            <button type="button" className="btn btn-primary" onClick={onContinue}>
+              Identify my plan type <Icon name="arrow" size={18} />
+            </button>
           </div>
         </div>
         <div className="results-doc">
@@ -216,7 +227,10 @@ function Results({ result, onDelete }: { result: Extraction; onDelete: () => voi
 
 export function Navigator() {
   const [state, setState] = useState<State>({ status: 'idle' });
+  const [view, setView] = useState<View>('letter');
+  const [plan, setPlan] = useState<{ result: TriageResult; answers: Answers } | null>(null);
   const controller = useRef<AbortController | null>(null);
+  const topRef = useRef<HTMLHeadingElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
 
   const run = useCallback(async (label: string, task: (signal: AbortSignal) => Promise<Extraction>) => {
@@ -227,6 +241,8 @@ export function Navigator() {
     try {
       const result = await task(ctrl.signal);
       setState({ status: 'ready', result });
+      setPlan(null);
+      setView('letter');
     } catch (err) {
       if ((err as Error).name !== 'AbortError') setState({ status: 'error', message: (err as Error).message });
     } finally {
@@ -247,19 +263,34 @@ export function Navigator() {
   const onDelete = () => {
     controller.current?.abort();
     setState({ status: 'idle' });
+    setPlan(null);
+    setView('letter');
   };
+
+  const go = (next: View) => {
+    setView(next);
+    window.scrollTo?.(0, 0);
+    topRef.current?.focus();
+  };
+
+  const signals = useMemo(
+    () => (state.status === 'ready' ? state.result.signals.filter((s) => s.kind === 'plan-type').map((s) => s.code) : []),
+    [state],
+  );
 
   const busy = state.status === 'loading';
 
   return (
     <div className="container page">
       <p className="eyebrow">Denial Navigator</p>
-      <h1>Understand your denial letter</h1>
+      <h1 ref={topRef} tabIndex={-1}>
+        Understand your denial letter
+      </h1>
       <p className="lede">
         Add a denial letter and PatientShield will point to the stated reason, the appeal instructions and deadlines, and the reference numbers,
         each linked to the exact passage in your letter.
       </p>
-      <Steps />
+      <Steps view={view} />
 
       <div ref={statusRef} tabIndex={-1} className="status-region" aria-live="polite">
         {state.status === 'loading' && (
@@ -279,8 +310,28 @@ export function Navigator() {
         )}
       </div>
 
-      {state.status === 'ready' ? (
-        <Results result={state.result} onDelete={onDelete} />
+      {state.status === 'ready' && view === 'triage' ? (
+        <section aria-labelledby="triage-heading">
+          <p className="eyebrow">Step 2 · Your plan type</p>
+          <h2 id="triage-heading">A few questions about your coverage</h2>
+          <p className="muted">
+            Your answers decide which appeal rules apply. If you’re not sure, say so. PatientShield will show you how to find out instead of
+            guessing.
+          </p>
+          <Triage
+            signals={signals}
+            initialAnswers={plan?.answers}
+            onBack={() => go('letter')}
+            onDone={(result, answers) => {
+              setPlan({ result, answers });
+              go('plan');
+            }}
+          />
+        </section>
+      ) : state.status === 'ready' && view === 'plan' && plan ? (
+        <PlanResult result={plan.result} onChangeAnswers={() => go('triage')} onBackToLetter={() => go('letter')} />
+      ) : state.status === 'ready' ? (
+        <Results result={state.result} onDelete={onDelete} onContinue={() => go(plan ? 'plan' : 'triage')} />
       ) : (
         <div className="choose-grid">
           <section aria-labelledby="upload-heading">

@@ -189,6 +189,76 @@ export function uploadDocument(file: File, signal?: AbortSignal) {
   });
 }
 
+// ---------------------------------------------------------------- plan-type triage
+
+const OptionSchema = z.object({ value: z.string(), label: z.string(), hint: z.string().nullable(), next: z.string().nullable() });
+const QuestionSchema = z.object({ id: z.string(), prompt: z.string(), help: z.string(), options: z.array(OptionSchema).min(1) });
+export type Question = z.infer<typeof QuestionSchema>;
+
+export const FlowSchema = z
+  .object({ start: z.string(), questions: z.record(z.string(), QuestionSchema) })
+  .refine((f) => f.start in f.questions && Object.values(f.questions).every((q) => q.options.every((o) => !o.next || o.next in f.questions)), 'Broken flow');
+export type Flow = z.infer<typeof FlowSchema>;
+
+const SuggestionSchema = z.object({ answers: z.record(z.string(), z.string()), reasons: z.array(z.string()) });
+export type Suggestion = z.infer<typeof SuggestionSchema>;
+
+const SourceRefSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  citation: z.string().nullable(),
+  authority: z.string(),
+  url: z.string().url().refine((u) => u.startsWith('https://'), 'Source links must use https'),
+  source_type: z.enum(['statute', 'regulation', 'agency-guidance', 'official-resource', 'educational']),
+  verification: z.enum(['verified', 'needs-review']),
+});
+export type SourceRef = z.infer<typeof SourceRefSchema>;
+
+export const PlanTypeSchema = z.enum([
+  'nj-regulated',
+  'marketplace',
+  'self-funded',
+  'medicaid',
+  'medicare',
+  'other-state',
+  'government-or-religious',
+  'unknown',
+]);
+
+export const TriageResultSchema = z.object({
+  plan_type: PlanTypeSchema,
+  label: z.string(),
+  confidence: z.enum(['confirmed', 'needs-confirmation']),
+  summary: z.string(),
+  regulator: z.object({ name: z.string(), source: SourceRefSchema.nullable() }).nullable(),
+  claims: z.array(z.object({ id: z.string(), text: z.string(), sources: z.array(SourceRefSchema).min(1), needs_review: z.boolean() })),
+  uncertainties: z.array(z.string()),
+  how_to_confirm: z.array(z.string()),
+  answers: z.array(z.object({ question: z.string(), answer: z.string() })),
+});
+export type TriageResult = z.infer<typeof TriageResultSchema>;
+
+const json = (body: unknown, signal?: AbortSignal): RequestInit => ({
+  method: 'POST',
+  body: JSON.stringify(body),
+  signal,
+  headers: { 'Content-Type': 'application/json' },
+});
+
+export const fetchFlow = (signal?: AbortSignal) => request('/api/triage/flow', FlowSchema, { signal });
+export const fetchSuggestion = (signals: string[], signal?: AbortSignal) =>
+  request('/api/triage/suggest', SuggestionSchema, json({ signals: signals.slice(0, 20) }, signal));
+export const runTriage = (answers: Record<string, string>, signal?: AbortSignal) =>
+  request('/api/triage', TriageResultSchema, json({ answers }, signal));
+
+export const SOURCE_TYPE_LABEL: Record<SourceRef['source_type'], string> = {
+  statute: 'Statute',
+  regulation: 'Regulation',
+  'agency-guidance': 'Agency guidance',
+  'official-resource': 'Official resource',
+  educational: 'Educational',
+};
+
 export function formatDate(iso: string): string {
   const [y, m, d] = iso.split('-').map(Number);
   if (!y || !m || !d) return iso;

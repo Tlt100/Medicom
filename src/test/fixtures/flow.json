@@ -1,0 +1,204 @@
+{
+ "start": "coverage_source",
+ "questions": {
+  "coverage_source": {
+   "id": "coverage_source",
+   "prompt": "Where does the coverage that sent this letter come from?",
+   "help": "Think about how you got the insurance, not which doctor you saw.",
+   "options": [
+    {
+     "value": "job",
+     "label": "A job (mine or a family member’s)",
+     "hint": "Including COBRA continuation coverage.",
+     "next": "employer_type"
+    },
+    {
+     "value": "self_bought",
+     "label": "I bought it myself",
+     "hint": "Including plans from Get Covered New Jersey.",
+     "next": "purchase_channel"
+    },
+    {
+     "value": "medicaid",
+     "label": "NJ FamilyCare or Medicaid",
+     "hint": "Including NJ FamilyCare managed care plans.",
+     "next": null
+    },
+    {
+     "value": "medicare",
+     "label": "Medicare",
+     "hint": "Including Medicare Advantage plans from private companies.",
+     "next": "medicare_kind"
+    },
+    {
+     "value": "unsure",
+     "label": "I’m not sure",
+     "hint": null,
+     "next": null
+    }
+   ]
+  },
+  "employer_type": {
+   "id": "employer_type",
+   "prompt": "What kind of employer offers the plan?",
+   "help": "Government and religious-organization plans follow different rules from private employer plans.",
+   "options": [
+    {
+     "value": "private",
+     "label": "A private company or nonprofit",
+     "hint": null,
+     "next": "funding"
+    },
+    {
+     "value": "government",
+     "label": "A government employer",
+     "hint": "Federal, state, county, city, or a public school.",
+     "next": null
+    },
+    {
+     "value": "religious",
+     "label": "A church or religious organization",
+     "hint": null,
+     "next": null
+    },
+    {
+     "value": "unsure",
+     "label": "I’m not sure",
+     "hint": null,
+     "next": "funding"
+    }
+   ]
+  },
+  "funding": {
+   "id": "funding",
+   "prompt": "Is the plan self-funded or fully insured?",
+   "help": "Self-funded (also called self-insured) means the employer pays claims and an insurance company only administers the plan. Your plan documents or HR department can tell you.",
+   "options": [
+    {
+     "value": "self_funded",
+     "label": "Self-funded (self-insured)",
+     "hint": null,
+     "next": "grandfathered"
+    },
+    {
+     "value": "fully_insured",
+     "label": "Fully insured by an insurance company",
+     "hint": null,
+     "next": "issued_state"
+    },
+    {
+     "value": "unsure",
+     "label": "I’m not sure",
+     "hint": null,
+     "next": null
+    }
+   ]
+  },
+  "issued_state": {
+   "id": "issued_state",
+   "prompt": "Was the insurance policy issued in New Jersey?",
+   "help": "Your plan documents name the state. If your employer is based in another state, the policy may have been issued there.",
+   "options": [
+    {
+     "value": "nj",
+     "label": "Yes, in New Jersey",
+     "hint": null,
+     "next": "grandfathered"
+    },
+    {
+     "value": "other",
+     "label": "No, in another state",
+     "hint": null,
+     "next": null
+    },
+    {
+     "value": "unsure",
+     "label": "I’m not sure",
+     "hint": null,
+     "next": "grandfathered"
+    }
+   ]
+  },
+  "purchase_channel": {
+   "id": "purchase_channel",
+   "prompt": "Where did you buy the plan?",
+   "help": "Get Covered New Jersey is the state-run marketplace (the New Jersey version of HealthCare.gov).",
+   "options": [
+    {
+     "value": "get_covered_nj",
+     "label": "Through Get Covered New Jersey",
+     "hint": null,
+     "next": null
+    },
+    {
+     "value": "insurer_nj",
+     "label": "Directly from an insurance company, while living in New Jersey",
+     "hint": null,
+     "next": null
+    },
+    {
+     "value": "other_state",
+     "label": "In another state",
+     "hint": null,
+     "next": null
+    },
+    {
+     "value": "unsure",
+     "label": "I’m not sure",
+     "hint": null,
+     "next": null
+    }
+   ]
+  },
+  "medicare_kind": {
+   "id": "medicare_kind",
+   "prompt": "Which kind of Medicare is this?",
+   "help": "Medicare Advantage (Part C) plans are run by private companies and have their own plan name and card.",
+   "options": [
+    {
+     "value": "advantage",
+     "label": "A Medicare Advantage plan from a private company",
+     "hint": null,
+     "next": null
+    },
+    {
+     "value": "original",
+     "label": "Original Medicare (the red, white, and blue card)",
+     "hint": null,
+     "next": null
+    },
+    {
+     "value": "unsure",
+     "label": "I’m not sure",
+     "hint": null,
+     "next": null
+    }
+   ]
+  },
+  "grandfathered": {
+   "id": "grandfathered",
+   "prompt": "Do your plan documents say the plan is “grandfathered”?",
+   "help": "Grandfathered plans are older plans that some federal appeal rules don’t fully cover. Most plans today are not grandfathered.",
+   "options": [
+    {
+     "value": "no",
+     "label": "No, or it doesn’t mention it",
+     "hint": null,
+     "next": null
+    },
+    {
+     "value": "yes",
+     "label": "Yes, it says grandfathered",
+     "hint": null,
+     "next": null
+    },
+    {
+     "value": "unsure",
+     "label": "I’m not sure",
+     "hint": null,
+     "next": null
+    }
+   ]
+  }
+ }
+}

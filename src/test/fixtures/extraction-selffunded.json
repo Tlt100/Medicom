@@ -1,0 +1,228 @@
+{
+ "document": {
+  "name": "synthetic-self-funded-out-of-network.pdf",
+  "kind": "pdf",
+  "page_count": 1,
+  "size_bytes": 2773,
+  "synthetic": true,
+  "sample_id": "self-funded-out-of-network"
+ },
+ "pages": [
+  {
+   "number": 1,
+   "text": "Larkspur Benefit Services\nClaims Administrator for the Tidewater Fabrication Co. Employee Health Plan\nP.O. Box 2290, Edison, NJ 08818 | (800) 555-0167\nDate: August 28, 2026\nAlex Sample\n48 Example Avenue\nNew Brunswick, NJ 08901\nParticipant ID: TFC-20931\nClaim Reference: LBS-88412-B\nPlan: Tidewater Fabrication Co. Employee Health Plan\nEXPLANATION OF DENIED CLAIM\nDear Alex Sample:\nWe processed the claim for an outpatient physical therapy evaluation on August 2, 2026,\nbilled by Shoreline Motion Therapy.\nReason for denial\nThe claim was denied because the provider is out of network and your plan does not cover\nout-of-network services except in emergencies.\nAppeal procedures\nYou may appeal this decision by sending a written request for review to the Plan\nAdministrator at the address above. Your appeal must be filed within 180 days after you\nreceive this notice. You have the right to submit written comments, documents, and records,\nand to receive copies of documents relevant to your claim.\nThe Tidewater Fabrication Co. Employee Health Plan is a self-funded group health plan\ngoverned by ERISA. After a final internal decision, you may request an external review by an\nindependent review organization through the Plan within 4 months.\nYou also have the right to bring a civil action under section 502(a) of ERISA following an\nadverse decision on appeal.\nSYNTHETIC SAMPLE - NOT A REAL LETTER - created for PatientShield demo mode - Page 1 of 1"
+  }
+ ],
+ "fields": [
+  {
+   "key": "denial_reason",
+   "label": "Stated reason for the denial",
+   "status": "found",
+   "value": "The claim was denied because the provider is out of network and your plan does not cover out-of-network services except in emergencies.",
+   "values": [
+    "The claim was denied because the provider is out of network and your plan does not cover out-of-network services except in emergencies."
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 1,
+     "start": 523,
+     "end": 658,
+     "quote": "The claim was denied because the provider is out of network and your plan does not cover\nout-of-network services except in emergencies."
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "appeal_instructions",
+   "label": "How to appeal",
+   "status": "found",
+   "value": "You may appeal this decision by sending a written request for review to the Plan Administrator at the address above.",
+   "values": [
+    "You may appeal this decision by sending a written request for review to the Plan Administrator at the address above.",
+    "Your appeal must be filed within 180 days after you receive this notice."
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 1,
+     "start": 677,
+     "end": 793,
+     "quote": "You may appeal this decision by sending a written request for review to the Plan\nAdministrator at the address above."
+    },
+    {
+     "page": 1,
+     "start": 794,
+     "end": 866,
+     "quote": "Your appeal must be filed within 180 days after you\nreceive this notice."
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "appeal_deadline",
+   "label": "Appeal deadline stated in the letter",
+   "status": "found",
+   "value": "180 days after you receive this notice",
+   "values": [
+    "180 days after you receive this notice"
+   ],
+   "normalized": "180 days",
+   "citations": [
+    {
+     "page": 1,
+     "start": 794,
+     "end": 866,
+     "quote": "Your appeal must be filed within 180 days after you\nreceive this notice."
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "external_review_deadline",
+   "label": "External review or fair hearing deadline",
+   "status": "found",
+   "value": "4 months",
+   "values": [
+    "4 months"
+   ],
+   "normalized": "4 months",
+   "citations": [
+    {
+     "page": 1,
+     "start": 1102,
+     "end": 1241,
+     "quote": "After a final internal decision, you may request an external review by an\nindependent review organization through the Plan within 4 months."
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "letter_date",
+   "label": "Date of the letter",
+   "status": "found",
+   "value": "August 28, 2026",
+   "values": [
+    "August 28, 2026"
+   ],
+   "normalized": "2026-08-28",
+   "citations": [
+    {
+     "page": 1,
+     "start": 157,
+     "end": 172,
+     "quote": "August 28, 2026"
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "insurer_name",
+   "label": "Insurer or plan administrator",
+   "status": "found",
+   "value": "Larkspur Benefit Services",
+   "values": [
+    "Larkspur Benefit Services"
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 1,
+     "start": 0,
+     "end": 25,
+     "quote": "Larkspur Benefit Services"
+    }
+   ],
+   "confidence": "medium",
+   "note": "Taken from the letterhead at the top of the letter."
+  },
+  {
+   "key": "plan_name",
+   "label": "Plan name",
+   "status": "found",
+   "value": "Tidewater Fabrication Co. Employee Health Plan",
+   "values": [
+    "Tidewater Fabrication Co. Employee Health Plan"
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 1,
+     "start": 288,
+     "end": 334,
+     "quote": "Tidewater Fabrication Co. Employee Health Plan"
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  },
+  {
+   "key": "reference_numbers",
+   "label": "Reference numbers",
+   "status": "found",
+   "value": "Participant ID: TFC-20931",
+   "values": [
+    "Participant ID: TFC-20931",
+    "Claim Reference: LBS-88412-B"
+   ],
+   "normalized": null,
+   "citations": [
+    {
+     "page": 1,
+     "start": 227,
+     "end": 252,
+     "quote": "Participant ID: TFC-20931"
+    },
+    {
+     "page": 1,
+     "start": 253,
+     "end": 281,
+     "quote": "Claim Reference: LBS-88412-B"
+    }
+   ],
+   "confidence": "high",
+   "note": null
+  }
+ ],
+ "signals": [
+  {
+   "kind": "plan-type",
+   "code": "self-funded",
+   "label": "Mentions a self-funded or self-insured plan",
+   "citations": [
+    {
+     "page": 1,
+     "start": 997,
+     "end": 1101,
+     "quote": "The Tidewater Fabrication Co. Employee Health Plan is a self-funded group health plan\ngoverned by ERISA."
+    }
+   ]
+  },
+  {
+   "kind": "plan-type",
+   "code": "erisa",
+   "label": "Mentions ERISA (usually a job-based plan)",
+   "citations": [
+    {
+     "page": 1,
+     "start": 997,
+     "end": 1101,
+     "quote": "The Tidewater Fabrication Co. Employee Health Plan is a self-funded group health plan\ngoverned by ERISA."
+    },
+    {
+     "page": 1,
+     "start": 1242,
+     "end": 1360,
+     "quote": "You also have the right to bring a civil action under section 502(a) of ERISA following an\nadverse decision on appeal."
+    }
+   ]
+  }
+ ],
+ "warnings": [],
+ "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+}

@@ -1,0 +1,159 @@
+{
+ "plan_type": "self-funded",
+ "label": "Self-funded employer plan (ERISA)",
+ "confidence": "confirmed",
+ "summary": "Self-funded employer plans are governed mainly by federal law (ERISA), not New Jersey insurance law, so New Jersey’s IHCAP program isn’t available. You appeal to the plan first; external review, if your plan offers it, also goes through the plan.",
+ "regulator": {
+  "name": "U.S. Department of Labor, Employee Benefits Security Administration (EBSA)",
+  "source": {
+   "id": "dol-filing-a-claim",
+   "title": "Filing a Claim for Your Health Benefits",
+   "citation": null,
+   "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+   "url": "https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/publications/filing-a-claim-for-your-health-benefits",
+   "source_type": "agency-guidance",
+   "verification": "verified"
+  }
+ },
+ "claims": [
+  {
+   "id": "erisa_scope",
+   "text": "Federal claims rules for job-based plans generally apply to private-sector employer plans, with exceptions for plans sponsored by government or most religious bodies.",
+   "sources": [
+    {
+     "id": "dol-filing-a-claim",
+     "title": "Filing a Claim for Your Health Benefits",
+     "citation": null,
+     "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+     "url": "https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/publications/filing-a-claim-for-your-health-benefits",
+     "source_type": "agency-guidance",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "erisa_appeal_window",
+   "text": "The U.S. Department of Labor says you have at least 180 days to appeal a denied claim under a private employer plan.",
+   "sources": [
+    {
+     "id": "dol-filing-a-claim",
+     "title": "Filing a Claim for Your Health Benefits",
+     "citation": null,
+     "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+     "url": "https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/publications/filing-a-claim-for-your-health-benefits",
+     "source_type": "agency-guidance",
+     "verification": "verified"
+    },
+    {
+     "id": "cfr-29-2560-503-1",
+     "title": "Claims procedure for employee benefit plans (ERISA)",
+     "citation": "29 CFR § 2560.503-1",
+     "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+     "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-G/part-2560/section-2560.503-1",
+     "source_type": "regulation",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "urgent_72h",
+   "text": "Under federal claims rules for employer plans, an urgent care claim must be decided as soon as possible and no later than 72 hours after the plan receives it.",
+   "sources": [
+    {
+     "id": "cfr-29-2560-503-1",
+     "title": "Claims procedure for employee benefit plans (ERISA)",
+     "citation": "29 CFR § 2560.503-1",
+     "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+     "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-G/part-2560/section-2560.503-1",
+     "source_type": "regulation",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "erisa_external",
+   "text": "Job-based plans that aren’t grandfathered must provide external review of claim denials by an independent party. Plans set up after March 23, 2010, or that made certain significant changes after that date, are not grandfathered.",
+   "sources": [
+    {
+     "id": "dol-filing-a-claim",
+     "title": "Filing a Claim for Your Health Benefits",
+     "citation": null,
+     "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+     "url": "https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/publications/filing-a-claim-for-your-health-benefits",
+     "source_type": "agency-guidance",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "external_review_4_months",
+   "text": "After a final internal denial, you generally have 4 months to request an independent external review.",
+   "sources": [
+    {
+     "id": "cfr-45-147-136",
+     "title": "Internal claims and appeals and external review processes (Affordable Care Act)",
+     "citation": "45 CFR § 147.136",
+     "authority": "U.S. Department of Health and Human Services",
+     "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-B/part-147/section-147.136",
+     "source_type": "regulation",
+     "verification": "verified"
+    },
+    {
+     "id": "hcgov-external-review",
+     "title": "External review",
+     "citation": null,
+     "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+     "url": "https://www.healthcare.gov/appeal-insurance-company-decision/external-review/",
+     "source_type": "educational",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "ihcap_scope",
+   "text": "New Jersey’s Independent Health Care Appeals Program (IHCAP) does not accept appeals for self-funded plans, Medicare, Medicare Advantage, or insurance contracts delivered in another state.",
+   "sources": [
+    {
+     "id": "nj-dobi-ihcap",
+     "title": "Independent Health Care Appeals Program (IHCAP)",
+     "citation": null,
+     "authority": "New Jersey Department of Banking and Insurance",
+     "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  }
+ ],
+ "uncertainties": [],
+ "how_to_confirm": [
+  "Look at your insurance card. Medicare, Medicare Advantage, and NJ FamilyCare cards say so.",
+  "Check your plan documents (the Summary Plan Description or Summary of Benefits and Coverage) for the words “self-funded,” “self-insured,” “fully insured,” “ERISA,” or “grandfathered,” and for the state where the policy was issued.",
+  "If you get coverage through work, ask HR: “Is our health plan self-funded or fully insured, and which state issued the policy?”",
+  "Call the member services number on your card and ask who regulates your plan."
+ ],
+ "answers": [
+  {
+   "question": "Where does the coverage that sent this letter come from?",
+   "answer": "A job (mine or a family member’s)"
+  },
+  {
+   "question": "What kind of employer offers the plan?",
+   "answer": "A private company or nonprofit"
+  },
+  {
+   "question": "Is the plan self-funded or fully insured?",
+   "answer": "Self-funded (self-insured)"
+  },
+  {
+   "question": "Do your plan documents say the plan is “grandfathered”?",
+   "answer": "No, or it doesn’t mention it"
+  }
+ ]
+}

@@ -13,7 +13,7 @@ Federal regulation text was retrieved from the eCFR versioner API (current as of
 import datetime as dt
 from typing import Any, Dict, List
 
-REGISTRY_VERSION = 1
+REGISTRY_VERSION = 2
 LAST_REVIEWED = dt.date(2026, 10, 17)
 
 _CHECKED = "2026-10-16"
@@ -80,7 +80,7 @@ RAW_SOURCES: List[Dict[str, Any]] = [
         "topics": ["internal-appeal", "external-review", "plan-type"],
         "last_checked": _CHECKED,
         "verification": "verified",
-        "version": 1,
+        "version": 2,
         "excerpts": [
             {
                 "locator": "Introduction",
@@ -92,8 +92,12 @@ RAW_SOURCES: List[Dict[str, Any]] = [
             },
             {"locator": "Appeals", "text": "Whatever the reason, you have at least 180 days to file an appeal"},
             {
-                "locator": "External review",
-                "text": "must provide for external review of claim denials by an independent party.",
+                "locator": "Additional Rules for Plans Not Grandfathered under the Affordable Care Act",
+                "text": "Plans that are not grandfathered are those established, or that have made certain significant changes, after March 23, 2010.",
+            },
+            {
+                "locator": "Additional Rules for Plans Not Grandfathered under the Affordable Care Act",
+                "text": "plans that are not grandfathered under the Affordable Care Act must provide for external review of claim denials by an independent party.",
             },
         ],
     },

@@ -42,12 +42,12 @@ export function Layout() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <div className="prototype-banner" role="note">
+      <aside className="prototype-banner" aria-label="Prototype notice">
         <Icon name="alert" size={16} />
         <span>
           Portfolio prototype using <strong>synthetic sample letters</strong>. Do not upload real health information.
         </span>
-      </div>
+      </aside>
       <header className="site-header">
         <div className="container header-inner">
           <Logo />

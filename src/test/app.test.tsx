@@ -18,7 +18,7 @@ describe('Landing page', () => {
     mockFetchJson(registryFixture);
     renderAt('/');
     expect(screen.getByRole('heading', { level: 1, name: /understand your insurance denial/i })).toBeInTheDocument();
-    expect(screen.getByRole('note')).toHaveTextContent(/do not upload real health information/i);
+    expect(screen.getByRole('complementary', { name: /prototype notice/i })).toHaveTextContent(/do not upload real health information/i);
     expect(screen.getByRole('link', { name: /open the denial navigator/i })).toHaveAttribute('href', '/navigator');
     await screen.findByText('Verified against the source');
   });

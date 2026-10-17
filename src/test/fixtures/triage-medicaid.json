@@ -1,0 +1,92 @@
+{
+ "plan_type": "medicaid",
+ "label": "NJ FamilyCare / Medicaid",
+ "confidence": "confirmed",
+ "summary": "NJ FamilyCare (Medicaid) has its own appeal system: first an appeal to your managed care plan, then a State fair hearing. Deadlines are short, so act on the dates in your notice.",
+ "regulator": {
+  "name": "NJ Department of Human Services, Division of Medical Assistance and Health Services (DMAHS)",
+  "source": {
+   "id": "nj-dmahs-mc-26-06",
+   "title": "Medicaid Communication No. 26-06: Operational Changes to Medicaid Fair Hearing Process",
+   "citation": null,
+   "authority": "NJ Department of Human Services, Division of Medical Assistance and Health Services",
+   "url": "https://www.nj.gov/humanservices/dmahs/documents/providers-stakeholders/resources/medicaid/2026/26-06_Operational_Changes_to_Fair_Hearing_Process.pdf",
+   "source_type": "agency-guidance",
+   "verification": "needs-review"
+  }
+ },
+ "claims": [
+  {
+   "id": "medicaid_appeal_60",
+   "text": "In Medicaid managed care, you generally have 60 calendar days from the date on the notice to appeal to the plan.",
+   "sources": [
+    {
+     "id": "cfr-42-438-subpart-f",
+     "title": "Medicaid managed care grievance and appeal system",
+     "citation": "42 CFR §§ 438.402, 438.408",
+     "authority": "Centers for Medicare & Medicaid Services",
+     "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C/part-438/subpart-F",
+     "source_type": "regulation",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "medicaid_fair_hearing",
+   "text": "After the plan’s appeal decision, federal rules give at least 90 and at most 120 days to request a State fair hearing. New Jersey changed parts of its fair hearing process in 2026, so follow the deadline printed on your notice.",
+   "sources": [
+    {
+     "id": "cfr-42-438-subpart-f",
+     "title": "Medicaid managed care grievance and appeal system",
+     "citation": "42 CFR §§ 438.402, 438.408",
+     "authority": "Centers for Medicare & Medicaid Services",
+     "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-C/part-438/subpart-F",
+     "source_type": "regulation",
+     "verification": "verified"
+    },
+    {
+     "id": "nj-dmahs-mc-26-06",
+     "title": "Medicaid Communication No. 26-06: Operational Changes to Medicaid Fair Hearing Process",
+     "citation": null,
+     "authority": "NJ Department of Human Services, Division of Medical Assistance and Health Services",
+     "url": "https://www.nj.gov/humanservices/dmahs/documents/providers-stakeholders/resources/medicaid/2026/26-06_Operational_Changes_to_Fair_Hearing_Process.pdf",
+     "source_type": "agency-guidance",
+     "verification": "needs-review"
+    }
+   ],
+   "needs_review": true
+  },
+  {
+   "id": "prior_auth_reason",
+   "text": "Under CMS’s prior authorization rule (CMS-0057-F), Medicare Advantage plans, Medicaid programs, and plans on the federal marketplace must give a specific reason when they deny a prior authorization request (drug requests excluded). That reason goes to your provider, so ask them for it.",
+   "sources": [
+    {
+     "id": "cms-0057-f-fact-sheet",
+     "title": "CMS Interoperability and Prior Authorization Final Rule (CMS-0057-F)",
+     "citation": "CMS-0057-F; see 42 CFR 422.122(a), 42 CFR 431.80(a), 45 CFR 156.223(a)",
+     "authority": "Centers for Medicare & Medicaid Services",
+     "url": "https://www.cms.gov/newsroom/fact-sheets/cms-interoperability-prior-authorization-final-rule-cms-0057-f",
+     "source_type": "agency-guidance",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  }
+ ],
+ "uncertainties": [
+  "New Jersey changed parts of its Medicaid fair hearing process on July 1, 2026, and official sources give different deadlines. PatientShield has flagged this for review. Use the deadline printed on your notice and act quickly."
+ ],
+ "how_to_confirm": [
+  "Look at your insurance card. Medicare, Medicare Advantage, and NJ FamilyCare cards say so.",
+  "Check your plan documents (the Summary Plan Description or Summary of Benefits and Coverage) for the words “self-funded,” “self-insured,” “fully insured,” “ERISA,” or “grandfathered,” and for the state where the policy was issued.",
+  "If you get coverage through work, ask HR: “Is our health plan self-funded or fully insured, and which state issued the policy?”",
+  "Call the member services number on your card and ask who regulates your plan."
+ ],
+ "answers": [
+  {
+   "question": "Where does the coverage that sent this letter come from?",
+   "answer": "NJ FamilyCare or Medicaid"
+  }
+ ]
+}

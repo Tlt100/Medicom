@@ -1,0 +1,54 @@
+{
+ "plan_type": "unknown",
+ "label": "Plan type not yet known",
+ "confidence": "needs-confirmation",
+ "summary": "Your appeal rights depend on what kind of plan you have, so PatientShield won’t show plan-specific steps yet. The steps below can tell you your plan type in a few minutes.",
+ "regulator": null,
+ "claims": [
+  {
+   "id": "ihcap_scope",
+   "text": "New Jersey’s Independent Health Care Appeals Program (IHCAP) does not accept appeals for self-funded plans, Medicare, Medicare Advantage, or insurance contracts delivered in another state.",
+   "sources": [
+    {
+     "id": "nj-dobi-ihcap",
+     "title": "Independent Health Care Appeals Program (IHCAP)",
+     "citation": null,
+     "authority": "New Jersey Department of Banking and Insurance",
+     "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "erisa_scope",
+   "text": "Federal claims rules for job-based plans generally apply to private-sector employer plans, with exceptions for plans sponsored by government or most religious bodies.",
+   "sources": [
+    {
+     "id": "dol-filing-a-claim",
+     "title": "Filing a Claim for Your Health Benefits",
+     "citation": null,
+     "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+     "url": "https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/publications/filing-a-claim-for-your-health-benefits",
+     "source_type": "agency-guidance",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  }
+ ],
+ "uncertainties": [],
+ "how_to_confirm": [
+  "Look at your insurance card. Medicare, Medicare Advantage, and NJ FamilyCare cards say so.",
+  "Check your plan documents (the Summary Plan Description or Summary of Benefits and Coverage) for the words “self-funded,” “self-insured,” “fully insured,” “ERISA,” or “grandfathered,” and for the state where the policy was issued.",
+  "If you get coverage through work, ask HR: “Is our health plan self-funded or fully insured, and which state issued the policy?”",
+  "Call the member services number on your card and ask who regulates your plan."
+ ],
+ "answers": [
+  {
+   "question": "Where does the coverage that sent this letter come from?",
+   "answer": "I’m not sure"
+  }
+ ]
+}

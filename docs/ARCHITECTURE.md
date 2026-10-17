@@ -14,6 +14,9 @@ Browser (React + TypeScript, Vite)
                     │                           POST /api/samples/{id}/extract, GET /api/samples/{id}/pdf
                     ├─ extraction/              documents → segment → fields → service
                     ├─ samples/                 synthetic letters + in-memory PDF generator
+                    ├─ routers/triage.py        GET /api/triage/flow, POST /api/triage/suggest, POST /api/triage
+                    ├─ triage/                  question tree, classifier, plan profiles
+                    ├─ claims.py                plain-language legal statements → source ids
                     ├─ sources/models.py        Pydantic models + validation rules
                     ├─ sources/registry.py      Verified source data (versioned)
                     └─ security.py              Security headers, body-size limit
@@ -33,7 +36,9 @@ Browser (React + TypeScript, Vite)
 | `ExtractedField` | One detail from the letter (denial reason, appeal instructions, appeal deadline, external review deadline, letter date, insurer, plan, reference numbers): `status` found / not_found, the value(s), a machine-readable `normalized` form where useful, and `citations`. A not-found field carries guidance instead of a guess. |
 | `Citation` | `page`, `start`, `end`, `quote`. Invariant enforced on the server **and** re-checked by the client schema: `pages[page-1].text[start:end] == quote`. |
 | `Signal` | Plan-type clues, urgent-appeal mentions, and text addressed to software (prompt-injection attempts), each cited. Clues are hints for the triage step, never conclusions. |
-| Planned: `TriageAnswers` → `ResultPlan` | Plan type and dates in; "document says" vs. "rules say," checklist, documents, questions, resources and uncertainties out. Every legal statement cites `Source` ids. |
+| `Claim` | One plain-language legal statement and the source ids that support it. Tests check every cited source exists and that every number in the text (180, 72, a phone number, a date) appears in an excerpt, title or citation of a cited source. Claims that cite a needs-review source are flagged in responses. |
+| `TriageResult` | Plan type (`nj-regulated`, `marketplace`, `self-funded`, `medicaid`, `medicare`, `other-state`, `government-or-religious`, `unknown`), confidence (`confirmed` / `needs-confirmation`), summary, regulator, cited claims, user-facing uncertainties, how-to-confirm steps, and the answers given. |
+| Planned: `ActionPlan` | Letter facts and plan rules combined: ordered checklist with deadlines, documents, questions, escalation. |
 
 Validation rules enforced by Pydantic at startup (and tested): verified sources need an excerpt; needs-review sources need a note; dates
 need a label; URLs must be https; ids are unique.
@@ -52,6 +57,13 @@ need a label; URLs must be https; ids are unique.
 
 Uploads are sent as the raw request body with an `X-File-Name` header (no multipart parser), read in chunks with a hard cap, and
 never written to disk or logged. Sample letters run through the same PDF path, using PDFs generated in memory.
+
+## Plan-type triage
+
+The question tree lives in `triage/flow.py` and is served to the UI, which only walks it. Submitted answers are validated against
+the tree (no skipped, invented or off-path answers). Clues from the letter (for example "self-funded" or "NJ FamilyCare") are turned
+into *suggested* answers that the UI pre-selects with a visible note; the user still confirms every answer, so a plan type is never
+inferred silently. "I'm not sure" leads to steps for finding out, never to plan-specific deadlines.
 
 ## Security
 
