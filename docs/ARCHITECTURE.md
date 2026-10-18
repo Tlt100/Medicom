@@ -111,6 +111,9 @@ See [SECURITY.md](../SECURITY.md) for the threat model and the latest review.
   input handling, body-size limit.
 - **Frontend (Vitest + Testing Library + axe):** landing content, live coverage, loading/error/retry states, response-schema rejection
   (including non-https links), routing, mobile menu, and automated accessibility checks.
+- **CI:** GitHub Actions (`.github/workflows/ci.yml`) runs on every push and pull request to `main`: the backend job runs
+  pytest, `ruff check`, `ruff format --check` and `pip-audit`; the frontend job runs `npm ci`, ESLint, `tsc`, Vitest, the
+  production build and `npm audit --audit-level=high`. Any failure fails the run.
 
 ## Deployment
 
