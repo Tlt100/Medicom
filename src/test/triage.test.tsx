@@ -130,7 +130,7 @@ describe('Plan-type triage', () => {
     await cont();
     await screen.findByRole('heading', { level: 2, name: /self-funded employer plan/i });
 
-    const rules = screen.getAllByRole('listitem').filter((li) => li.classList.contains('claim'));
+    const rules = Array.from(document.querySelectorAll<HTMLElement>('.claims > li'));
     expect(rules.length).toBe(triageSelfFunded.claims.length);
     const link = within(rules[0]!).getAllByRole('link')[0]!;
     expect(link.getAttribute('href')).toMatch(/^https:\/\//);

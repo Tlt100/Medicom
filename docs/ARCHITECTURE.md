@@ -16,6 +16,8 @@ Browser (React + TypeScript, Vite)
                     ├─ samples/                 synthetic letters + in-memory PDF generator
                     ├─ routers/triage.py        GET /api/triage/flow, POST /api/triage/suggest, POST /api/triage
                     ├─ triage/                  question tree, classifier, plan profiles
+                    ├─ routers/plan.py          POST /api/plan
+                    ├─ actionplan/              deadline math, letter-vs-rules comparisons, checklist builder
                     ├─ claims.py                plain-language legal statements → source ids
                     ├─ sources/models.py        Pydantic models + validation rules
                     ├─ sources/registry.py      Verified source data (versioned)
@@ -38,7 +40,7 @@ Browser (React + TypeScript, Vite)
 | `Signal` | Plan-type clues, urgent-appeal mentions, and text addressed to software (prompt-injection attempts), each cited. Clues are hints for the triage step, never conclusions. |
 | `Claim` | One plain-language legal statement and the source ids that support it. Tests check every cited source exists and that every number in the text (180, 72, a phone number, a date) appears in an excerpt, title or citation of a cited source. Claims that cite a needs-review source are flagged in responses. |
 | `TriageResult` | Plan type (`nj-regulated`, `marketplace`, `self-funded`, `medicaid`, `medicare`, `other-state`, `government-or-religious`, `unknown`), confidence (`confirmed` / `needs-confirmation`), summary, regulator, cited claims, user-facing uncertainties, how-to-confirm steps, and the answers given. |
-| Planned: `ActionPlan` | Letter facts and plan rules combined: ordered checklist with deadlines, documents, questions, escalation. |
+| `ActionPlan` | Built from the triage answers, quoted letter facts and the user's situation: computed `deadlines` (each labelled *stated in your letter* or *general rule*, with what it's counted from), `comparisons` (letter quote vs. cited claims, with a neutral note), an ordered checklist whose steps are tagged rule / practical / letter / urgent, documents, questions, contacts, and uncertainties. |
 
 Validation rules enforced by Pydantic at startup (and tested): verified sources need an excerpt; needs-review sources need a note; dates
 need a label; URLs must be https; ids are unique.
@@ -64,6 +66,15 @@ The question tree lives in `triage/flow.py` and is served to the UI, which only 
 the tree (no skipped, invented or off-path answers). Clues from the letter (for example "self-funded" or "NJ FamilyCare") are turned
 into *suggested* answers that the UI pre-selects with a visible note; the user still confirms every answer, so a plan type is never
 inferred silently. "I'm not sure" leads to steps for finding out, never to plan-specific deadlines.
+
+## Action plan
+
+`POST /api/plan` receives the confirmed answers, the quotes the client already holds from its extraction result (page-numbered,
+length-capped, extra fields rejected), and a few situation details. No identifiers such as claim or member numbers are sent.
+Deadlines are counted from the date the letter says (the notice date, or receipt), falling back to the printed date with a note.
+Months clamp to month end; business days skip weekends (holidays are called out, not computed). When the letter and a general rule
+disagree, the user is told to plan around the earlier date and ask the plan in writing. The plan never says a rule was broken.
+Unknown plan types get letter-stated dates only and start with confirming the plan type. The page prints as a clean handout.
 
 ## Security
 

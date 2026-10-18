@@ -1,0 +1,172 @@
+{
+ "plan_type": "nj-regulated",
+ "label": "New Jersey-regulated plan",
+ "confidence": "confirmed",
+ "summary": "Your plan appears to be regulated by New Jersey. After the plan’s internal appeal, New Jersey’s Independent Health Care Appeals Program (IHCAP) can send your case to an independent reviewer.",
+ "regulator": {
+  "name": "New Jersey Department of Banking and Insurance (DOBI)",
+  "source": {
+   "id": "nj-dobi-consumer",
+   "title": "Consumer Assistance & Insurance Complaints",
+   "citation": null,
+   "authority": "New Jersey Department of Banking and Insurance",
+   "url": "https://www.nj.gov/dobi/consumer.htm",
+   "source_type": "official-resource",
+   "verification": "verified"
+  }
+ },
+ "claims": [
+  {
+   "id": "internal_appeal_window",
+   "text": "For most job-based and individual health plans, you get at least 180 days after receiving a denial to file an internal appeal.",
+   "sources": [
+    {
+     "id": "hcgov-internal-appeals",
+     "title": "Internal appeals",
+     "citation": null,
+     "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+     "url": "https://www.healthcare.gov/appeal-insurance-company-decision/internal-appeals/",
+     "source_type": "educational",
+     "verification": "verified"
+    },
+    {
+     "id": "cfr-29-2560-503-1",
+     "title": "Claims procedure for employee benefit plans (ERISA)",
+     "citation": "29 CFR § 2560.503-1",
+     "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+     "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-G/part-2560/section-2560.503-1",
+     "source_type": "regulation",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "internal_decision_timing",
+   "text": "HealthCare.gov says an internal appeal must be decided within 30 days for care you haven’t received yet, and within 60 days for care you already received.",
+   "sources": [
+    {
+     "id": "hcgov-internal-appeals",
+     "title": "Internal appeals",
+     "citation": null,
+     "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+     "url": "https://www.healthcare.gov/appeal-insurance-company-decision/internal-appeals/",
+     "source_type": "educational",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "ihcap_internal_first",
+   "text": "IHCAP generally requires you to finish the plan’s internal appeal first.",
+   "sources": [
+    {
+     "id": "nj-dobi-ihcap",
+     "title": "Independent Health Care Appeals Program (IHCAP)",
+     "citation": null,
+     "authority": "New Jersey Department of Banking and Insurance",
+     "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "ihcap_timing",
+   "text": "NJ DOBI says a standard IHCAP decision takes no more than 45 calendar days from when the appeal is submitted.",
+   "sources": [
+    {
+     "id": "nj-dobi-ihcap",
+     "title": "Independent Health Care Appeals Program (IHCAP)",
+     "citation": null,
+     "authority": "New Jersey Department of Banking and Insurance",
+     "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "external_review_binding",
+   "text": "HealthCare.gov says your insurer is required by law to accept the external reviewer’s decision.",
+   "sources": [
+    {
+     "id": "hcgov-external-review",
+     "title": "External review",
+     "citation": null,
+     "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+     "url": "https://www.healthcare.gov/appeal-insurance-company-decision/external-review/",
+     "source_type": "educational",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "ihcap_scope",
+   "text": "New Jersey’s Independent Health Care Appeals Program (IHCAP) does not accept appeals for self-funded plans, Medicare, Medicare Advantage, or insurance contracts delivered in another state.",
+   "sources": [
+    {
+     "id": "nj-dobi-ihcap",
+     "title": "Independent Health Care Appeals Program (IHCAP)",
+     "citation": null,
+     "authority": "New Jersey Department of Banking and Insurance",
+     "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  {
+   "id": "nj_dobi_hotline",
+   "text": "For problems with a New Jersey-regulated insurer, NJ DOBI’s Consumer Hotline is 1-800-446-7467.",
+   "sources": [
+    {
+     "id": "nj-dobi-consumer",
+     "title": "Consumer Assistance & Insurance Complaints",
+     "citation": null,
+     "authority": "New Jersey Department of Banking and Insurance",
+     "url": "https://www.nj.gov/dobi/consumer.htm",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  }
+ ],
+ "uncertainties": [
+  "NJ DOBI’s IHCAP page doesn’t state a deadline for requesting external review. Use the deadline in the plan’s final internal appeal decision, and confirm it with NJ DOBI."
+ ],
+ "how_to_confirm": [
+  "Look at your insurance card. Medicare, Medicare Advantage, and NJ FamilyCare cards say so.",
+  "Check your plan documents (the Summary Plan Description or Summary of Benefits and Coverage) for the words “self-funded,” “self-insured,” “fully insured,” “ERISA,” or “grandfathered,” and for the state where the policy was issued.",
+  "If you get coverage through work, ask HR: “Is our health plan self-funded or fully insured, and which state issued the policy?”",
+  "Call the member services number on your card and ask who regulates your plan."
+ ],
+ "answers": [
+  {
+   "question": "Where does the coverage that sent this letter come from?",
+   "answer": "A job (mine or a family member’s)"
+  },
+  {
+   "question": "What kind of employer offers the plan?",
+   "answer": "A private company or nonprofit"
+  },
+  {
+   "question": "Is the plan self-funded or fully insured?",
+   "answer": "Fully insured by an insurance company"
+  },
+  {
+   "question": "Was the insurance policy issued in New Jersey?",
+   "answer": "Yes, in New Jersey"
+  },
+  {
+   "question": "Do your plan documents say the plan is “grandfathered”?",
+   "answer": "No, or it doesn’t mention it"
+  }
+ ]
+}

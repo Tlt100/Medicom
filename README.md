@@ -31,7 +31,7 @@ The tone is calm and neutral. The goal is member clarity, not an adversarial sta
 | 1 | Runnable skeleton, landing page, verified source registry API, deploy pipeline | **Done** |
 | 2 | Synthetic letters + extraction (reason, instructions, deadline, plan/insurer, reference numbers), page-linked citations | **Done** |
 | 3 | Plan-type triage flow with cited rules for each plan type | **Done** |
-| 4 | Results: "document says" vs. "rules say," cited checklist | Planned |
+| 4 | Action plan: letter and rules side by side, computed deadlines, cited checklist, documents, questions, contacts, print | **Done** |
 | 5 | Source library UI | Planned |
 
 Later phases (not being built yet): medical-records access, privacy complaints, policy-document explorer, privacy-preserving analytics.

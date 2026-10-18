@@ -1,29 +1,17 @@
-import { SOURCE_TYPE_LABEL, type SourceRef, type TriageResult } from '../lib/api';
+import type { ReactNode } from 'react';
+import type { TriageResult } from '../lib/api';
 import { Icon } from './Icon';
-
-function SourceLink({ source }: { source: SourceRef }) {
-  const binding = source.source_type === 'regulation' || source.source_type === 'statute';
-  return (
-    <li className="source-ref">
-      <span className={binding ? 'badge badge-binding' : 'badge badge-guidance'}>{SOURCE_TYPE_LABEL[source.source_type]}</span>
-      {source.verification === 'needs-review' && <span className="badge badge-review">Flagged for review</span>}
-      <a href={source.url} target="_blank" rel="noopener noreferrer">
-        {source.citation ?? source.title}
-        <Icon name="external" size={13} />
-        <span className="visually-hidden"> (opens the official source in a new tab)</span>
-      </a>
-      <span className="source-authority">{source.authority}</span>
-    </li>
-  );
-}
+import { ClaimBlock } from './SourceLinks';
 
 interface Props {
   result: TriageResult;
   onChangeAnswers: () => void;
   onBackToLetter: () => void;
+  /** Rendered where the next step goes (the situation form that builds the action plan). */
+  children?: ReactNode;
 }
 
-export function PlanResult({ result, onChangeAnswers, onBackToLetter }: Props) {
+export function PlanResult({ result, onChangeAnswers, onBackToLetter, children }: Props) {
   const confirmed = result.confidence === 'confirmed';
   return (
     <section aria-labelledby="plan-heading" className="plan-result">
@@ -53,13 +41,8 @@ export function PlanResult({ result, onChangeAnswers, onBackToLetter }: Props) {
           <h3 className="card-heading">What the rules say for this plan type</h3>
           <ol className="claims">
             {result.claims.map((c) => (
-              <li key={c.id} className={c.needs_review ? 'claim claim-review' : 'claim'}>
-                <p>{c.text}</p>
-                <ul className="source-refs" aria-label="Sources">
-                  {c.sources.map((s) => (
-                    <SourceLink key={s.id} source={s} />
-                  ))}
-                </ul>
+              <li key={c.id}>
+                <ClaimBlock claim={c} />
               </li>
             ))}
           </ol>
@@ -113,13 +96,7 @@ export function PlanResult({ result, onChangeAnswers, onBackToLetter }: Props) {
         </aside>
       </div>
 
-      <div className="next-step">
-        <h3>Next: your cited checklist</h3>
-        <p className="muted">
-          The next milestone puts your letter and these rules side by side: an ordered checklist with deadlines, documents to gather,
-          questions to ask, and where to escalate.
-        </p>
-      </div>
+      {children}
 
       <p className="disclaimer">
         PatientShield is an educational tool, not legal advice. It can’t predict or guarantee the outcome of an appeal. For urgent care,

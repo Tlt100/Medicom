@@ -1,10 +1,13 @@
 import { useCallback, useMemo, useRef, useState, type DragEvent } from 'react';
+import { ActionPlanView } from '../components/ActionPlanView';
 import { DocumentViewer } from '../components/DocumentViewer';
 import { FieldCard } from '../components/FieldCard';
 import { Icon } from '../components/Icon';
 import { PlanResult } from '../components/PlanResult';
+import { SituationForm } from '../components/SituationForm';
 import { Triage } from '../components/Triage';
-import { checkFile, extractSample, fetchSamples, samplePdfUrl, uploadDocument, type Extraction, type Sample, type TriageResult } from '../lib/api';
+import { checkFile, extractSample, fetchSamples, samplePdfUrl, uploadDocument, type Extraction, type Sample, type TriageResult, type ActionPlan, type Situation, buildPlan } from '../lib/api';
+import { letterFacts } from '../lib/letterFacts';
 import type { Answers } from '../lib/triage';
 import { useAsync } from '../lib/useAsync';
 
@@ -16,12 +19,13 @@ type State =
 
 const PRIMARY = ['denial_reason', 'appeal_instructions', 'appeal_deadline', 'external_review_deadline'];
 
-type View = 'letter' | 'triage' | 'plan';
+type View = 'letter' | 'triage' | 'plan' | 'action';
 
 const STEPS: { view: View; label: string; note?: string }[] = [
   { view: 'letter', label: 'Add your letter' },
   { view: 'triage', label: 'Identify your plan type' },
   { view: 'plan', label: 'What applies to your plan' },
+  { view: 'action', label: 'Your action plan' },
 ];
 
 function Steps({ view }: { view: View }) {
@@ -229,6 +233,10 @@ export function Navigator() {
   const [state, setState] = useState<State>({ status: 'idle' });
   const [view, setView] = useState<View>('letter');
   const [plan, setPlan] = useState<{ result: TriageResult; answers: Answers } | null>(null);
+  const [situation, setSituation] = useState<Situation | undefined>(undefined);
+  const [action, setAction] = useState<ActionPlan | null>(null);
+  const [building, setBuilding] = useState(false);
+  const [buildError, setBuildError] = useState<string | null>(null);
   const controller = useRef<AbortController | null>(null);
   const topRef = useRef<HTMLHeadingElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
@@ -242,6 +250,8 @@ export function Navigator() {
       const result = await task(ctrl.signal);
       setState({ status: 'ready', result });
       setPlan(null);
+      setSituation(undefined);
+      setAction(null);
       setView('letter');
     } catch (err) {
       if ((err as Error).name !== 'AbortError') setState({ status: 'error', message: (err as Error).message });
@@ -264,7 +274,24 @@ export function Navigator() {
     controller.current?.abort();
     setState({ status: 'idle' });
     setPlan(null);
+    setSituation(undefined);
+    setAction(null);
     setView('letter');
+  };
+
+  const onBuild = async (s: Situation) => {
+    if (state.status !== 'ready' || !plan) return;
+    setSituation(s);
+    setBuilding(true);
+    setBuildError(null);
+    try {
+      setAction(await buildPlan({ answers: plan.answers, letter: letterFacts(state.result), situation: s }));
+      go('action');
+    } catch (err) {
+      setBuildError((err as Error).message);
+    } finally {
+      setBuilding(false);
+    }
   };
 
   const go = (next: View) => {
@@ -324,14 +351,25 @@ export function Navigator() {
             onBack={() => go('letter')}
             onDone={(result, answers) => {
               setPlan({ result, answers });
+              setAction(null);
               go('plan');
             }}
           />
         </section>
+      ) : state.status === 'ready' && view === 'action' && action ? (
+        <ActionPlanView plan={action} onEditSituation={() => go('plan')} onBackToLetter={() => go('letter')} />
       ) : state.status === 'ready' && view === 'plan' && plan ? (
-        <PlanResult result={plan.result} onChangeAnswers={() => go('triage')} onBackToLetter={() => go('letter')} />
+        <PlanResult result={plan.result} onChangeAnswers={() => go('triage')} onBackToLetter={() => go('letter')}>
+          <SituationForm
+            letterDate={letterFacts(state.result).letter_date}
+            initial={situation}
+            submitting={building}
+            error={buildError}
+            onSubmit={(s) => void onBuild(s)}
+          />
+        </PlanResult>
       ) : state.status === 'ready' ? (
-        <Results result={state.result} onDelete={onDelete} onContinue={() => go(plan ? 'plan' : 'triage')} />
+        <Results result={state.result} onDelete={onDelete} onContinue={() => go(action ? 'action' : plan ? 'plan' : 'triage')} />
       ) : (
         <div className="choose-grid">
           <section aria-labelledby="upload-heading">

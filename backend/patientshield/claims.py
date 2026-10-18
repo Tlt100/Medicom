@@ -61,6 +61,11 @@ _CLAIMS = [
         ("nj-dobi-ihcap",),
     ),
     Claim(
+        "ihcap_contact",
+        "NJ DOBI lists 1-888-393-1062 or 609-777-9470 for questions about the Independent Health Care Appeals Program.",
+        ("nj-dobi-ihcap",),
+    ),
+    Claim(
         "nj_dobi_hotline",
         "For problems with a New Jersey-regulated insurer, NJ DOBI’s Consumer Hotline is 1-800-446-7467.",
         ("nj-dobi-consumer",),

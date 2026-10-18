@@ -251,6 +251,94 @@ export const fetchSuggestion = (signals: string[], signal?: AbortSignal) =>
 export const runTriage = (answers: Record<string, string>, signal?: AbortSignal) =>
   request('/api/triage', TriageResultSchema, json({ answers }, signal));
 
+// ---------------------------------------------------------------- action plan
+
+const ClaimOutSchema = z.object({ id: z.string(), text: z.string(), sources: z.array(SourceRefSchema).min(1), needs_review: z.boolean() });
+const LetterQuoteSchema = z.object({ text: z.string(), page: z.number().int().min(1) });
+const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/);
+
+export const ActionPlanSchema = z.object({
+  plan_type: PlanTypeSchema,
+  label: z.string(),
+  today: isoDate,
+  comparisons: z.array(
+    z.object({
+      topic: z.string(),
+      letter: LetterQuoteSchema.nullable(),
+      letter_status: z.enum(['found', 'not_found']),
+      letter_summary: z.string(),
+      rules: z.array(ClaimOutSchema),
+      rules_summary: z.string().nullable(),
+      note: z.string().nullable(),
+    }),
+  ),
+  deadlines: z.array(
+    z.object({
+      id: z.string(),
+      label: z.string(),
+      date: isoDate,
+      basis: z.string(),
+      kind: z.enum(['letter', 'rule']),
+      claim: ClaimOutSchema.nullable(),
+      quote: LetterQuoteSchema.nullable(),
+      days_left: z.number().int(),
+      passed: z.boolean(),
+      note: z.string().nullable(),
+    }),
+  ),
+  plan_around: z.string().nullable(),
+  steps: z.array(
+    z.object({
+      id: z.string(),
+      title: z.string(),
+      detail: z.string(),
+      kind: z.enum(['rule', 'practical', 'letter', 'urgent']),
+      due: isoDate.nullable(),
+      claims: z.array(ClaimOutSchema),
+      quote: LetterQuoteSchema.nullable(),
+    }),
+  ),
+  documents: z.array(z.string()),
+  questions: z.array(z.string()),
+  contacts: z.array(
+    z.object({ name: z.string(), when: z.string(), phone: z.string().nullable(), source: SourceRefSchema, claim: ClaimOutSchema.nullable() }),
+  ),
+  uncertainties: z.array(z.string()),
+  disclaimer: z.string(),
+});
+export type ActionPlan = z.infer<typeof ActionPlanSchema>;
+
+export interface Situation {
+  date_received: string | null;
+  care_received: 'yes' | 'no' | 'unsure';
+  internal_appeal: 'not_yet' | 'waiting' | 'decided';
+  final_decision_date: string | null;
+  urgent: 'yes' | 'no' | 'unsure';
+}
+
+export interface LetterQuote {
+  text: string;
+  page: number;
+}
+export interface StatedDeadline {
+  text: string;
+  normalized: string | null;
+  quote: LetterQuote;
+}
+export interface LetterFacts {
+  letter_date: string | null;
+  denial_reason: LetterQuote | null;
+  denial_statement: LetterQuote | null;
+  appeal_instructions: LetterQuote[];
+  appeal_deadline: StatedDeadline | null;
+  other_time_limits: StatedDeadline[];
+  external_review_deadline: StatedDeadline | null;
+  urgent_mentioned: boolean;
+}
+
+export const buildPlan = (body: { answers: Record<string, string>; letter: LetterFacts; situation: Situation }, signal?: AbortSignal) =>
+  request('/api/plan', ActionPlanSchema, json(body, signal));
+
 export const SOURCE_TYPE_LABEL: Record<SourceRef['source_type'], string> = {
   statute: 'Statute',
   regulation: 'Regulation',

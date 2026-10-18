@@ -1,0 +1,429 @@
+{
+ "plan_type": "nj-regulated",
+ "label": "New Jersey-regulated plan",
+ "today": "2026-10-17",
+ "comparisons": [
+  {
+   "topic": "Why it was denied",
+   "letter": {
+    "text": "Your request has been denied because the service is not medically necessary under our clinical policy for advanced imaging of the lower back.",
+    "page": 1
+   },
+   "letter_status": "found",
+   "letter_summary": "The letter states a reason.",
+   "rules": [],
+   "rules_summary": "Our source library doesn’t yet include a rule for your plan type on how reasons must be explained. You can still ask the plan in writing for the specific reason and the criteria it used.",
+   "note": null
+  },
+  {
+   "topic": "Deadline for the first appeal",
+   "letter": {
+    "text": "You must submit your appeal within 180 calendar days of the date you receive this notice.",
+    "page": 2
+   },
+   "letter_status": "found",
+   "letter_summary": "Within 180 calendar days of the date you receive this notice",
+   "rules": [
+    {
+     "id": "internal_appeal_window",
+     "text": "For most job-based and individual health plans, you get at least 180 days after receiving a denial to file an internal appeal.",
+     "sources": [
+      {
+       "id": "hcgov-internal-appeals",
+       "title": "Internal appeals",
+       "citation": null,
+       "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+       "url": "https://www.healthcare.gov/appeal-insurance-company-decision/internal-appeals/",
+       "source_type": "educational",
+       "verification": "verified"
+      },
+      {
+       "id": "cfr-29-2560-503-1",
+       "title": "Claims procedure for employee benefit plans (ERISA)",
+       "citation": "29 CFR § 2560.503-1",
+       "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+       "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-G/part-2560/section-2560.503-1",
+       "source_type": "regulation",
+       "verification": "verified"
+      }
+     ],
+     "needs_review": false
+    }
+   ],
+   "rules_summary": null,
+   "note": "Your letter’s deadline is at least as long as the general rule we cite."
+  },
+  {
+   "topic": "How to appeal",
+   "letter": {
+    "text": "If you disagree with this decision, you have the right to file an internal appeal.",
+    "page": 2
+   },
+   "letter_status": "found",
+   "letter_summary": "The letter explains where or how to appeal.",
+   "rules": [],
+   "rules_summary": "Your letter is the main source for where and how to send your appeal. If it doesn’t say, ask the plan in writing.",
+   "note": null
+  },
+  {
+   "topic": "If the first appeal is denied",
+   "letter": {
+    "text": "You must request external review within 4 months of receiving our final internal appeal decision.",
+    "page": 2
+   },
+   "letter_status": "found",
+   "letter_summary": "Within 4 months of receiving our final internal appeal decision",
+   "rules": [
+    {
+     "id": "ihcap_internal_first",
+     "text": "IHCAP generally requires you to finish the plan’s internal appeal first.",
+     "sources": [
+      {
+       "id": "nj-dobi-ihcap",
+       "title": "Independent Health Care Appeals Program (IHCAP)",
+       "citation": null,
+       "authority": "New Jersey Department of Banking and Insurance",
+       "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+       "source_type": "official-resource",
+       "verification": "verified"
+      }
+     ],
+     "needs_review": false
+    },
+    {
+     "id": "ihcap_timing",
+     "text": "NJ DOBI says a standard IHCAP decision takes no more than 45 calendar days from when the appeal is submitted.",
+     "sources": [
+      {
+       "id": "nj-dobi-ihcap",
+       "title": "Independent Health Care Appeals Program (IHCAP)",
+       "citation": null,
+       "authority": "New Jersey Department of Banking and Insurance",
+       "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+       "source_type": "official-resource",
+       "verification": "verified"
+      }
+     ],
+     "needs_review": false
+    },
+    {
+     "id": "external_review_binding",
+     "text": "HealthCare.gov says your insurer is required by law to accept the external reviewer’s decision.",
+     "sources": [
+      {
+       "id": "hcgov-external-review",
+       "title": "External review",
+       "citation": null,
+       "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+       "url": "https://www.healthcare.gov/appeal-insurance-company-decision/external-review/",
+       "source_type": "educational",
+       "verification": "verified"
+      }
+     ],
+     "needs_review": false
+    }
+   ],
+   "rules_summary": null,
+   "note": null
+  },
+  {
+   "topic": "Urgent care",
+   "letter": null,
+   "letter_status": "found",
+   "letter_summary": "Your letter mentions expedited or urgent appeals.",
+   "rules": [
+    {
+     "id": "urgent_72h",
+     "text": "Under federal claims rules for employer plans, an urgent care claim must be decided as soon as possible and no later than 72 hours after the plan receives it.",
+     "sources": [
+      {
+       "id": "cfr-29-2560-503-1",
+       "title": "Claims procedure for employee benefit plans (ERISA)",
+       "citation": "29 CFR § 2560.503-1",
+       "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+       "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-G/part-2560/section-2560.503-1",
+       "source_type": "regulation",
+       "verification": "verified"
+      }
+     ],
+     "needs_review": false
+    }
+   ],
+   "rules_summary": null,
+   "note": null
+  }
+ ],
+ "deadlines": [
+  {
+   "id": "letter-appeal",
+   "label": "Appeal deadline stated in your letter",
+   "date": "2027-03-14",
+   "basis": "“180 calendar days of the date you receive this notice”, counted from the date you received it (September 15, 2026)",
+   "kind": "letter",
+   "claim": null,
+   "quote": {
+    "text": "You must submit your appeal within 180 calendar days of the date you receive this notice.",
+    "page": 2
+   },
+   "days_left": 148,
+   "passed": false,
+   "note": null
+  },
+  {
+   "id": "rule-appeal",
+   "label": "General rule: last day to file the first appeal",
+   "date": "2027-03-14",
+   "basis": "180 calendar days from the date you received it (September 15, 2026)",
+   "kind": "rule",
+   "claim": {
+    "id": "internal_appeal_window",
+    "text": "For most job-based and individual health plans, you get at least 180 days after receiving a denial to file an internal appeal.",
+    "sources": [
+     {
+      "id": "hcgov-internal-appeals",
+      "title": "Internal appeals",
+      "citation": null,
+      "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+      "url": "https://www.healthcare.gov/appeal-insurance-company-decision/internal-appeals/",
+      "source_type": "educational",
+      "verification": "verified"
+     },
+     {
+      "id": "cfr-29-2560-503-1",
+      "title": "Claims procedure for employee benefit plans (ERISA)",
+      "citation": "29 CFR § 2560.503-1",
+      "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+      "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-G/part-2560/section-2560.503-1",
+      "source_type": "regulation",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   },
+   "quote": null,
+   "days_left": 148,
+   "passed": false,
+   "note": null
+  }
+ ],
+ "plan_around": "Plan around March 14, 2027 (148 days from today): appeal deadline stated in your letter. It’s the earliest date below.",
+ "steps": [
+  {
+   "id": "calendar",
+   "title": "Put your deadlines on a calendar",
+   "detail": "Mark every date in the deadlines list. If dates differ, plan around the earliest.",
+   "kind": "letter",
+   "due": "2027-03-14",
+   "claims": [],
+   "quote": null
+  },
+  {
+   "id": "ask-documents",
+   "title": "Ask for copies of what the plan relied on",
+   "detail": "Ask in writing for the documents, records and criteria used in the decision, so you can answer the stated reason.",
+   "kind": "practical",
+   "due": null,
+   "claims": [],
+   "quote": {
+    "text": "Your request has been denied because the service is not medically necessary under our clinical policy for advanced imaging of the lower back.",
+    "page": 1
+   }
+  },
+  {
+   "id": "doctor",
+   "title": "Ask your doctor for a supporting letter",
+   "detail": "A letter explaining why you need the care, responding to the plan’s stated reason, often carries weight.",
+   "kind": "practical",
+   "due": null,
+   "claims": [],
+   "quote": null
+  },
+  {
+   "id": "file-appeal",
+   "title": "File a written internal appeal",
+   "detail": "Send it the way your letter says. Keep a copy and proof of when you sent it.",
+   "kind": "rule",
+   "due": "2027-03-14",
+   "claims": [
+    {
+     "id": "internal_appeal_window",
+     "text": "For most job-based and individual health plans, you get at least 180 days after receiving a denial to file an internal appeal.",
+     "sources": [
+      {
+       "id": "hcgov-internal-appeals",
+       "title": "Internal appeals",
+       "citation": null,
+       "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+       "url": "https://www.healthcare.gov/appeal-insurance-company-decision/internal-appeals/",
+       "source_type": "educational",
+       "verification": "verified"
+      },
+      {
+       "id": "cfr-29-2560-503-1",
+       "title": "Claims procedure for employee benefit plans (ERISA)",
+       "citation": "29 CFR § 2560.503-1",
+       "authority": "U.S. Department of Labor, Employee Benefits Security Administration",
+       "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XXV/subchapter-G/part-2560/section-2560.503-1",
+       "source_type": "regulation",
+       "verification": "verified"
+      }
+     ],
+     "needs_review": false
+    }
+   ],
+   "quote": {
+    "text": "If you disagree with this decision, you have the right to file an internal appeal.",
+    "page": 2
+   }
+  },
+  {
+   "id": "next-stage",
+   "title": "If the appeal is denied: request independent external review through NJ IHCAP",
+   "detail": "Include the denial letters, your plan documents, your doctor’s letter and relevant medical records.",
+   "kind": "rule",
+   "due": null,
+   "claims": [
+    {
+     "id": "ihcap_internal_first",
+     "text": "IHCAP generally requires you to finish the plan’s internal appeal first.",
+     "sources": [
+      {
+       "id": "nj-dobi-ihcap",
+       "title": "Independent Health Care Appeals Program (IHCAP)",
+       "citation": null,
+       "authority": "New Jersey Department of Banking and Insurance",
+       "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+       "source_type": "official-resource",
+       "verification": "verified"
+      }
+     ],
+     "needs_review": false
+    },
+    {
+     "id": "ihcap_timing",
+     "text": "NJ DOBI says a standard IHCAP decision takes no more than 45 calendar days from when the appeal is submitted.",
+     "sources": [
+      {
+       "id": "nj-dobi-ihcap",
+       "title": "Independent Health Care Appeals Program (IHCAP)",
+       "citation": null,
+       "authority": "New Jersey Department of Banking and Insurance",
+       "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+       "source_type": "official-resource",
+       "verification": "verified"
+      }
+     ],
+     "needs_review": false
+    },
+    {
+     "id": "external_review_binding",
+     "text": "HealthCare.gov says your insurer is required by law to accept the external reviewer’s decision.",
+     "sources": [
+      {
+       "id": "hcgov-external-review",
+       "title": "External review",
+       "citation": null,
+       "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+       "url": "https://www.healthcare.gov/appeal-insurance-company-decision/external-review/",
+       "source_type": "educational",
+       "verification": "verified"
+      }
+     ],
+     "needs_review": false
+    }
+   ],
+   "quote": {
+    "text": "You must request external review within 4 months of receiving our final internal appeal decision.",
+    "page": 2
+   }
+  },
+  {
+   "id": "records",
+   "title": "Keep a record of every call and letter",
+   "detail": "Write down the date, the person you spoke with, and any reference number. Send important things in writing.",
+   "kind": "practical",
+   "due": null,
+   "claims": [],
+   "quote": null
+  }
+ ],
+ "documents": [
+  "The denial letter (all pages)",
+  "Your insurance card",
+  "Your plan documents (Summary of Benefits and Coverage, member handbook, or Summary Plan Description)",
+  "A letter from your doctor explaining why you need the care",
+  "Relevant medical records and test results",
+  "A log of calls and letters: dates, names, reference numbers"
+ ],
+ "questions": [
+  "Can this be handled as an expedited (urgent) appeal?",
+  "Can you send me copies of the documents and criteria used to make this decision?",
+  "Can my doctor speak with your medical reviewer?"
+ ],
+ "contacts": [
+  {
+   "name": "NJ DOBI Independent Health Care Appeals Program",
+   "when": "After a final internal appeal denial, for New Jersey-regulated plans",
+   "phone": "1-888-393-1062",
+   "source": {
+    "id": "nj-dobi-ihcap",
+    "title": "Independent Health Care Appeals Program (IHCAP)",
+    "citation": null,
+    "authority": "New Jersey Department of Banking and Insurance",
+    "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+    "source_type": "official-resource",
+    "verification": "verified"
+   },
+   "claim": {
+    "id": "ihcap_contact",
+    "text": "NJ DOBI lists 1-888-393-1062 or 609-777-9470 for questions about the Independent Health Care Appeals Program.",
+    "sources": [
+     {
+      "id": "nj-dobi-ihcap",
+      "title": "Independent Health Care Appeals Program (IHCAP)",
+      "citation": null,
+      "authority": "New Jersey Department of Banking and Insurance",
+      "url": "https://www.nj.gov/dobi/division_insurance/managedcare/ihcap.htm",
+      "source_type": "official-resource",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   }
+  },
+  {
+   "name": "NJ DOBI Consumer Hotline",
+   "when": "Problems with how a New Jersey-regulated insurer handles your claim",
+   "phone": "1-800-446-7467",
+   "source": {
+    "id": "nj-dobi-consumer",
+    "title": "Consumer Assistance & Insurance Complaints",
+    "citation": null,
+    "authority": "New Jersey Department of Banking and Insurance",
+    "url": "https://www.nj.gov/dobi/consumer.htm",
+    "source_type": "official-resource",
+    "verification": "verified"
+   },
+   "claim": {
+    "id": "nj_dobi_hotline",
+    "text": "For problems with a New Jersey-regulated insurer, NJ DOBI’s Consumer Hotline is 1-800-446-7467.",
+    "sources": [
+     {
+      "id": "nj-dobi-consumer",
+      "title": "Consumer Assistance & Insurance Complaints",
+      "citation": null,
+      "authority": "New Jersey Department of Banking and Insurance",
+      "url": "https://www.nj.gov/dobi/consumer.htm",
+      "source_type": "official-resource",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   }
+  }
+ ],
+ "uncertainties": [
+  "NJ DOBI’s IHCAP page doesn’t state a deadline for requesting external review. Use the deadline in the plan’s final internal appeal decision, and confirm it with NJ DOBI."
+ ],
+ "disclaimer": "PatientShield is an educational tool, not legal advice, and it can’t predict or guarantee the outcome of an appeal. Deadlines here are general rules and what your letter says; your plan’s documents control. When in doubt, act early and confirm in writing. For urgent care, contact your plan now and ask for an expedited appeal. For emergencies, call 911."
+}
