@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { EntryChooser } from '../core/components/EntryChooser';
 import { Icon, type IconName } from '../core/components/Icon';
 import { fetchRegistry } from '../core/api/sources';
 import { formatDate } from '../core/api/http';
@@ -98,21 +99,19 @@ export function Landing() {
         <div className="container hero-inner">
           <div className="hero-copy">
             <p className="eyebrow">New Jersey · U.S. federal law</p>
-            <h1>Understand your insurance denial, line by line.</h1>
+            <h1>Make sense of a health insurance denial or a medical bill.</h1>
             <p className="lede">
-              PatientShield reads a denial letter, shows exactly where each detail appears, and explains which New Jersey or federal rules
-              apply to your type of plan, with a source for every claim.
+              PatientShield reads the document, shows exactly where each detail appears, and explains which New Jersey or federal rules
+              may apply, with a source for every claim.
             </p>
-            <div className="hero-actions">
-              <Link to="/navigator" className="btn btn-primary">
-                Open the Denial Navigator <Icon name="arrow" size={18} />
+            <EntryChooser />
+            <p className="hero-secondary">
+              <Link to="/sources" className="text-link">
+                Or browse the verified source library <Icon name="arrow" size={16} />
               </Link>
-              <Link to="/sources" className="btn btn-secondary">
-                Browse verified sources
-              </Link>
-            </div>
+            </p>
             <p className="hero-note">
-              <Icon name="lock" size={16} /> No account. Letters are processed in memory and not stored.
+              <Icon name="lock" size={16} /> No account. Documents are processed in memory and not stored.
             </p>
           </div>
 
@@ -171,7 +170,7 @@ export function Landing() {
 
       <section className="section" aria-labelledby="how-heading">
         <div className="container">
-          <p className="eyebrow">How it works</p>
+          <p className="eyebrow">How the Denial Navigator works</p>
           <h2 id="how-heading">From a confusing letter to a clear next step</h2>
           <ol className="steps">
             {STEPS.map((s, i) => (

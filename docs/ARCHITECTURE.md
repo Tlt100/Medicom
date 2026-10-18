@@ -36,7 +36,11 @@ exposes its routers in `ROUTERS`; `app.py` mounts them. Until a type is register
 "coming soon" response (HTTP 422, `not_available`), so a half-built feature cannot be reached by accident. Today only
 `denial` is registered; `eob` and `bill` are reserved for the bill-check and uninsured modules.
 
-- **Frontend:** static SPA built by Vite, served by Vercel's CDN. Routes: `/`, `/navigator`, `/sources`, `/about`.
+- **Frontend:** static SPA built by Vite, served by Vercel's CDN. Routes: `/`, `/navigator`, `/bill-check`, `/uninsured`,
+  `/sources`, `/about`. The landing page's main action is "What did you receive?" (`core/components/EntryChooser.tsx`), driven by
+  `src/core/paths.ts`, the single list of workflows and whether each is `ready`. A path that isn't ready is labelled
+  "Coming soon" in the chooser and links to a page that explains what it will and won't do, with no upload control; the backend
+  refuses its document type independently (see below).
 - **Backend:** one FastAPI app. All routes are under `/api`, and Vercel rewrites `/api/(.*)` to the single Python function.
 - **No database.** The source registry is versioned data in code, reviewed through pull requests. Uploaded letters are processed in memory
   within a single request and never written to disk, a database, or logs.

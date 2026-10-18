@@ -34,8 +34,8 @@ The tone is calm and neutral. The goal is member clarity, not an adversarial sta
 | 4 | Action plan: letter and rules side by side, computed deadlines, cited checklist, documents, questions, contacts, print | **Done** |
 | 5 | Source library: filters and search, verbatim excerpts, review flags, re-check dates, statements citing each source | **Done** |
 | Expansion, step 2 | Shared core (document pipeline with document types, citations, sources, triage) + feature modules; denials moved into `features/denials` | **Done** |
-| Expansion, step 3 | “What did you receive?” entry point: denial letter, bill with EOB, bill with no insurance | Next |
-| Expansion, step 4 | EOB vs. bill checker; uninsured NJ bill checker; price context | Planned |
+| Expansion, step 3 | “What did you receive?” entry point: denial letter (working), bill with EOB and bill with no insurance (honest “coming soon” pages, no upload) | **Done** |
+| Expansion, step 4 | EOB vs. bill checker; uninsured NJ bill checker; price context | Next |
 
 Later phases (not being built yet): medical-records access, privacy complaints, policy-document explorer, privacy-preserving analytics.
 

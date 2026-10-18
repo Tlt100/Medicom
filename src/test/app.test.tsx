@@ -14,12 +14,13 @@ function renderAt(path: string) {
 }
 
 describe('Landing page', () => {
-  it('shows the headline, prototype warning and primary action', async () => {
+  it('shows the headline, prototype warning and the "What did you receive?" choices', async () => {
     mockFetchJson(registryFixture);
     renderAt('/');
-    expect(screen.getByRole('heading', { level: 1, name: /understand your insurance denial/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: /denial or a medical bill/i })).toBeInTheDocument();
     expect(screen.getByRole('complementary', { name: /prototype notice/i })).toHaveTextContent(/do not upload real health information/i);
-    expect(screen.getByRole('link', { name: /open the denial navigator/i })).toHaveAttribute('href', '/navigator');
+    expect(screen.getByRole('heading', { name: 'What did you receive?' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'A denial letter' })).toHaveAttribute('href', '/navigator');
     await screen.findByText('Verified against the source');
   });
 
