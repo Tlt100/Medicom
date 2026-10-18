@@ -84,6 +84,10 @@ async function request<T>(path: string, schema: z.ZodType<T>, init: RequestInit 
 
 export const fetchRegistry = (signal?: AbortSignal) => request('/api/sources', RegistrySchema, { signal });
 
+const ClaimSummarySchema = z.object({ id: z.string(), text: z.string(), source_ids: z.array(z.string()).min(1) });
+export type ClaimSummary = z.infer<typeof ClaimSummarySchema>;
+export const fetchClaims = (signal?: AbortSignal) => request('/api/claims', z.array(ClaimSummarySchema), { signal });
+
 // ---------------------------------------------------------------- documents & extraction
 
 export const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;

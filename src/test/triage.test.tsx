@@ -135,6 +135,9 @@ describe('Plan-type triage', () => {
     const link = within(rules[0]!).getAllByRole('link')[0]!;
     expect(link.getAttribute('href')).toMatch(/^https:\/\//);
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    const library = within(rules[0]!).getAllByRole('link', { name: /in our library/i })[0]!;
+    expect(library.getAttribute('href')).toMatch(/^\/sources#source-[a-z0-9-]+$/);
+    expect(library).toHaveAttribute('target', '_blank'); // keeps the in-memory letter on this tab
     expect(within(rules[0]!).getByText(/agency guidance|regulation|educational|official resource/i)).toBeInTheDocument();
     expect(screen.getByText(/isn’t available/i)).toBeInTheDocument();
   });

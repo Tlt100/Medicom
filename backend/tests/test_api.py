@@ -65,3 +65,21 @@ def test_settings_default_to_production_on_vercel(monkeypatch):
 
     monkeypatch.delenv("VERCEL_ENV")
     assert get_settings().enable_docs is True
+
+
+def test_claims_endpoint_lists_every_claim_with_known_sources(client):
+    from patientshield.claims import CLAIMS
+    from patientshield.sources.service import get_source
+
+    body = client.get("/api/claims").json()
+    assert {c["id"] for c in body} == set(CLAIMS)
+    for claim in body:
+        assert claim["text"] and claim["source_ids"]
+        assert all(get_source(sid) is not None for sid in claim["source_ids"])
+
+
+def test_every_source_is_cited_by_at_least_one_claim_or_flagged(client):
+    """A verified source nobody cites is dead weight; a flagged one may exist only to explain an uncertainty."""
+    cited = {sid for c in client.get("/api/claims").json() for sid in c["source_ids"]}
+    for s in client.get("/api/sources").json()["sources"]:
+        assert s["id"] in cited or s["verification"] == "needs-review", s["id"]

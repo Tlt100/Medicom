@@ -13,6 +13,10 @@ export function SourceLink({ source }: { source: SourceRef }) {
         <span className="visually-hidden"> (opens the official source in a new tab)</span>
       </a>
       <span className="source-authority">{source.authority}</span>
+      {/* New tab: the Navigator keeps the letter only in memory, so leaving the page would lose it. */}
+      <a className="library-link no-print" href={`/sources#source-${source.id}`} target="_blank" rel="noopener noreferrer">
+        In our library<span className="visually-hidden">: {source.title} (opens in a new tab)</span>
+      </a>
     </li>
   );
 }

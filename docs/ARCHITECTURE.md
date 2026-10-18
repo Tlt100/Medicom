@@ -18,6 +18,7 @@ Browser (React + TypeScript, Vite)
                     ├─ triage/                  question tree, classifier, plan profiles
                     ├─ routers/plan.py          POST /api/plan
                     ├─ actionplan/              deadline math, letter-vs-rules comparisons, checklist builder
+                    ├─ routers/claims.py        GET /api/claims
                     ├─ claims.py                plain-language legal statements → source ids
                     ├─ sources/models.py        Pydantic models + validation rules
                     ├─ sources/registry.py      Verified source data (versioned)
@@ -75,6 +76,14 @@ Deadlines are counted from the date the letter says (the notice date, or receipt
 Months clamp to month end; business days skip weekends (holidays are called out, not computed). When the letter and a general rule
 disagree, the user is told to plan around the earlier date and ask the plan in writing. The plan never says a rule was broken.
 Unknown plan types get letter-stated dates only and start with confirming the plan type. The page prints as a clean handout.
+
+## Source library
+
+`/sources` loads the registry and every claim, so each source shows the statements in PatientShield that cite it (traceability in both
+directions). Filters (jurisdiction, legal weight, topic, review status) and search live in the URL, so a filtered view can be shared;
+unknown filter values are ignored. A source is marked *due for re-check* 180 days after it was last checked. Every source reference
+elsewhere in the app links to `/sources#source-<id>`, which highlights that entry. Those links open in a new tab because the Navigator
+holds the letter only in memory. A backend test requires every verified source to be cited by at least one statement.
 
 ## Security
 
