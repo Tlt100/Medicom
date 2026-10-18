@@ -1,4 +1,4 @@
-import { segmentText } from '../lib/highlight';
+import { segmentText } from '../core/lib/highlight';
 
 describe('segmentText', () => {
   const text = 'You must appeal within 180 days. Call us.';

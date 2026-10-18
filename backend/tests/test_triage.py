@@ -5,10 +5,10 @@ from typing import Dict, List
 
 import pytest
 
-from patientshield.claims import CLAIMS
-from patientshield.sources.service import get_source
-from patientshield.triage.flow import QUESTIONS, START, FlowError, walk
-from patientshield.triage.service import classify, suggest, triage
+from patientshield.core.claims import CLAIMS
+from patientshield.core.sources.service import get_source
+from patientshield.core.triage.flow import QUESTIONS, START, FlowError, walk
+from patientshield.core.triage.service import classify, suggest, triage
 
 # ---------------------------------------------------------------- claims registry
 

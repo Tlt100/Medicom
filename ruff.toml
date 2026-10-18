@@ -10,4 +10,4 @@ ignore = ["UP006", "UP007", "UP035", "UP045"]
 [lint.per-file-ignores]
 "backend/tests/*" = ["S101"]
 # Verbatim legal excerpts are kept on one line so they can be compared with the source.
-"backend/patientshield/sources/registry.py" = ["E501"]
+"backend/patientshield/core/sources/registry.py" = ["E501"]

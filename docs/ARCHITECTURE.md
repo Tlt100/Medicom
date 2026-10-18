@@ -7,23 +7,34 @@ Browser (React + TypeScript, Vite)
   │  same-origin fetch, responses validated with zod
   ▼
 /api/*  ──►  Vercel Python function (api/index.py)
-               └─ FastAPI app (backend/patientshield)
-                    ├─ routers/health.py        GET /api/health
-                    ├─ routers/sources.py       GET /api/sources, GET /api/sources/{id}
-                    ├─ routers/documents.py     POST /api/extract, GET /api/samples,
-                    │                           POST /api/samples/{id}/extract, GET /api/samples/{id}/pdf
-                    ├─ extraction/              documents → segment → fields → service
-                    ├─ samples/                 synthetic letters + in-memory PDF generator
-                    ├─ routers/triage.py        GET /api/triage/flow, POST /api/triage/suggest, POST /api/triage
-                    ├─ triage/                  question tree, classifier, plan profiles
-                    ├─ routers/plan.py          POST /api/plan
-                    ├─ actionplan/              deadline math, letter-vs-rules comparisons, checklist builder
-                    ├─ routers/claims.py        GET /api/claims
-                    ├─ claims.py                plain-language legal statements → source ids
-                    ├─ sources/models.py        Pydantic models + validation rules
-                    ├─ sources/registry.py      Verified source data (versioned)
-                    └─ security.py              Security headers, body-size limit
+               └─ FastAPI app (backend/patientshield/app.py)
+                    ├─ core/                       shared by every feature; never imports a feature
+                    │   ├─ documents/              parsing (PDF/text, limits), segment, pipeline (per-type registry),
+                    │   │                          models (DocumentType, Page, DocumentInfo), pdfgen (synthetic PDFs)
+                    │   ├─ citations.py            DocumentCitation (page passage) + SourceCitation (library entry), checks
+                    │   ├─ sources/                Source models, verified registry (versioned), lookups
+                    │   ├─ claims.py               plain-language legal statements → source ids
+                    │   ├─ triage/                 plan-type question tree, classifier, plan profiles
+                    │   ├─ dates.py, config.py, security.py
+                    │   └─ routes/                 GET /api/health, /api/sources[/{id}], /api/claims,
+                    │                              GET /api/triage/flow, POST /api/triage/suggest, POST /api/triage,
+                    │                              POST /api/extract (X-Document-Type: denial | eob | bill)
+                    └─ features/                   one package per document workflow; features never import each other
+                        └─ denials/                denial-letter fields + signals (registered as the "denial" extractor),
+                                                   synthetic letters, GET /api/samples…, POST /api/plan (action plan)
 ```
+
+The frontend mirrors the split: `src/core/` (api clients for http, documents, sources and triage; the layout, document viewer,
+triage and source-link components; shared helpers) and `src/features/denials/` (Navigator page, field cards, action plan).
+`src/pages/` holds the general pages (landing, sources, about). Tests on both sides fail if core imports a feature, or one feature
+imports another.
+
+### Adding a document workflow
+
+A feature registers an extractor for its document type with `core.documents.pipeline.register_extractor(doc_type, fn)` and
+exposes its routers in `ROUTERS`; `app.py` mounts them. Until a type is registered, uploads of that type get a plain
+"coming soon" response (HTTP 422, `not_available`), so a half-built feature cannot be reached by accident. Today only
+`denial` is registered; `eob` and `bill` are reserved for the bill-check and uninsured modules.
 
 - **Frontend:** static SPA built by Vite, served by Vercel's CDN. Routes: `/`, `/navigator`, `/sources`, `/about`.
 - **Backend:** one FastAPI app. All routes are under `/api`, and Vercel rewrites `/api/(.*)` to the single Python function.
@@ -37,7 +48,9 @@ Browser (React + TypeScript, Vite)
 | `Source` | One official source: authority, URL (https only), jurisdiction, legal weight (`regulation`, `agency-guidance`, …), dated fields with labels, `last_checked`, verbatim `excerpts`, `verification` (`verified` / `needs-review`) with a required `review_note` when uncertain. |
 | `Coverage` | Counts of verified, flagged, binding, federal and NJ sources (shown on the landing page). |
 | `ExtractedField` | One detail from the letter (denial reason, appeal instructions, appeal deadline, external review deadline, letter date, insurer, plan, reference numbers): `status` found / not_found, the value(s), a machine-readable `normalized` form where useful, and `citations`. A not-found field carries guidance instead of a guess. |
-| `Citation` | `page`, `start`, `end`, `quote`. Invariant enforced on the server **and** re-checked by the client schema: `pages[page-1].text[start:end] == quote`. |
+| `DocumentCitation` | `page`, `start`, `end`, `quote`. Invariant enforced on the server **and** re-checked by the client schema: `pages[page-1].text[start:end] == quote`. |
+| `SourceCitation` | `source_id` and an optional excerpt `locator`; checked against the registry, so a statement can only point at a real source and a real excerpt. |
+| `DocumentInfo` | Name, `doc_type` (`denial`, `eob`, `bill`), kind (pdf/text), page count, size, and whether it is a synthetic sample. |
 | `Signal` | Plan-type clues, urgent-appeal mentions, and text addressed to software (prompt-injection attempts), each cited. Clues are hints for the triage step, never conclusions. |
 | `Claim` | One plain-language legal statement and the source ids that support it. Tests check every cited source exists and that every number in the text (180, 72, a phone number, a date) appears in an excerpt, title or citation of a cited source. Claims that cite a needs-review source are flagged in responses. |
 | `TriageResult` | Plan type (`nj-regulated`, `marketplace`, `self-funded`, `medicaid`, `medicare`, `other-state`, `government-or-religious`, `unknown`), confidence (`confirmed` / `needs-confirmation`), summary, regulator, cited claims, user-facing uncertainties, how-to-confirm steps, and the answers given. |
@@ -48,22 +61,24 @@ need a label; URLs must be https; ids are unique.
 
 ## Extraction pipeline
 
-1. **documents.py**: decide the file type from its bytes (`%PDF-` magic number), enforce a 4 MB, 30-page, 150k-character and 8-second
+1. **core/documents/parsing.py**: decide the file type from its bytes (`%PDF-` magic number), enforce a 4 MB, 30-page, 150k-character and 8-second
    budget, extract text with pypdf (text only; encrypted PDFs rejected), and normalize it (NFKC, strip control and bidi characters).
    The normalized text is what offsets refer to.
-2. **segment.py**: rebuild passages from line structure, because PDF extraction loses paragraph breaks and wraps sentences. Label lines
+2. **core/documents/segment.py**: rebuild passages from line structure, because PDF extraction loses paragraph breaks and wraps sentences. Label lines
    (`Claim Number: …`) and short headings stand alone; a line keeps a paragraph open only if it's near full width (it wrapped).
    Sentences are split with an abbreviation list (`P.O.`, `Dr.`, `a.m.`).
-3. **fields.py**: fixed regex rules per field. The member's deadline is separated from the insurer's own decision timeline
+3. **features/denials/fields.py**: fixed regex rules per field. The member's deadline is separated from the insurer's own decision timeline
    ("we will decide within 72 hours"), and external-review deadlines are separated from internal ones.
-4. **service.py**: verifies every citation before returning, adds warnings, and states the retention behavior.
+4. **core/documents/pipeline.py** + **features/denials/extraction.py**: the pipeline parses the file, hands the pages to the
+   extractor registered for the document type, and every citation is verified before the result is returned with its warnings
+   and retention notice.
 
-Uploads are sent as the raw request body with an `X-File-Name` header (no multipart parser), read in chunks with a hard cap, and
+Uploads are sent as the raw request body with `X-File-Name` and `X-Document-Type` headers (no multipart parser), read in chunks with a hard cap, and
 never written to disk or logged. Sample letters run through the same PDF path, using PDFs generated in memory.
 
 ## Plan-type triage
 
-The question tree lives in `triage/flow.py` and is served to the UI, which only walks it. Submitted answers are validated against
+The question tree lives in `core/triage/flow.py` and is served to the UI, which only walks it. Submitted answers are validated against
 the tree (no skipped, invented or off-path answers). Clues from the letter (for example "self-funded" or "NJ FamilyCare") are turned
 into *suggested* answers that the UI pre-selects with a visible note; the user still confirms every answer, so a plan type is never
 inferred silently. "I'm not sure" leads to steps for finding out, never to plan-specific deadlines.
@@ -108,9 +123,9 @@ See [SECURITY.md](../SECURITY.md) for the threat model and the latest review.
 ## Testing
 
 - **Backend (pytest):** registry validation rules, official-domain URLs, uncertainty flags, API responses, security headers, invalid
-  input handling, body-size limit.
+  input handling, body-size limit, module boundaries, document-type routing (unbuilt types refused), citation checks.
 - **Frontend (Vitest + Testing Library + axe):** landing content, live coverage, loading/error/retry states, response-schema rejection
-  (including non-https links), routing, mobile menu, and automated accessibility checks.
+  (including non-https links), routing, mobile menu, module boundaries, and automated accessibility checks.
 
 ## Deployment
 

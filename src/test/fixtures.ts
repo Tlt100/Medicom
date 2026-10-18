@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import type { Registry } from '../lib/api';
+import type { Registry } from '../core/api/sources';
 
 export const registryFixture: Registry = {
   registry_version: 1,

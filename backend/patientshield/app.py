@@ -8,11 +8,12 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from . import __version__
-from .config import Settings, get_settings
-from .routers import claims, documents, health, plan, sources, triage
-from .security import BodySizeLimitMiddleware, BodyTooLarge, SecurityHeadersMiddleware, safe_error_fields, too_large_body
-from .sources.service import load_sources
+from patientshield import __version__
+from patientshield.core.config import Settings, get_settings
+from patientshield.core.routes import claims, documents, health, sources, triage
+from patientshield.core.security import BodySizeLimitMiddleware, BodyTooLarge, SecurityHeadersMiddleware, safe_error_fields, too_large_body
+from patientshield.core.sources.service import load_sources
+from patientshield.features import denials
 
 logger = logging.getLogger("patientshield")
 
@@ -52,12 +53,12 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
         logger.error("unhandled error: %s", type(exc).__name__)
         return JSONResponse({"error": "server_error", "message": "Something went wrong on our side."}, status_code=500)
 
-    app.include_router(health.router, prefix="/api")
-    app.include_router(sources.router, prefix="/api")
-    app.include_router(documents.router, prefix="/api")
-    app.include_router(triage.router, prefix="/api")
-    app.include_router(plan.router, prefix="/api")
-    app.include_router(claims.router, prefix="/api")
+    # Core routes shared by every feature.
+    for module in (health, sources, claims, triage, documents):
+        app.include_router(module.router, prefix="/api")
+    # Feature routes.
+    for router in denials.ROUTERS:
+        app.include_router(router, prefix="/api")
     return app
 
 

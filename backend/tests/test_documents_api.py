@@ -6,10 +6,10 @@ import pytest
 from fastapi.testclient import TestClient
 
 from patientshield.app import create_app
-from patientshield.config import Settings
-from patientshield.routers import documents as documents_router
-from patientshield.samples.letters import SAMPLES, SAMPLES_BY_ID, page_texts
-from patientshield.samples.pdfgen import render_pdf
+from patientshield.core.config import Settings
+from patientshield.core.documents.pdfgen import render_pdf
+from patientshield.core.routes import documents as documents_router
+from patientshield.features.denials.samples import SAMPLES, SAMPLES_BY_ID, page_texts
 
 
 @pytest.fixture
@@ -28,6 +28,7 @@ def test_upload_pdf_returns_cited_fields(api):
     body = res.json()
     assert body["document"] == {
         "name": "my letter.pdf",
+        "doc_type": "denial",
         "kind": "pdf",
         "page_count": 2,
         "size_bytes": len(render_pdf(sample)),

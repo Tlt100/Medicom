@@ -1,7 +1,7 @@
 # Source verification report
 
 Last reviewed: **2026-10-17**. Registry version 1. The registry itself is in
-[`backend/patientshield/sources/registry.py`](../backend/patientshield/sources/registry.py).
+[`backend/patientshield/core/sources/registry.py`](../backend/patientshield/core/sources/registry.py).
 
 Federal regulations were read from the eCFR versioner API (text current as of 2026-10-15). Agency pages were read directly in a
 browser. Excerpts in the registry are verbatim.

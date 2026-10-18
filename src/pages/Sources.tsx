@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { Icon } from '../components/Icon';
-import { fetchClaims, fetchRegistry, formatDate, SOURCE_TYPE_LABEL, type ClaimSummary, type Registry, type Source } from '../lib/api';
+import { Icon } from '../core/components/Icon';
+import { fetchClaims, fetchRegistry, SOURCE_TYPE_LABEL, type ClaimSummary, type Registry, type Source } from '../core/api/sources';
+import { formatDate } from '../core/api/http';
 import {
   claimsBySource,
   filterSources,
@@ -11,8 +12,8 @@ import {
   TOPIC_LABEL,
   WEIGHT_OPTIONS,
   type Filters,
-} from '../lib/library';
-import { useAsync } from '../lib/useAsync';
+} from '../core/lib/library';
+import { useAsync } from '../core/lib/useAsync';
 
 const load = (signal: AbortSignal) => Promise.all([fetchRegistry(signal), fetchClaims(signal)]);
 

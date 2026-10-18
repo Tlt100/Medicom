@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { axe } from 'vitest-axe';
 import { App } from '../App';
-import { checkFile, MAX_UPLOAD_BYTES } from '../lib/api';
+import { checkFile, MAX_UPLOAD_BYTES } from '../core/api/documents';
 import nj from './fixtures/extraction-nj.json';
 import vague from './fixtures/extraction-vague.json';
 import samples from './fixtures/samples.json';

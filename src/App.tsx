@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from './components/Layout';
+import { Layout } from './core/components/Layout';
 import { About } from './pages/About';
 import { Landing } from './pages/Landing';
-import { Navigator } from './pages/Navigator';
+import { Navigator } from './features/denials/Navigator';
 import { NotFound } from './pages/NotFound';
 import { Sources } from './pages/Sources';
 

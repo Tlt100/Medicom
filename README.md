@@ -33,6 +33,9 @@ The tone is calm and neutral. The goal is member clarity, not an adversarial sta
 | 3 | Plan-type triage flow with cited rules for each plan type | **Done** |
 | 4 | Action plan: letter and rules side by side, computed deadlines, cited checklist, documents, questions, contacts, print | **Done** |
 | 5 | Source library: filters and search, verbatim excerpts, review flags, re-check dates, statements citing each source | **Done** |
+| Expansion, step 2 | Shared core (document pipeline with document types, citations, sources, triage) + feature modules; denials moved into `features/denials` | **Done** |
+| Expansion, step 3 | “What did you receive?” entry point: denial letter, bill with EOB, bill with no insurance | Next |
+| Expansion, step 4 | EOB vs. bill checker; uninsured NJ bill checker; price context | Planned |
 
 Later phases (not being built yet): medical-records access, privacy complaints, policy-document explorer, privacy-preserving analytics.
 
@@ -101,7 +104,9 @@ Frontend tests include automated accessibility checks with axe.
 
 ## Architecture
 
-React + TypeScript (Vite) frontend and a FastAPI backend deployed together on Vercel. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+React + TypeScript (Vite) frontend and a FastAPI backend deployed together on Vercel. Both are split into a shared `core`
+(document pipeline, citations, source library, plan-type triage) and one module per workflow under `features/` (today:
+`denials`). See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 Legal sources and what was or wasn't verified: [docs/SOURCES.md](docs/SOURCES.md).
 Security model and review results: [SECURITY.md](SECURITY.md).
 

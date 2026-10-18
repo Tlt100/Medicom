@@ -55,7 +55,7 @@ def test_docs_disabled_when_configured(client):
 
 
 def test_settings_default_to_production_on_vercel(monkeypatch):
-    from patientshield.config import get_settings
+    from patientshield.core.config import get_settings
 
     monkeypatch.delenv("PATIENTSHIELD_ENV", raising=False)
     monkeypatch.delenv("PATIENTSHIELD_ENABLE_DOCS", raising=False)
@@ -68,8 +68,8 @@ def test_settings_default_to_production_on_vercel(monkeypatch):
 
 
 def test_claims_endpoint_lists_every_claim_with_known_sources(client):
-    from patientshield.claims import CLAIMS
-    from patientshield.sources.service import get_source
+    from patientshield.core.claims import CLAIMS
+    from patientshield.core.sources.service import get_source
 
     body = client.get("/api/claims").json()
     assert {c["id"] for c in body} == set(CLAIMS)

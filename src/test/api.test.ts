@@ -1,4 +1,5 @@
-import { fetchRegistry, formatDate } from '../lib/api';
+import { fetchRegistry } from '../core/api/sources';
+import { formatDate } from '../core/api/http';
 import { mockFetchJson, registryFixture } from './fixtures';
 
 describe('fetchRegistry', () => {

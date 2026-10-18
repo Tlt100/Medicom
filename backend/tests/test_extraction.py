@@ -5,13 +5,14 @@ import io
 import pytest
 from pypdf import PdfWriter
 
-from patientshield.extraction import documents
-from patientshield.extraction.documents import DocumentError, normalize_text, parse_document
-from patientshield.extraction.models import Citation
-from patientshield.extraction.segment import segment_document, segment_page
-from patientshield.extraction.service import CitationError, _check, extract
-from patientshield.samples.letters import SAMPLES, SAMPLES_BY_ID, page_texts
-from patientshield.samples.pdfgen import render_pdf
+from patientshield.core.citations import Citation, CitationError
+from patientshield.core.citations import check_document_citations as _check
+from patientshield.core.documents import parsing as documents
+from patientshield.core.documents.parsing import DocumentError, normalize_text, parse_document
+from patientshield.core.documents.pdfgen import render_pdf
+from patientshield.core.documents.segment import segment_document, segment_page
+from patientshield.features.denials.extraction import extract
+from patientshield.features.denials.samples import SAMPLES, SAMPLES_BY_ID, page_texts
 
 
 def run(sample_id: str):

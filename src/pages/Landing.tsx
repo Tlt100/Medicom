@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Icon, type IconName } from '../components/Icon';
-import { fetchRegistry, formatDate } from '../lib/api';
-import { useAsync } from '../lib/useAsync';
+import { Icon, type IconName } from '../core/components/Icon';
+import { fetchRegistry } from '../core/api/sources';
+import { formatDate } from '../core/api/http';
+import { useAsync } from '../core/lib/useAsync';
 
 /** Research figures for context. Verified on 2026-10-17 against the KFF analysis linked below. */
 const KFF_URL = 'https://www.kff.org/patient-consumer-protections/claims-denials-and-appeals-in-aca-marketplace-plans-in-2024/';

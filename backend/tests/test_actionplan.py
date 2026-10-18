@@ -5,9 +5,9 @@ import datetime as dt
 import pytest
 from pydantic import ValidationError
 
-from patientshield.actionplan.builder import build_plan
-from patientshield.actionplan.dates import add_business_days, add_months, parse_duration
-from patientshield.actionplan.models import PlanRequest
+from patientshield.core.dates import add_business_days, add_months, parse_duration
+from patientshield.features.denials.actionplan.builder import build_plan
+from patientshield.features.denials.actionplan.models import PlanRequest
 
 TODAY = dt.date(2026, 10, 17)
 NJ = {"coverage_source": "job", "employer_type": "private", "funding": "fully_insured", "issued_state": "nj", "grandfathered": "no"}

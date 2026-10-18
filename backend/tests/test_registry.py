@@ -7,9 +7,9 @@ import re
 import pytest
 from pydantic import ValidationError
 
-from patientshield.sources.models import Source, SourceType, Verification
-from patientshield.sources.registry import RAW_SOURCES
-from patientshield.sources.service import RegistryError, all_sources, coverage, load_sources
+from patientshield.core.sources.models import Source, SourceType, Verification
+from patientshield.core.sources.registry import RAW_SOURCES
+from patientshield.core.sources.service import RegistryError, all_sources, coverage, load_sources
 
 OFFICIAL_HOSTS = re.compile(r"^https://(www\.)?([a-z0-9-]+\.)*(gov|nj\.gov)/")
 
