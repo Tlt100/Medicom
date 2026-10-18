@@ -106,7 +106,7 @@ describe('Action plan', () => {
       letter: { appeal_deadline: { quote: { page: number } } };
       situation: Record<string, unknown>;
     };
-    expect(Object.keys(body).sort()).toEqual(['answers', 'letter', 'situation']);
+    expect(Object.keys(body).sort()).toEqual(['answers', 'letter', 'situation', 'today']);
     expect(body.answers).toEqual({ coverage_source: 'job', employer_type: 'private', funding: 'fully_insured', issued_state: 'nj', grandfathered: 'no' });
     expect(body.letter.appeal_deadline.quote.page).toBe(2);
     expect(body.situation).toMatchObject({ date_received: '2026-09-15', urgent: 'no', internal_appeal: 'not_yet', final_decision_date: null });

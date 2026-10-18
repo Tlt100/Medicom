@@ -247,3 +247,12 @@ def test_plan_endpoint(client):
 def test_plan_endpoint_rejects_off_path_answers_without_echoing_them(client):
     res = client.post("/api/plan", json={"answers": {"coverage_source": "<script>"}})
     assert res.status_code == 422 and "<script>" not in res.text
+
+
+def test_plan_endpoint_uses_the_clients_local_date_only_within_a_day(client):
+    server_today = dt.date.today()
+    base = {"answers": NJ, "letter": NJ_LETTER, "situation": {"date_received": "2026-09-18"}}
+    for offset, honored in [(-1, True), (1, True), (5, False)]:
+        sent = server_today + dt.timedelta(days=offset)
+        body = client.post("/api/plan", json={**base, "today": sent.isoformat()}).json()
+        assert body["today"] == (sent if honored else server_today).isoformat()

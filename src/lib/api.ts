@@ -337,7 +337,8 @@ export interface LetterFacts {
 }
 
 export const buildPlan = (body: { answers: Record<string, string>; letter: LetterFacts; situation: Situation }, signal?: AbortSignal) =>
-  request('/api/plan', ActionPlanSchema, json(body, signal));
+  // Send the user's local date so "days left" matches their calendar (the server accepts it within a day of its own).
+  request('/api/plan', ActionPlanSchema, json({ ...body, today: new Date().toLocaleDateString('en-CA') }, signal));
 
 export const SOURCE_TYPE_LABEL: Record<SourceRef['source_type'], string> = {
   statute: 'Statute',

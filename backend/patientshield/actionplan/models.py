@@ -74,6 +74,9 @@ class PlanRequest(BaseModel):
     answers: Dict[str, str] = Field(max_length=10)
     letter: LetterFacts = Field(default_factory=LetterFacts)
     situation: Situation = Field(default_factory=Situation)
+    # The user's local calendar date, so "days left" matches what they see. Honored only within a day of the
+    # server's date (time zones); otherwise the server's date is used.
+    today: Optional[dt.date] = None
 
 
 class Deadline(BaseModel):
