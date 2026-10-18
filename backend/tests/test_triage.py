@@ -245,10 +245,16 @@ def test_triage_endpoint(client):
 
 
 def test_triage_endpoint_rejects_bad_answers_with_a_reason(client):
-    res = client.post("/api/triage", json={"answers": {"coverage_source": "<b>job</b>"}})
+    res = client.post("/api/triage", json={"answers": {"coverage_source": "employer"}})
     assert res.status_code == 422
     assert "isn’t a valid answer" in res.json()["message"]
-    assert "<b>" not in res.text
+    assert "employer" not in res.text
+
+
+def test_triage_endpoint_rejects_malformed_tokens_without_echoing_them(client):
+    res = client.post("/api/triage", json={"answers": {"coverage_source": "<b>job</b>", "<img src=x>": "x"}})
+    assert res.status_code == 422
+    assert "<b>" not in res.text and "<img" not in res.text
 
 
 def test_triage_endpoint_rejects_oversized_payloads(client):

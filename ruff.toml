@@ -1,10 +1,10 @@
 line-length = 140
-target-version = "py39"
+target-version = "py312"
 src = ["backend"]
 
 [lint]
 select = ["E", "F", "W", "I", "B", "UP", "S"]
-# Keep typing.List/Optional so Pydantic works on Python 3.9 (local dev).
+# typing.List/Optional style is kept for consistency across the codebase.
 ignore = ["UP006", "UP007", "UP035", "UP045"]
 
 [lint.per-file-ignores]

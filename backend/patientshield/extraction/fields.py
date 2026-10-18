@@ -230,7 +230,8 @@ def deadline_field(passages: List[Passage], key: FieldKey) -> ExtractedField:
         return _missing(key)
     values, citations = [], []
     for p, m in hits:
-        values.append(_flat(m.group(0)[len(m.group(0).split()[0]) + 1 :] if m.group(0).lower().startswith("within") else m.group(0)))
+        # "within 180 days of ..." -> "180 days of ..."; other lead-ins ("no later than") are kept.
+        values.append(_flat(re.sub(r"^within\s+", "", m.group(0), flags=re.I)))
         citations.append(cite(p))
     note = None
     if len(hits) > 1:

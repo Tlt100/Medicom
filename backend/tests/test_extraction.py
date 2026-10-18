@@ -224,3 +224,51 @@ def test_file_names_are_sanitized():
     assert documents.safe_name('../../etc/<script>"x".txt') == "....etcscriptx.txt"
     assert documents.safe_name("") == "document"
     assert len(documents.safe_name("a" * 500)) == 120
+
+
+# ---------------------------------------------------------------- complexity limits (DoS hardening)
+
+import time  # noqa: E402
+
+from hostile_pdfs import single_page, text_ops, xobject_amplified  # noqa: E402
+
+
+def _timed_parse(data: bytes):
+    started = time.perf_counter()
+    try:
+        parse_document("hostile.pdf", data)
+        outcome = "ok"
+    except DocumentError as exc:
+        outcome = exc.code
+    return outcome, time.perf_counter() - started
+
+
+def test_a_tiny_pdf_describing_a_huge_page_is_rejected_quickly():
+    data = single_page(text_ops(10_000))
+    assert len(data) < 20_000  # ~10 KB file that used to cost ~30 s of CPU
+    outcome, seconds = _timed_parse(data)
+    assert outcome == "too_complex"
+    assert seconds < 2
+
+
+def test_form_xobject_amplification_is_counted():
+    # 20 text operators inside a form, drawn 500 times = 10,000 operators of work from a few hundred bytes.
+    outcome, seconds = _timed_parse(xobject_amplified(inner_ops=20, invocations=500))
+    assert outcome == "too_complex" and seconds < 2
+
+
+def test_deeply_nested_forms_are_rejected():
+    outcome, _ = _timed_parse(xobject_amplified(inner_ops=1, invocations=1, depth=documents.MAX_XOBJECT_DEPTH + 1))
+    assert outcome == "too_complex"
+
+
+def test_a_modest_form_xobject_is_still_read():
+    outcome, _ = _timed_parse(xobject_amplified(inner_ops=5, invocations=3))
+    assert outcome == "ok"
+
+
+def test_worst_case_just_under_the_limits_stays_well_within_the_time_budget():
+    data = single_page(text_ops(documents.MAX_PAGE_CONTENT_BYTES // 240, chars=200))
+    outcome, seconds = _timed_parse(data)
+    assert outcome == "ok"
+    assert seconds < documents.TIME_BUDGET_SECONDS

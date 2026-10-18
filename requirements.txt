@@ -1,4 +1,7 @@
-# Runtime dependencies for the FastAPI backend (installed by Vercel's Python runtime).
-fastapi==0.128.8
+# Runtime dependencies for the FastAPI backend (installed by Vercel's Python runtime, Python 3.12).
+# starlette and anyio are pinned explicitly because they carry the HTTP layer's security fixes.
+fastapi==0.143.3
+starlette==1.8.0
+anyio==4.15.1
 pydantic==2.13.5
 pypdf==6.21.0

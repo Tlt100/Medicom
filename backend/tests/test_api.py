@@ -83,3 +83,32 @@ def test_every_source_is_cited_by_at_least_one_claim_or_flagged(client):
     cited = {sid for c in client.get("/api/claims").json() for sid in c["source_ids"]}
     for s in client.get("/api/sources").json()["sources"]:
         assert s["id"] in cited or s["verification"] == "needs-review", s["id"]
+
+
+def test_chunked_json_body_over_the_limit_is_rejected(client):
+    # No Content-Length header: the limit must be enforced while the body streams in (client cap is 1 KB).
+    def chunks():
+        for _ in range(8):
+            yield b'{"answers": {"coverage_source": "' + b"a" * 200 + b'"}}'
+
+    res = client.post("/api/triage", content=chunks(), headers={"Content-Type": "application/json"})
+    assert res.status_code == 413
+    assert res.json()["error"] == "too_large"
+    assert res.headers["x-content-type-options"] == "nosniff"
+
+
+def test_invalid_content_length_header_is_rejected(client):
+    res = client.post("/api/triage", content=b"{}", headers={"Content-Type": "application/json", "Content-Length": "abc"})
+    assert res.status_code == 400
+
+
+def test_validation_errors_mask_user_chosen_keys(client):
+    res = client.post("/api/plan", json={"answers": {"<img src=x onerror=alert(1)>": 5}})
+    assert res.status_code == 422
+    assert "<img" not in res.text and "onerror" not in res.text
+    assert any(f.startswith("body.answers.*") for f in res.json()["fields"])
+
+
+def test_suggest_rejects_oversized_signal_codes(client):
+    assert client.post("/api/triage/suggest", json={"signals": ["x" * 41]}).status_code == 422
+    assert client.post("/api/triage/suggest", json={"signals": ["medicaid"] * 21}).status_code == 422

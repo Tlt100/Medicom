@@ -11,7 +11,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from . import __version__
 from .config import Settings, get_settings
 from .routers import claims, documents, health, plan, sources, triage
-from .security import BodySizeLimitMiddleware, SecurityHeadersMiddleware
+from .security import BodySizeLimitMiddleware, BodyTooLarge, SecurityHeadersMiddleware, safe_error_fields, too_large_body
 from .sources.service import load_sources
 
 logger = logging.getLogger("patientshield")
@@ -38,9 +38,13 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(_: Request, exc: RequestValidationError) -> JSONResponse:
-        # Report which fields failed without echoing user-supplied values back.
-        fields = [".".join(str(p) for p in err.get("loc", ())) for err in exc.errors()]
+        # Report which fields failed without echoing user-supplied values (or user-chosen keys) back.
+        fields = safe_error_fields(exc.errors())
         return JSONResponse({"error": "invalid_request", "message": "Some inputs were invalid.", "fields": fields}, status_code=422)
+
+    @app.exception_handler(BodyTooLarge)
+    async def body_too_large(_: Request, __: BodyTooLarge) -> JSONResponse:
+        return JSONResponse(too_large_body(settings.max_request_bytes), status_code=413)
 
     @app.exception_handler(Exception)
     async def unexpected_error(_: Request, exc: Exception) -> JSONResponse:

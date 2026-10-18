@@ -13,7 +13,7 @@ import re
 from typing import Dict, List, Optional, Tuple
 
 from ..triage.models import ClaimOut, PlanType
-from ..triage.service import _source_ref, claim_out, triage
+from ..triage.service import claim_out, source_ref, triage
 from .dates import apply_duration, describe, parse_duration
 from .models import ActionPlan, Comparison, Contact, Deadline, PlanRequest, StatedDeadline, Step
 
@@ -527,7 +527,7 @@ class _Builder:
                     name="NJ DOBI Independent Health Care Appeals Program",
                     when="After a final internal appeal denial, for New Jersey-regulated plans",
                     phone="1-888-393-1062",
-                    source=_source_ref("nj-dobi-ihcap"),
+                    source=source_ref("nj-dobi-ihcap"),
                     claim=self.claim("ihcap_contact"),
                 )
             )
@@ -536,7 +536,7 @@ class _Builder:
                     name="NJ DOBI Consumer Hotline",
                     when="Problems with how a New Jersey-regulated insurer handles your claim",
                     phone="1-800-446-7467",
-                    source=_source_ref("nj-dobi-consumer"),
+                    source=source_ref("nj-dobi-consumer"),
                     claim=self.claim("nj_dobi_hotline"),
                 )
             )
@@ -545,7 +545,7 @@ class _Builder:
                 Contact(
                     name="U.S. Department of Labor, Employee Benefits Security Administration",
                     when="Questions about a private employer plan, including self-funded plans",
-                    source=_source_ref("dol-filing-a-claim"),
+                    source=source_ref("dol-filing-a-claim"),
                 )
             )
         if self.plan == "medicaid":
@@ -553,13 +553,13 @@ class _Builder:
                 Contact(
                     name="NJ Division of Medical Assistance and Health Services",
                     when="NJ FamilyCare fair hearings (check your notice for current instructions)",
-                    source=_source_ref("nj-dmahs-mc-26-06"),
+                    source=source_ref("nj-dmahs-mc-26-06"),
                 )
             )
         if self.plan == "medicare":
             c.append(
                 Contact(
-                    name="Medicare appeals", when="How Medicare appeals work, level by level", source=_source_ref("medicare-gov-appeals")
+                    name="Medicare appeals", when="How Medicare appeals work, level by level", source=source_ref("medicare-gov-appeals")
                 )
             )
         return c

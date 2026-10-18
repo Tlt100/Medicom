@@ -38,7 +38,7 @@ Later phases (not being built yet): medical-records access, privacy complaints, 
 
 ## Run it locally
 
-Requirements: Node 20+ and Python 3.9+ (Vercel runs 3.12).
+Requirements: Node 20+ and Python 3.12 (the same version Vercel runs).
 
 ```bash
 npm install
@@ -78,6 +78,14 @@ No API keys or secrets are needed. See [`.env.example`](.env.example) for option
 ```
 
 ```bash
+.venv/Scripts/python -m pip_audit -r requirements.txt
+```
+
+```bash
+npm audit
+```
+
+```bash
 npm test
 ```
 
@@ -95,6 +103,7 @@ Frontend tests include automated accessibility checks with axe.
 
 React + TypeScript (Vite) frontend and a FastAPI backend deployed together on Vercel. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 Legal sources and what was or wasn't verified: [docs/SOURCES.md](docs/SOURCES.md).
+Security model and review results: [SECURITY.md](SECURITY.md).
 
 ## Limitations
 

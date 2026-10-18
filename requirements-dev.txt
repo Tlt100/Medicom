@@ -1,5 +1,6 @@
 -r requirements.txt
 uvicorn==0.34.3
-httpx==0.28.1
+httpx2==2.13.1
 pytest==8.4.1
 ruff==0.12.2
+pip-audit==2.9.0

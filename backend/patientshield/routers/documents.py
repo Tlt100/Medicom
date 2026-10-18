@@ -8,6 +8,7 @@ from typing import List
 from urllib.parse import unquote
 
 from fastapi import APIRouter, HTTPException, Path, Request
+from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import JSONResponse, Response
 
 from ..extraction.documents import MAX_BYTES, DocumentError
@@ -42,7 +43,8 @@ async def extract_upload(request: Request):
     name = unquote(raw_name)[:200]
     try:
         data = await _read_limited(request, MAX_BYTES)
-        return extract(name, data)
+        # Parsing is CPU-bound; run it in a worker thread so it never blocks the event loop.
+        return await run_in_threadpool(extract, name, data)
     except DocumentError as exc:
         return _error(exc)
 

@@ -22,6 +22,19 @@ MAX_CHARS_PER_PAGE = 20_000
 MAX_TOTAL_CHARS = 150_000
 TIME_BUDGET_SECONDS = 8.0
 
+# Text extraction cost grows with a page's content-stream size and number of text-drawing operators,
+# and a tiny file can describe an enormous page. These limits are checked BEFORE extraction runs.
+# A typical letter page uses a few KB and tens of operators; the limits leave ample headroom.
+MAX_PAGE_CONTENT_BYTES = 256 * 1024
+MAX_PAGE_TEXT_OPS = 1500
+MAX_DOC_CONTENT_BYTES = 768 * 1024
+MAX_DOC_TEXT_OPS = 4500
+MAX_XOBJECT_DEPTH = 3
+
+_TEXT_OPS = re.compile(rb"(?:Tj|TJ|'|\")(?=[\s\]]|$)")
+_DO_OPS = re.compile(rb"/([^\s/\[\]()<>{}%]+)\s+Do\b")
+_TOO_COMPLEX = "This PDF is unusually complex for a letter, so we stopped reading it. Try a simpler PDF or a .txt copy of the letter."
+
 logger = logging.getLogger("patientshield")
 
 
@@ -106,6 +119,57 @@ def parse_text(data: bytes) -> List[str]:
     return pages
 
 
+def _xobjects(resources) -> dict:
+    try:
+        xobjects = resources.get("/XObject") if resources is not None else None
+        return dict(xobjects.get_object()) if xobjects is not None else {}
+    except Exception:  # noqa: BLE001 - malformed resources simply mean "no XObjects"
+        return {}
+
+
+def _stream_cost(data: bytes, resources, depth: int) -> "tuple[int, int]":
+    """(content bytes, text operators) a stream will make pypdf process, counting each Form XObject use."""
+    size, ops = len(data), len(_TEXT_OPS.findall(data))
+    calls = {}
+    for name in _DO_OPS.findall(data):
+        calls[name] = calls.get(name, 0) + 1
+    if not calls:
+        return size, ops
+    if depth >= MAX_XOBJECT_DEPTH:
+        raise DocumentError("too_complex", _TOO_COMPLEX)
+    available = _xobjects(resources)
+    for name, count in calls.items():
+        ref = available.get("/" + name.decode("latin-1"))
+        if ref is None:
+            continue
+        xobject = ref.get_object()
+        if xobject.get("/Subtype") != "/Form":
+            continue  # images don't contribute text
+        sub_size, sub_ops = _stream_cost(xobject.get_data(), xobject.get("/Resources") or resources, depth + 1)
+        size, ops = size + sub_size * count, ops + sub_ops * count
+        if size > MAX_PAGE_CONTENT_BYTES or ops > MAX_PAGE_TEXT_OPS:
+            break  # already over budget; stop multiplying
+    return size, ops
+
+
+def check_page_complexity(pages) -> None:
+    """Rejects documents whose text extraction would be disproportionately expensive (cheap DoS)."""
+    total_size = total_ops = 0
+    for page in pages:
+        try:
+            contents = page.get_contents()
+            data = contents.get_data() if contents is not None else b""
+            size, ops = _stream_cost(data, page.get("/Resources"), 0)
+        except DocumentError:
+            raise
+        except Exception as exc:  # noqa: BLE001 - unreadable content is handled as a damaged file
+            logger.info("pdf content check failed: %s", type(exc).__name__)
+            raise DocumentError("parse_failed", "We couldn't read this PDF. It may be damaged or use an unsupported format.") from exc
+        total_size, total_ops = total_size + size, total_ops + ops
+        if size > MAX_PAGE_CONTENT_BYTES or ops > MAX_PAGE_TEXT_OPS or total_size > MAX_DOC_CONTENT_BYTES or total_ops > MAX_DOC_TEXT_OPS:
+            raise DocumentError("too_complex", _TOO_COMPLEX)
+
+
 def parse_pdf(data: bytes) -> List[str]:
     from pypdf import PdfReader  # imported lazily: only PDF requests pay for it
     from pypdf.errors import PdfReadError
@@ -126,6 +190,8 @@ def parse_pdf(data: bytes) -> List[str]:
         raise DocumentError("parse_failed", "This PDF has no pages.")
     if count > MAX_PAGES:
         raise DocumentError("too_many_pages", f"This PDF has {count} pages. The limit is {MAX_PAGES}. Upload just the denial letter.")
+
+    check_page_complexity(reader.pages)
 
     pages: List[str] = []
     for index in range(count):

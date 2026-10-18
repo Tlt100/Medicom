@@ -1,11 +1,11 @@
 """Request/response models for the action plan. Every client-sent value is bounded and typed."""
 
 import datetime as dt
-from typing import Dict, List, Literal, Optional
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-from ..triage.models import ClaimOut, PlanType, SourceRef
+from ..triage.models import Answers, ClaimOut, PlanType, SourceRef
 
 _EARLIEST = dt.date(2000, 1, 1)
 
@@ -19,9 +19,9 @@ def _check_date(v: Optional[dt.date]) -> Optional[dt.date]:
 
 
 class LetterQuote(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
     """A passage the client is quoting back from its own extraction result."""
+
+    model_config = ConfigDict(extra="forbid")
 
     text: str = Field(min_length=1, max_length=600)
     page: int = Field(ge=1, le=30)
@@ -71,7 +71,7 @@ class Situation(BaseModel):
 class PlanRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
-    answers: Dict[str, str] = Field(max_length=10)
+    answers: Answers = Field(max_length=10)
     letter: LetterFacts = Field(default_factory=LetterFacts)
     situation: Situation = Field(default_factory=Situation)
     # The user's local calendar date, so "days left" matches what they see. Honored only within a day of the

@@ -1,8 +1,4 @@
-"""Typed models for the verified legal-source registry.
-
-Kept compatible with Python 3.9 (local dev) and 3.12 (Vercel): use typing.Optional/List,
-not the `X | None` syntax, because Pydantic evaluates annotations at runtime.
-"""
+"""Typed models for the verified legal-source registry."""
 
 import datetime as dt
 from enum import Enum

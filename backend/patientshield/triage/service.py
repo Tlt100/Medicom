@@ -129,7 +129,7 @@ def classify(answers: Dict[str, str]) -> Tuple[PlanType, bool]:
 # ---------------------------------------------------------------- profiles
 
 
-def _source_ref(source_id: str) -> SourceRef:
+def source_ref(source_id: str) -> SourceRef:
     s = get_source(source_id)
     if s is None:
         raise KeyError(f"unknown source id {source_id}")
@@ -146,13 +146,13 @@ def _source_ref(source_id: str) -> SourceRef:
 
 def claim_out(claim_id: str) -> ClaimOut:
     claim = CLAIMS[claim_id]
-    sources = [_source_ref(sid) for sid in claim.source_ids]
+    sources = [source_ref(sid) for sid in claim.source_ids]
     return ClaimOut(id=claim.id, text=claim.text, sources=sources, needs_review=any(s.verification == "needs-review" for s in sources))
 
 
 def _profile(plan: PlanType, answers: Dict[str, str]) -> Tuple[str, Optional[Regulator], List[str], List[str]]:
     """Returns (summary, regulator, claim ids, uncertainties) for a plan type."""
-    dobi = Regulator(name="New Jersey Department of Banking and Insurance (DOBI)", source=_source_ref("nj-dobi-consumer"))
+    dobi = Regulator(name="New Jersey Department of Banking and Insurance (DOBI)", source=source_ref("nj-dobi-consumer"))
     grandfathered = answers.get("grandfathered")
     uncertainties: List[str] = []
     if grandfathered in {"yes", "unsure"}:
@@ -196,7 +196,7 @@ def _profile(plan: PlanType, answers: Dict[str, str]) -> Tuple[str, Optional[Reg
             "program isn’t available. You appeal to the plan first; external review, if your plan offers it, also goes through the plan."
         )
         regulator = Regulator(
-            name="U.S. Department of Labor, Employee Benefits Security Administration (EBSA)", source=_source_ref("dol-filing-a-claim")
+            name="U.S. Department of Labor, Employee Benefits Security Administration (EBSA)", source=source_ref("dol-filing-a-claim")
         )
         claims = ["erisa_scope", "erisa_appeal_window", "urgent_72h", "erisa_external", "external_review_4_months", "ihcap_scope"]
         return summary, regulator, claims, uncertainties
@@ -208,7 +208,7 @@ def _profile(plan: PlanType, answers: Dict[str, str]) -> Tuple[str, Optional[Reg
         )
         regulator = Regulator(
             name="NJ Department of Human Services, Division of Medical Assistance and Health Services (DMAHS)",
-            source=_source_ref("nj-dmahs-mc-26-06"),
+            source=source_ref("nj-dmahs-mc-26-06"),
         )
         uncertainties.append(
             "New Jersey changed parts of its Medicaid fair hearing process on July 1, 2026, and official sources give different "
@@ -218,7 +218,7 @@ def _profile(plan: PlanType, answers: Dict[str, str]) -> Tuple[str, Optional[Reg
 
     if plan == "medicare":
         kind = answers.get("medicare_kind")
-        regulator = Regulator(name="Medicare (Centers for Medicare & Medicaid Services)", source=_source_ref("medicare-gov-appeals"))
+        regulator = Regulator(name="Medicare (Centers for Medicare & Medicaid Services)", source=source_ref("medicare-gov-appeals"))
         claims = ["medicare_written", "ihcap_scope"]
         if kind == "advantage":
             summary = "Medicare Advantage plans follow Medicare’s appeal system, which starts with asking the plan to reconsider."

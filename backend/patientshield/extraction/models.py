@@ -1,4 +1,4 @@
-"""Response models for document extraction. Python 3.9 compatible (typing.List/Optional)."""
+"""Response models for document extraction."""
 
 from typing import List, Literal, Optional
 

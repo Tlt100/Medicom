@@ -80,8 +80,7 @@ SAMPLES: List[SampleLetter] = [
                 "P.O. Box 2290, Edison, NJ 08818 | (800) 555-0167",
                 "Date: August 28, 2026",
                 "Alex Sample\n48 Example Avenue\nNew Brunswick, NJ 08901",
-                "Participant ID: TFC-20931\nClaim Reference: LBS-88412-B\n"
-                "Plan: Tidewater Fabrication Co. Employee Health Plan",
+                "Participant ID: TFC-20931\nClaim Reference: LBS-88412-B\nPlan: Tidewater Fabrication Co. Employee Health Plan",
                 "## EXPLANATION OF DENIED CLAIM",
                 "Dear Alex Sample:",
                 "We processed the claim for an outpatient physical therapy evaluation on August 2, 2026, billed by "
@@ -97,8 +96,7 @@ SAMPLES: List[SampleLetter] = [
                 "The Tidewater Fabrication Co. Employee Health Plan is a self-funded group health plan governed by "
                 "ERISA. After a final internal decision, you may request an external review by an independent review "
                 "organization through the Plan within 4 months.",
-                "You also have the right to bring a civil action under section 502(a) of ERISA following an adverse "
-                "decision on appeal.",
+                "You also have the right to bring a civil action under section 502(a) of ERISA following an adverse decision on appeal.",
             ],
         ],
     ),
@@ -119,8 +117,7 @@ SAMPLES: List[SampleLetter] = [
                 "We are reducing your approved home health aide hours from 20 hours per week to 12 hours per week, "
                 "starting October 15, 2026.",
                 "## Reason for our decision",
-                "Our review found that the requested number of hours is more than what is needed based on your most "
-                "recent assessment.",
+                "Our review found that the requested number of hours is more than what is needed based on your most recent assessment.",
                 "## How to appeal",
                 "You may ask us for an internal appeal. You must request your appeal within 60 calendar days from the "
                 "date on this notice. You can call us at (800) 555-0188 or write to Cedar Hollow Appeals, "

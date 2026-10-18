@@ -35,3 +35,24 @@ def test_vercel_entrypoint_exposes_the_real_app():
     from patientshield.app import app
 
     assert index.app is app
+
+
+def test_frontend_security_headers_stay_strict():
+    """The site's CSP and headers live in vercel.json; loosening them should fail CI, not slip through."""
+    import json
+
+    config = json.loads((ROOT / "vercel.json").read_text(encoding="utf-8"))
+    headers = {h["key"].lower(): h["value"] for rule in config["headers"] for h in rule["headers"]}
+    csp = headers["content-security-policy"]
+    directives = dict(d.strip().split(" ", 1) for d in csp.split(";") if d.strip() and " " in d.strip())
+    assert directives["default-src"] == "'self'"
+    assert directives["script-src"] == "'self'"
+    assert directives["frame-ancestors"] == "'none'"
+    assert directives["object-src"] == "'none'"
+    for unsafe in ("'unsafe-inline'", "'unsafe-eval'", "http:", "https:", "*"):
+        assert unsafe not in csp, unsafe
+    assert "https://" not in csp, "no third-party hosts (fonts are self-hosted)"
+    assert headers["x-content-type-options"] == "nosniff"
+    assert headers["referrer-policy"] == "no-referrer"
+    assert headers["cross-origin-opener-policy"] == "same-origin"
+    assert "max-age=" in headers["strict-transport-security"]

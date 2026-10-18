@@ -161,7 +161,10 @@ RAW_SOURCES: List[Dict[str, Any]] = [
                 "locator": "External Appeal Review Eligibility",
                 "text": "Appeals under the IHCAP are not eligible for review if: The individual is covered under a self-funded insurance plan, Medicare, or a Medicare Advantage product;",
             },
-            {"locator": "External Appeal Review Eligibility", "text": "The individual is covered under a contract delivered in another state;"},
+            {
+                "locator": "External Appeal Review Eligibility",
+                "text": "The individual is covered under a contract delivered in another state;",
+            },
             {"locator": "External Appeal Review Eligibility", "text": "The internal appeal process has not been completed"},
             {
                 "locator": "Decision timing",

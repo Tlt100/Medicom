@@ -1,6 +1,11 @@
-from typing import Dict, List, Literal, Optional
+from typing import Annotated, Dict, List, Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, StringConstraints
+
+# Question ids, option values and signal codes are short lowercase identifiers. Anything else is rejected
+# before it reaches the triage logic, which also bounds request size.
+Token = Annotated[str, StringConstraints(pattern=r"^[a-z][a-z0-9_-]{0,39}$")]
+Answers = Dict[Token, Token]
 
 PlanType = Literal[
     "nj-regulated",
@@ -34,7 +39,7 @@ class FlowOut(BaseModel):
 
 
 class SuggestRequest(BaseModel):
-    signals: List[str] = Field(default_factory=list, max_length=20)
+    signals: List[Token] = Field(default_factory=list, max_length=20)
 
 
 class Suggestion(BaseModel):
@@ -43,7 +48,7 @@ class Suggestion(BaseModel):
 
 
 class TriageRequest(BaseModel):
-    answers: Dict[str, str] = Field(max_length=10)
+    answers: Answers = Field(max_length=10)
 
 
 class SourceRef(BaseModel):

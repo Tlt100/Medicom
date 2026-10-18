@@ -87,11 +87,19 @@ holds the letter only in memory. A backend test requires every verified source t
 
 ## Security
 
-- Uploads and extracted text are untrusted: type checked by magic bytes, size-capped below Vercel's 4.5 MB limit, page
-  and time limits, parsed without executing embedded content, rendered as text only (an ESLint rule bans `dangerouslySetInnerHTML`).
+See [SECURITY.md](../SECURITY.md) for the threat model and the latest review.
+
+
+- Uploads and extracted text are untrusted: type checked by magic bytes, size-capped below Vercel's 4.5 MB limit, page,
+  time and page-complexity limits (content bytes and text operators per page and per document, Form XObject reuse counted,
+  nesting capped) checked before extraction, parsed in a worker thread without executing embedded content, and rendered as text
+  only (an ESLint rule bans `dangerouslySetInnerHTML`).
+- Request bodies are capped by Content-Length and by counting streamed bytes; request models reject unknown fields and bound
+  every string; validation errors mask user-chosen keys.
 - Prompt injection: the MVP uses no LLM. Document text is only ever quoted. Any future AI provider must sit behind an interface, run
   server-side, and have every quote verified against the document before display.
-- HTTP: strict CSP with no inline scripts, `frame-ancestors 'none'`, `nosniff`, `no-referrer`, HSTS; API responses are
+- HTTP: strict CSP with no inline scripts and no third-party hosts (fonts are self-hosted), `frame-ancestors 'none'`,
+  `nosniff`, `no-referrer`, COOP, HSTS (a test fails if the CSP is loosened); API responses are
   `Cache-Control: no-store` with `default-src 'none'`.
 - Errors never echo user input or document text; the catch-all handler logs only the exception type.
 - No secrets are required. `.env.example` documents optional settings; nothing sensitive uses a `VITE_*` variable.
@@ -106,5 +114,6 @@ holds the letter only in memory. A backend test requires every verified source t
 
 ## Deployment
 
-Vercel builds the frontend with `npm run build` and deploys `api/index.py` as a Python function (`.python-version` pins 3.12). The
+Vercel builds the frontend with `npm run build` and deploys `api/index.py` as a Python function (`.python-version` pins 3.12;
+local development uses 3.12 too). The
 function bundles `backend/patientshield/**` via `includeFiles` in `vercel.json`.

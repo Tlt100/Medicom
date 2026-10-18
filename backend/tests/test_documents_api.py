@@ -76,7 +76,7 @@ def test_upload_size_limit_with_content_length(client):
 
 def test_malicious_file_name_is_sanitized_not_echoed(api):
     text = "\f".join(page_texts(SAMPLES_BY_ID["nj-prior-auth-mri"]))
-    res = upload(api, '<img src=x onerror=alert(1)>.txt', text.encode(), "text/plain")
+    res = upload(api, "<img src=x onerror=alert(1)>.txt", text.encode(), "text/plain")
     assert res.status_code == 200
     assert "<" not in res.json()["document"]["name"]
 
