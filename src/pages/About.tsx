@@ -13,7 +13,7 @@ export function About() {
       <h2>Scope</h2>
       <ul>
         <li>New Jersey residents and applicable U.S. federal law.</li>
-        <li>Denials of coverage or payment by a health plan. Medical-records access and privacy complaints are planned for later.</li>
+        <li>Denials of coverage or payment by a health plan. Checking medical bills against an insurer’s Explanation of Benefits, and bills for uninsured New Jersey patients, are being added next.</li>
         <li>
           Plan types it distinguishes: NJ state-regulated (fully insured), self-funded employer (ERISA), ACA marketplace (Get Covered New
           Jersey), NJ FamilyCare / Medicaid, Medicare / Medicare Advantage, and “not sure.”

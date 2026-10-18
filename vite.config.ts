@@ -1,5 +1,4 @@
-/// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
+import { configDefaults, defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
@@ -15,5 +14,9 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
     css: false,
+    // Session worktrees live under .claude/; never pick up their copies of the tests.
+    exclude: [...configDefaults.exclude, '.claude/**'],
+    // Full-page axe scans can take several seconds on slower machines.
+    testTimeout: 20_000,
   },
 });
