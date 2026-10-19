@@ -117,6 +117,76 @@ _CLAIMS = [
         "That reason goes to your provider, so ask them for it.",
         ("cms-0057-f-fact-sheet",),
     ),
+    # ---------------------------------------------------------------- bills and EOBs
+    Claim(
+        "eob_not_a_bill",
+        "CMS says an Explanation of Benefits (EOB) isn’t a bill. It shows how much your plan covers and what you’ll pay "
+        "when you get a bill from your provider.",
+        ("cms-read-eob",),
+    ),
+    Claim(
+        "bill_not_above_eob",
+        "CMS says your bill should not be higher than the amount your EOB says you owe (the patient balance). If it is, talk to "
+        "your provider.",
+        ("cms-read-eob", "cms-bill-errors"),
+    ),
+    Claim(
+        "eob_may_not_show_payments",
+        "An EOB shows what you owe, not whether you already paid part of it, for example a copay at the visit.",
+        ("cms-read-eob",),
+    ),
+    Claim(
+        "compare_before_paying",
+        "CMS suggests comparing your bill with your EOB, both the services and the amount you owe, and paying only after you’ve "
+        "checked that they match.",
+        ("cms-read-bill",),
+    ),
+    Claim(
+        "missing_eob_ask_plan",
+        "If you don’t get an EOB for a service, CMS suggests asking your health plan whether the provider sent them a claim for it.",
+        ("cms-read-bill",),
+    ),
+    Claim(
+        "billed_twice",
+        "CMS suggests checking that you weren’t billed twice for the same service, and contacting the provider’s billing "
+        "department if you think you were.",
+        ("cms-bill-errors",),
+    ),
+    Claim(
+        "ask_itemized_bill",
+        "CMS suggests asking the provider’s billing department for a list of the costs for each item or service you’re being billed for.",
+        ("cms-bill-errors",),
+    ),
+    Claim(
+        "billing_questions_contact_provider",
+        "For questions about a bill, or an error on your bill or EOB, CMS says to contact your provider or facility.",
+        ("cms-read-bill",),
+    ),
+    Claim(
+        "in_network_no_balance_bill",
+        "HealthCare.gov says a preferred (in-network) provider may not balance bill you for covered services, meaning bill you "
+        "for the difference between its charge and the plan’s allowed amount.",
+        ("hcgov-balance-billing",),
+    ),
+    Claim(
+        "nsa_emergency",
+        "Under the federal No Surprises Act, if your plan covers emergency care, you generally can’t be charged more for "
+        "emergency services than your in-network cost-sharing (copayment, deductible or coinsurance). Some protections depend "
+        "on the setting and can be waived by signing a consent form for some non-emergency care.",
+        ("cms-nsa-insurance",),
+    ),
+    Claim(
+        "nsa_help_desk",
+        "For questions or complaints about surprise bills, the federal No Surprises Help Desk is 1-800-985-3059.",
+        ("cms-nsa-insurance",),
+    ),
+    Claim(
+        "nj_out_of_network",
+        "For plans regulated in New Jersey, NJ DOBI says providers can’t bill you above your in-network cost-sharing for "
+        "emergency or urgent care, or for inadvertent out-of-network care at an in-network facility (P.L.2018, c.32). "
+        "Report such a bill to your insurer.",
+        ("nj-dobi-out-of-network",),
+    ),
 ]
 
 CLAIMS: Dict[str, Claim] = {c.id: c for c in _CLAIMS}

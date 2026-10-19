@@ -9,7 +9,10 @@ from typing import List, Protocol, Tuple
 
 
 class Renderable(Protocol):
-    """Anything with an id, a title and pages of paragraphs (a paragraph starting with "## " is a heading)."""
+    """Anything with an id, a title and pages of paragraphs (a paragraph starting with "## " is a heading).
+
+    It may also set `footer` to replace the default synthetic-sample footer line.
+    """
 
     id: str
     title: str
@@ -42,7 +45,7 @@ def _layout(paragraphs: List[str]) -> List[Tuple[str, str]]:
     return lines
 
 
-def _page_stream(lines: List[Tuple[str, str]], page_no: int, page_count: int) -> bytes:
+def _page_stream(lines: List[Tuple[str, str]], page_no: int, page_count: int, footer_text: str = FOOTER) -> bytes:
     out = [f"BT /F1 {SIZE} Tf {LEADING} TL {MARGIN_X} {TOP_Y} Td"]
     current = "F1"
     for font, line in lines:
@@ -51,7 +54,7 @@ def _page_stream(lines: List[Tuple[str, str]], page_no: int, page_count: int) ->
             current = font
         out.append(f"({_escape(line)}) Tj T*" if line else "T*")
     out.append("ET")
-    footer = f"{FOOTER} - Page {page_no} of {page_count}"
+    footer = f"{footer_text} - Page {page_no} of {page_count}"
     out.append(f"BT /F1 8 Tf {MARGIN_X} 40 Td ({_escape(footer)}) Tj ET")
     return "\n".join(out).encode("ascii")
 
@@ -76,7 +79,7 @@ def render_pdf(letter: Renderable) -> bytes:
 
     kids = []
     for i, laid_out in enumerate(pages, start=1):
-        stream = _page_stream(laid_out, i, len(pages))
+        stream = _page_stream(laid_out, i, len(pages), getattr(letter, "footer", FOOTER))
         content = add(b"<< /Length %d >>\nstream\n" % len(stream) + stream + b"\nendstream")
         page = add(
             (

@@ -1,4 +1,4 @@
-"""PatientShield verified source registry (NJ Denial Navigator MVP).
+"""PatientShield verified source registry.
 
 RULES FOR EDITING
 - Excerpt `text` is copied verbatim from `url` on `last_checked`. Never paraphrase inside it.
@@ -13,10 +13,11 @@ Federal regulation text was retrieved from the eCFR versioner API (current as of
 import datetime as dt
 from typing import Any, Dict, List
 
-REGISTRY_VERSION = 2
-LAST_REVIEWED = dt.date(2026, 10, 17)
+REGISTRY_VERSION = 3
+LAST_REVIEWED = dt.date(2026, 10, 19)
 
 _CHECKED = "2026-10-16"
+_CHECKED_BILLS = "2026-10-19"
 _ECFR = {"date": "2026-10-15", "date_label": "eCFR text current as of"}
 
 RAW_SOURCES: List[Dict[str, Any]] = [
@@ -300,6 +301,178 @@ RAW_SOURCES: List[Dict[str, Any]] = [
             {
                 "locator": "Introduction",
                 "text": "Impacted payers must also implement certain operational provisions, generally beginning January 1, 2026.",
+            },
+        ],
+    },
+    # ------------------------------------------------------------------ Bills and Explanations of Benefits (checked 2026-10-19)
+    {
+        "id": "cms-read-eob",
+        "title": "How to read a health insurance explanation of benefits",
+        "citation": None,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/read-explanation-benefits",
+        "jurisdiction": "US-Federal",
+        "source_type": "agency-guidance",
+        "topics": ["billing"],
+        "date": "2026-10-05",
+        "date_label": "Page last modified",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "version": 1,
+        "excerpts": [
+            {"locator": "What’s an explanation of benefits?", "text": "An explanation of benefits isn’t a bill."},
+            {
+                "locator": "What’s an explanation of benefits?",
+                "text": "It helps you understand how much your health plan covers, and what you’ll pay when you get a bill from your provider.",
+            },
+            {
+                "locator": "What you owe",
+                "text": "Your bill should not be higher than the Patient Balance. If it is, talk to your provider.",
+            },
+            {
+                "locator": "What you owe",
+                "text": "You may have already paid for part of the Patient Balance. The Explanation of Benefits only shows what you owe, not if you’ve already paid for it.",
+            },
+        ],
+    },
+    {
+        "id": "cms-read-bill",
+        "title": "How to read your medical bill",
+        "citation": None,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/how-read-your-bill",
+        "jurisdiction": "US-Federal",
+        "source_type": "agency-guidance",
+        "topics": ["billing"],
+        "date": "2026-10-05",
+        "date_label": "Page last modified",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "Is a medical bill the same as an Explanation of Benefits?",
+                "text": "If you don’t get an Explanation of Benefits, contact your health plan to make sure your provider’s office or facility has sent them a claim for your service or supply.",
+            },
+            {
+                "locator": "What should I do with the Explanation of Benefits?",
+                "text": "When you get a bill from your provider or facility, compare it with the Explanation of Benefits to make sure you were billed for the correct services and supplies. Also, compare the amount on your medical bill to the amount the Explanation of Benefits says you owe to make sure the amount is correct.",
+            },
+            {
+                "locator": "What should I do with the Explanation of Benefits?",
+                "text": "Only make payments after you get a bill from your provider or facility, and check to make sure that the services and amounts you owe are the same as those shown in your Explanation of Benefits.",
+            },
+            {
+                "locator": "Who should I contact with questions about my bill?",
+                "text": "If you have questions about your medical bill, or you think there’s an error on your bill or Explanation of Benefits, contact your provider or facility.",
+            },
+        ],
+    },
+    {
+        "id": "cms-bill-errors",
+        "title": "Check your medical bill for errors",
+        "citation": None,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/check-your-bill-errors",
+        "jurisdiction": "US-Federal",
+        "source_type": "agency-guidance",
+        "topics": ["billing"],
+        "date": "2026-10-06",
+        "date_label": "Page last modified",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "How to check your bill for errors",
+                "text": "Request a list of the costs for each medical item or service you’re being billed for.",
+            },
+            {
+                "locator": "How to check your bill for errors",
+                "text": "You can also ask the company for a copy of your explanation of benefits. Make sure the “your share” amount is the same as what’s on your bill.",
+            },
+            {"locator": "How to check your bill for errors", "text": "Make sure you weren’t billed twice for the same service."},
+            {
+                "locator": "How to check your bill for errors",
+                "text": "Contact the billing department of each provider if you think you were double billed for a service.",
+            },
+        ],
+    },
+    {
+        "id": "hcgov-balance-billing",
+        "title": "Balance billing (HealthCare.gov glossary)",
+        "citation": None,
+        "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+        "url": "https://www.healthcare.gov/glossary/balance-billing/",
+        "jurisdiction": "US-Federal",
+        "source_type": "official-resource",
+        "topics": ["billing"],
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "Definition",
+                "text": "When a provider bills you for the difference between the provider’s charge and the allowed amount.",
+            },
+            {"locator": "Definition", "text": "A preferred provider may not balance bill you for covered services."},
+        ],
+    },
+    {
+        "id": "cms-nsa-insurance",
+        "title": "Know your rights when using insurance (No Surprises Act)",
+        "citation": None,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/know-your-rights/insurance",
+        "jurisdiction": "US-Federal",
+        "source_type": "agency-guidance",
+        "topics": ["surprise-billing", "complaints"],
+        "date": "2026-10-01",
+        "date_label": "Page last modified",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "review_note": "Protections depend on the type of care and setting (emergency care, care at an in-network facility, air ambulance) and generally don’t cover ground ambulance. Signing a notice and consent form can waive them for some care.",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "Emergency room care",
+                "text": "If your health insurance covers emergency care, you can't be charged any more for emergency medical services than the in-network “cost-sharing” rate by:",
+            },
+            {
+                "locator": "What is “cost-sharing?”",
+                "text": "Cost-sharing can take the form of a copayment, deductible, or coinsurance.",
+            },
+            {
+                "locator": "Planned, non-emergency room care",
+                "text": "You may lose these billing protections if you sign a notice and consent form",
+            },
+            {
+                "locator": "If your provider isn’t following these rules",
+                "text": "Have questions or want to submit a complaint over the phone? Call the No Surprises Help Desk at 1-800-985-3059",
+            },
+        ],
+    },
+    {
+        "id": "nj-dobi-out-of-network",
+        "title": "Out-of-network Consumer Protection, Transparency, Cost Containment, and Accountability Act",
+        "citation": "P.L.2018, c.32",
+        "authority": "New Jersey Department of Banking and Insurance",
+        "url": "https://www.nj.gov/dobi/division_consumers/insurance/outofnetwork.html",
+        "jurisdiction": "NJ",
+        "source_type": "agency-guidance",
+        "topics": ["surprise-billing", "complaints"],
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "review_note": "This is DOBI’s summary of the Act, not the statute text. It applies to plans regulated in New Jersey; self-funded plans are covered only if they opted in.",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "Out-of-network Balance Billing Protection",
+                "text": "Health care providers are prohibited from balance billing a covered person for inadvertent out-of-network services and/or out-of-network services provided on an emergency or urgent basis above the amount of the covered person’s liability for in-network cost-sharing (i.e. the covered person’s network level deductible, copayments, or coinsurance).",
+            },
+            {
+                "locator": "Out-of-network Balance Billing Protection",
+                "text": "Any attempts by the out-of-network health care provider to bill the covered person for these types of services above the covered person’s in-network cost-sharing liability should be reported to the covered person’s carrier",
             },
         ],
     },

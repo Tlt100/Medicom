@@ -45,7 +45,7 @@ export function Layout() {
       <aside className="prototype-banner" aria-label="Prototype notice">
         <Icon name="alert" size={16} />
         <span>
-          Portfolio prototype using <strong>synthetic sample letters</strong>. Do not upload real health information.
+          Portfolio prototype using <strong>synthetic samples</strong>. Do not upload real health information.
         </span>
       </aside>
       <header className="site-header">
@@ -83,7 +83,7 @@ export function Layout() {
           <div>
             <Logo />
             <p className="footer-note">
-              An educational tool for understanding health insurance denials in New Jersey. Not a law firm, insurer, medical provider,
+              An educational tool for understanding health insurance denials and medical bills in New Jersey. Not a law firm, insurer, medical provider,
               or government service, and not legal advice. PatientShield does not claim HIPAA compliance and is not approved for real
               protected health information.
             </p>

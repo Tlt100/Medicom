@@ -25,7 +25,7 @@ export const ENTRY_PATHS: readonly EntryPath[] = [
     route: '/bill-check',
     title: 'A bill, and I have insurance',
     description: 'Compare a provider’s bill with your insurer’s Explanation of Benefits (EOB) and see which lines are worth asking about.',
-    ready: false,
+    ready: true,
   },
   {
     id: 'uninsured',

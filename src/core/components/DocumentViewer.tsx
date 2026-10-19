@@ -10,13 +10,17 @@ interface Props {
   /** Citations that point at something worth caution (shown in the warning style). */
   isWarning?: (id: string) => boolean;
   label: string;
+  /** Names the document in each page's label and id, when more than one document is on the page (e.g. "EOB"). */
+  documentName?: string;
 }
 
 /**
  * Shows a document's text exactly as extracted, page by page, with every cited passage highlighted.
  * Text is rendered as React text nodes only, so nothing in the document can inject markup.
  */
-export function DocumentViewer({ pages, spansByPage, activeId, isWarning = () => false, label }: Props) {
+export function DocumentViewer({ pages, spansByPage, activeId, isWarning = () => false, label, documentName }: Props) {
+  const pageLabel = (n: number) => (documentName ? `${documentName} page ${n}` : `Page ${n}`);
+  const pageId = (n: number) => (documentName ? `doc-${documentName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-page-${n}` : `doc-page-${n}`);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,7 +34,7 @@ export function DocumentViewer({ pages, spansByPage, activeId, isWarning = () =>
   return (
     <div className="doc-viewer" ref={containerRef} aria-label={label} role="region">
       {pages.map((page) => (
-        <section key={page.number} className="doc-page" aria-label={`Page ${page.number}`} id={`doc-page-${page.number}`}>
+        <section key={page.number} className="doc-page" aria-label={pageLabel(page.number)} id={pageId(page.number)}>
           <p className="doc-page-label">
             Page {page.number} of {pages.length}
           </p>

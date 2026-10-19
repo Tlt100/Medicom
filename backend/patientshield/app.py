@@ -13,7 +13,7 @@ from patientshield.core.config import Settings, get_settings
 from patientshield.core.routes import claims, documents, health, sources, triage
 from patientshield.core.security import BodySizeLimitMiddleware, BodyTooLarge, SecurityHeadersMiddleware, safe_error_fields, too_large_body
 from patientshield.core.sources.service import load_sources
-from patientshield.features import denials
+from patientshield.features import bill_check, denials
 
 logger = logging.getLogger("patientshield")
 
@@ -57,7 +57,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
     for module in (health, sources, claims, triage, documents):
         app.include_router(module.router, prefix="/api")
     # Feature routes.
-    for router in denials.ROUTERS:
+    for router in [*denials.ROUTERS, *bill_check.ROUTERS]:
         app.include_router(router, prefix="/api")
     return app
 

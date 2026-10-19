@@ -1,0 +1,23 @@
+[
+ {
+  "id": "clean-office-visit",
+  "title": "Office visit: bill and EOB agree",
+  "description": "A routine in-network visit with a lab test. The bill matches the EOB, so there's nothing to ask about.",
+  "eob_filename": "synthetic-clean-office-visit-eob.pdf",
+  "bill_filename": "synthetic-clean-office-visit-bill.pdf"
+ },
+ {
+  "id": "imaging-balance-and-repeat",
+  "title": "Imaging center: full charge billed, MRI listed twice",
+  "description": "An in-network imaging center bills more than the EOB says you owe, and one service appears twice on the bill.",
+  "eob_filename": "synthetic-imaging-balance-and-repeat-eob.pdf",
+  "bill_filename": "synthetic-imaging-balance-and-repeat-bill.pdf"
+ },
+ {
+  "id": "er-visit-differences",
+  "title": "Emergency visit: a charge differs, one line missing, one denied",
+  "description": "An emergency room visit where the CT charge differs, a medication isn't on the EOB, and the plan denied the supplies.",
+  "eob_filename": "synthetic-er-visit-differences-eob.pdf",
+  "bill_filename": "synthetic-er-visit-differences-bill.pdf"
+ }
+]

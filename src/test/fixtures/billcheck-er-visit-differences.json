@@ -1,0 +1,543 @@
+{
+ "eob": {
+  "document": {
+   "name": "synthetic-er-visit-differences-eob.pdf",
+   "doc_type": "eob",
+   "kind": "pdf",
+   "page_count": 1,
+   "size_bytes": 2073,
+   "synthetic": true,
+   "sample_id": "er-visit-differences"
+  },
+  "pages": [
+   {
+    "number": 1,
+    "text": "Maplewood Health Plan\nP.O. Box 7700, Princeton, NJ 08540 | Member Services: (800) 555-0163\nEXPLANATION OF BENEFITS - THIS IS NOT A BILL\nMember: Riley Example | Member ID: MHP-209114-02 | Date processed: September 2, 2026\nClaim number: MHP-26-0814-3307 | Provider: Lakeside Regional Hospital (In-network)\nDate Service Code Billed Allowed Plan paid You owe\n08/14/2026 Emergency department visit 99284 $1,980.00 $820.00 $656.00 $164.00\n08/14/2026 CT head without contrast 70450 $2,100.00 $540.00 $432.00 $108.00\n08/14/2026 Wound care supplies A6216 $95.00 $0.00 $0.00 $95.00 DENIED - not covered\nTotal $4,175.00 $1,360.00 $1,088.00 $367.00\nThe amount you owe is your share of the cost under your plan. Your provider may bill you for\nit. If you already paid part of it at the visit, your bill should show that payment.\nQuestions? Call Member Services at (800) 555-0163.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for PatientShield demo mode - Page 1 of 1"
+   }
+  ],
+  "columns": [
+   "billed",
+   "allowed",
+   "plan_paid",
+   "patient_owes"
+  ],
+  "line_items": [
+   {
+    "id": "eob-1",
+    "service_date": "2026-08-14",
+    "code": "99284",
+    "description": "Emergency department visit",
+    "amounts": {
+     "billed": 198000,
+     "allowed": 82000,
+     "plan_paid": 65600,
+     "patient_owes": 16400
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 355,
+     "end": 432,
+     "quote": "08/14/2026 Emergency department visit 99284 $1,980.00 $820.00 $656.00 $164.00"
+    }
+   },
+   {
+    "id": "eob-2",
+    "service_date": "2026-08-14",
+    "code": "70450",
+    "description": "CT head without contrast",
+    "amounts": {
+     "billed": 210000,
+     "allowed": 54000,
+     "plan_paid": 43200,
+     "patient_owes": 10800
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 433,
+     "end": 508,
+     "quote": "08/14/2026 CT head without contrast 70450 $2,100.00 $540.00 $432.00 $108.00"
+    }
+   },
+   {
+    "id": "eob-3",
+    "service_date": "2026-08-14",
+    "code": "A6216",
+    "description": "Wound care supplies",
+    "amounts": {
+     "billed": 9500,
+     "allowed": 0,
+     "plan_paid": 0,
+     "patient_owes": 9500
+    },
+    "status": "denied",
+    "citation": {
+     "page": 1,
+     "start": 509,
+     "end": 592,
+     "quote": "08/14/2026 Wound care supplies A6216 $95.00 $0.00 $0.00 $95.00 DENIED - not covered"
+    }
+   }
+  ],
+  "totals": [
+   {
+    "key": "patient_owes",
+    "label": "What the EOB says you owe",
+    "amount_cents": 36700,
+    "citation": {
+     "page": 1,
+     "start": 593,
+     "end": 636,
+     "quote": "Total $4,175.00 $1,360.00 $1,088.00 $367.00"
+    }
+   }
+  ],
+  "warnings": [],
+  "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+ },
+ "bill": {
+  "document": {
+   "name": "synthetic-er-visit-differences-bill.pdf",
+   "doc_type": "bill",
+   "kind": "pdf",
+   "page_count": 1,
+   "size_bytes": 1904,
+   "synthetic": true,
+   "sample_id": "er-visit-differences"
+  },
+  "pages": [
+   {
+    "number": 1,
+    "text": "Lakeside Regional Hospital\n200 Sample Boulevard, Toms River, NJ 08753 | Billing questions: (732) 555-0135\nPATIENT STATEMENT\nPatient: Riley Example | Account number: LRH-77031952 | Statement date: September 18, 2026\nInsurance: Maplewood Health Plan\nDate Code Description Charges\n08/14/2026 99284 Emergency department visit $1,980.00\n08/14/2026 70450 CT head without contrast $2,250.00\n08/14/2026 A6216 Wound care supplies $95.00\n08/14/2026 J1885 Ketorolac injection, 15 mg $42.00\nTotal charges: $4,367.00\nInsurance payments: -$1,088.00\nAdjustments: -$2,870.00\nAmount due: $409.00\nPlease pay by the due date shown on the payment slip. Questions about this bill? Call (732)\n555-0135.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for PatientShield demo mode - Page 1 of 1"
+   }
+  ],
+  "columns": [
+   "billed"
+  ],
+  "line_items": [
+   {
+    "id": "bill-1",
+    "service_date": "2026-08-14",
+    "code": "99284",
+    "description": "Emergency department visit",
+    "amounts": {
+     "billed": 198000
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 278,
+     "end": 331,
+     "quote": "08/14/2026 99284 Emergency department visit $1,980.00"
+    }
+   },
+   {
+    "id": "bill-2",
+    "service_date": "2026-08-14",
+    "code": "70450",
+    "description": "CT head without contrast",
+    "amounts": {
+     "billed": 225000
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 332,
+     "end": 383,
+     "quote": "08/14/2026 70450 CT head without contrast $2,250.00"
+    }
+   },
+   {
+    "id": "bill-3",
+    "service_date": "2026-08-14",
+    "code": "A6216",
+    "description": "Wound care supplies",
+    "amounts": {
+     "billed": 9500
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 384,
+     "end": 427,
+     "quote": "08/14/2026 A6216 Wound care supplies $95.00"
+    }
+   },
+   {
+    "id": "bill-4",
+    "service_date": "2026-08-14",
+    "code": "J1885",
+    "description": "Ketorolac injection, 15 mg",
+    "amounts": {
+     "billed": 4200
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 428,
+     "end": 478,
+     "quote": "08/14/2026 J1885 Ketorolac injection, 15 mg $42.00"
+    }
+   }
+  ],
+  "totals": [
+   {
+    "key": "total_charges",
+    "label": "Total charges",
+    "amount_cents": 436700,
+    "citation": {
+     "page": 1,
+     "start": 479,
+     "end": 503,
+     "quote": "Total charges: $4,367.00"
+    }
+   },
+   {
+    "key": "insurance_paid",
+    "label": "Insurance payments",
+    "amount_cents": -108800,
+    "citation": {
+     "page": 1,
+     "start": 504,
+     "end": 534,
+     "quote": "Insurance payments: -$1,088.00"
+    }
+   },
+   {
+    "key": "adjustments",
+    "label": "Adjustments",
+    "amount_cents": -287000,
+    "citation": {
+     "page": 1,
+     "start": 535,
+     "end": 558,
+     "quote": "Adjustments: -$2,870.00"
+    }
+   },
+   {
+    "key": "amount_due",
+    "label": "Amount due on the bill",
+    "amount_cents": 40900,
+    "citation": {
+     "page": 1,
+     "start": 559,
+     "end": 578,
+     "quote": "Amount due: $409.00"
+    }
+   }
+  ],
+  "warnings": [],
+  "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+ },
+ "comparison": {
+  "matches": [
+   {
+    "bill_item_id": "bill-1",
+    "eob_item_id": "eob-1",
+    "matched_on": [
+     "date",
+     "code",
+     "charge",
+     "description"
+    ]
+   },
+   {
+    "bill_item_id": "bill-2",
+    "eob_item_id": "eob-2",
+    "matched_on": [
+     "date",
+     "code",
+     "description"
+    ]
+   },
+   {
+    "bill_item_id": "bill-3",
+    "eob_item_id": "eob-3",
+    "matched_on": [
+     "date",
+     "code",
+     "charge",
+     "description"
+    ]
+   }
+  ],
+  "flags": [
+   {
+    "id": "charge_differs-1",
+    "kind": "charge_differs",
+    "level": "ask",
+    "title": "The charge for this service is different on the bill and the EOB",
+    "detail": "The bill shows $2,250.00. The EOB shows a provider charge of $2,100.00.",
+    "bill_item_ids": [
+     "bill-2"
+    ],
+    "eob_item_ids": [
+     "eob-2"
+    ],
+    "claims": [
+     {
+      "id": "compare_before_paying",
+      "text": "CMS suggests comparing your bill with your EOB, both the services and the amount you owe, and paying only after you’ve checked that they match.",
+      "sources": [
+       {
+        "id": "cms-read-bill",
+        "title": "How to read your medical bill",
+        "citation": null,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/how-read-your-bill",
+        "source_type": "agency-guidance",
+        "verification": "verified"
+       }
+      ],
+      "needs_review": false
+     },
+     {
+      "id": "billing_questions_contact_provider",
+      "text": "For questions about a bill, or an error on your bill or EOB, CMS says to contact your provider or facility.",
+      "sources": [
+       {
+        "id": "cms-read-bill",
+        "title": "How to read your medical bill",
+        "citation": null,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/how-read-your-bill",
+        "source_type": "agency-guidance",
+        "verification": "verified"
+       }
+      ],
+      "needs_review": false
+     }
+    ],
+    "practical": false
+   },
+   {
+    "id": "not_on_eob-2",
+    "kind": "not_on_eob",
+    "level": "ask",
+    "title": "This charge isn’t on the EOB you added",
+    "detail": "We couldn’t find a matching service on this EOB. It may be on a different EOB (plans often send one per provider or per visit), or the provider may not have sent it to your plan.",
+    "bill_item_ids": [
+     "bill-4"
+    ],
+    "eob_item_ids": [],
+    "claims": [
+     {
+      "id": "missing_eob_ask_plan",
+      "text": "If you don’t get an EOB for a service, CMS suggests asking your health plan whether the provider sent them a claim for it.",
+      "sources": [
+       {
+        "id": "cms-read-bill",
+        "title": "How to read your medical bill",
+        "citation": null,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/how-read-your-bill",
+        "source_type": "agency-guidance",
+        "verification": "verified"
+       }
+      ],
+      "needs_review": false
+     }
+    ],
+    "practical": false
+   },
+   {
+    "id": "amount_due_exceeds_eob-4",
+    "kind": "amount_due_exceeds_eob",
+    "level": "ask",
+    "title": "The bill asks for more than the EOB says you owe",
+    "detail": "The bill says you owe $409.00. The EOB says you owe $367.00, a difference of $42.00. Part of the difference may be the charges that aren’t on this EOB.",
+    "bill_item_ids": [
+     "bill-4"
+    ],
+    "eob_item_ids": [],
+    "claims": [
+     {
+      "id": "bill_not_above_eob",
+      "text": "CMS says your bill should not be higher than the amount your EOB says you owe (the patient balance). If it is, talk to your provider.",
+      "sources": [
+       {
+        "id": "cms-read-eob",
+        "title": "How to read a health insurance explanation of benefits",
+        "citation": null,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/read-explanation-benefits",
+        "source_type": "agency-guidance",
+        "verification": "verified"
+       },
+       {
+        "id": "cms-bill-errors",
+        "title": "Check your medical bill for errors",
+        "citation": null,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/check-your-bill-errors",
+        "source_type": "agency-guidance",
+        "verification": "verified"
+       }
+      ],
+      "needs_review": false
+     },
+     {
+      "id": "in_network_no_balance_bill",
+      "text": "HealthCare.gov says a preferred (in-network) provider may not balance bill you for covered services, meaning bill you for the difference between its charge and the plan’s allowed amount.",
+      "sources": [
+       {
+        "id": "hcgov-balance-billing",
+        "title": "Balance billing (HealthCare.gov glossary)",
+        "citation": null,
+        "authority": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+        "url": "https://www.healthcare.gov/glossary/balance-billing/",
+        "source_type": "official-resource",
+        "verification": "verified"
+       }
+      ],
+      "needs_review": false
+     }
+    ],
+    "practical": false
+   },
+   {
+    "id": "denied_on_eob-3",
+    "kind": "denied_on_eob",
+    "level": "info",
+    "title": "Your plan didn’t pay for this service",
+    "detail": "The EOB marks this line as denied or not covered. If you disagree with that decision, you may be able to appeal. The Denial Navigator can walk you through a denial notice.",
+    "bill_item_ids": [],
+    "eob_item_ids": [
+     "eob-3"
+    ],
+    "claims": [],
+    "practical": true
+   },
+   {
+    "id": "surprise_bill_context-5",
+    "kind": "surprise_bill_context",
+    "level": "info",
+    "title": "If this was emergency care, or care at an in-network hospital or surgery center",
+    "detail": "Federal and New Jersey surprise-billing protections may limit what you can be asked to pay. Whether they apply depends on your plan and where you got care.",
+    "bill_item_ids": [],
+    "eob_item_ids": [],
+    "claims": [
+     {
+      "id": "nsa_emergency",
+      "text": "Under the federal No Surprises Act, if your plan covers emergency care, you generally can’t be charged more for emergency services than your in-network cost-sharing (copayment, deductible or coinsurance). Some protections depend on the setting and can be waived by signing a consent form for some non-emergency care.",
+      "sources": [
+       {
+        "id": "cms-nsa-insurance",
+        "title": "Know your rights when using insurance (No Surprises Act)",
+        "citation": null,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/know-your-rights/insurance",
+        "source_type": "agency-guidance",
+        "verification": "verified"
+       }
+      ],
+      "needs_review": false
+     },
+     {
+      "id": "nj_out_of_network",
+      "text": "For plans regulated in New Jersey, NJ DOBI says providers can’t bill you above your in-network cost-sharing for emergency or urgent care, or for inadvertent out-of-network care at an in-network facility (P.L.2018, c.32). Report such a bill to your insurer.",
+      "sources": [
+       {
+        "id": "nj-dobi-out-of-network",
+        "title": "Out-of-network Consumer Protection, Transparency, Cost Containment, and Accountability Act",
+        "citation": "P.L.2018, c.32",
+        "authority": "New Jersey Department of Banking and Insurance",
+        "url": "https://www.nj.gov/dobi/division_consumers/insurance/outofnetwork.html",
+        "source_type": "agency-guidance",
+        "verification": "verified"
+       }
+      ],
+      "needs_review": false
+     },
+     {
+      "id": "nsa_help_desk",
+      "text": "For questions or complaints about surprise bills, the federal No Surprises Help Desk is 1-800-985-3059.",
+      "sources": [
+       {
+        "id": "cms-nsa-insurance",
+        "title": "Know your rights when using insurance (No Surprises Act)",
+        "citation": null,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/know-your-rights/insurance",
+        "source_type": "agency-guidance",
+        "verification": "verified"
+       }
+      ],
+      "needs_review": false
+     }
+    ],
+    "practical": false
+   }
+  ],
+  "eob_patient_owes_cents": 36700,
+  "bill_amount_due_cents": 40900,
+  "next_steps": [
+   {
+    "id": "compare_before_paying",
+    "text": "CMS suggests comparing your bill with your EOB, both the services and the amount you owe, and paying only after you’ve checked that they match.",
+    "sources": [
+     {
+      "id": "cms-read-bill",
+      "title": "How to read your medical bill",
+      "citation": null,
+      "authority": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/how-read-your-bill",
+      "source_type": "agency-guidance",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   },
+   {
+    "id": "ask_itemized_bill",
+    "text": "CMS suggests asking the provider’s billing department for a list of the costs for each item or service you’re being billed for.",
+    "sources": [
+     {
+      "id": "cms-bill-errors",
+      "title": "Check your medical bill for errors",
+      "citation": null,
+      "authority": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/check-your-bill-errors",
+      "source_type": "agency-guidance",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   },
+   {
+    "id": "billing_questions_contact_provider",
+    "text": "For questions about a bill, or an error on your bill or EOB, CMS says to contact your provider or facility.",
+    "sources": [
+     {
+      "id": "cms-read-bill",
+      "title": "How to read your medical bill",
+      "citation": null,
+      "authority": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/how-read-your-bill",
+      "source_type": "agency-guidance",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   },
+   {
+    "id": "eob_not_a_bill",
+    "text": "CMS says an Explanation of Benefits (EOB) isn’t a bill. It shows how much your plan covers and what you’ll pay when you get a bill from your provider.",
+    "sources": [
+     {
+      "id": "cms-read-eob",
+      "title": "How to read a health insurance explanation of benefits",
+      "citation": null,
+      "authority": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/read-explanation-benefits",
+      "source_type": "agency-guidance",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   }
+  ],
+  "disclaimer": "These are differences worth asking about, not findings that anything is wrong. A bill and an EOB can differ for ordinary reasons, such as a payment you already made or a service on a separate EOB. PatientShield doesn't decide whether a bill is correct; your provider and your plan can explain each line."
+ }
+}

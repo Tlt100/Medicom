@@ -1,0 +1,276 @@
+{
+ "eob": {
+  "document": {
+   "name": "synthetic-clean-office-visit-eob.pdf",
+   "doc_type": "eob",
+   "kind": "pdf",
+   "page_count": 1,
+   "size_bytes": 1976,
+   "synthetic": true,
+   "sample_id": "clean-office-visit"
+  },
+  "pages": [
+   {
+    "number": 1,
+    "text": "Maplewood Health Plan\nP.O. Box 7700, Princeton, NJ 08540 | Member Services: (800) 555-0163\nEXPLANATION OF BENEFITS - THIS IS NOT A BILL\nMember: Riley Example | Member ID: MHP-209114-02 | Date processed: September 20, 2026\nClaim number: MHP-26-0902-5521 | Provider: Riverside Family Medicine (In-network)\nDate Service Code Billed Allowed Plan paid You owe\n09/02/2026 Office visit, established patient 99214 $210.00 $128.40 $102.72 $25.68\n09/02/2026 Comprehensive metabolic panel 80053 $64.00 $18.20 $14.56 $3.64\nTotal $274.00 $146.60 $117.28 $29.32\nThe amount you owe is your share of the cost under your plan. Your provider may bill you for\nit. If you already paid part of it at the visit, your bill should show that payment.\nQuestions? Call Member Services at (800) 555-0163.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for PatientShield demo mode - Page 1 of 1"
+   }
+  ],
+  "columns": [
+   "billed",
+   "allowed",
+   "plan_paid",
+   "patient_owes"
+  ],
+  "line_items": [
+   {
+    "id": "eob-1",
+    "service_date": "2026-09-02",
+    "code": "99214",
+    "description": "Office visit, established patient",
+    "amounts": {
+     "billed": 21000,
+     "allowed": 12840,
+     "plan_paid": 10272,
+     "patient_owes": 2568
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 355,
+     "end": 436,
+     "quote": "09/02/2026 Office visit, established patient 99214 $210.00 $128.40 $102.72 $25.68"
+    }
+   },
+   {
+    "id": "eob-2",
+    "service_date": "2026-09-02",
+    "code": "80053",
+    "description": "Comprehensive metabolic panel",
+    "amounts": {
+     "billed": 6400,
+     "allowed": 1820,
+     "plan_paid": 1456,
+     "patient_owes": 364
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 437,
+     "end": 510,
+     "quote": "09/02/2026 Comprehensive metabolic panel 80053 $64.00 $18.20 $14.56 $3.64"
+    }
+   }
+  ],
+  "totals": [
+   {
+    "key": "patient_owes",
+    "label": "What the EOB says you owe",
+    "amount_cents": 2932,
+    "citation": {
+     "page": 1,
+     "start": 511,
+     "end": 547,
+     "quote": "Total $274.00 $146.60 $117.28 $29.32"
+    }
+   }
+  ],
+  "warnings": [],
+  "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+ },
+ "bill": {
+  "document": {
+   "name": "synthetic-clean-office-visit-bill.pdf",
+   "doc_type": "bill",
+   "kind": "pdf",
+   "page_count": 1,
+   "size_bytes": 1787,
+   "synthetic": true,
+   "sample_id": "clean-office-visit"
+  },
+  "pages": [
+   {
+    "number": 1,
+    "text": "Riverside Family Medicine\n40 Example Avenue, Lawrenceville, NJ 08648 | Billing questions: (609) 555-0118\nPATIENT STATEMENT\nPatient: Riley Example | Account number: RFM-0048813 | Statement date: October 1, 2026\nInsurance: Maplewood Health Plan\nDate Code Description Charges\n09/02/2026 99214 Office visit, established patient $210.00\n09/02/2026 80053 Comprehensive metabolic panel $64.00\nTotal charges: $274.00\nInsurance payments: -$117.28\nAdjustments: -$127.40\nAmount due: $29.32\nPlease pay by the due date shown on the payment slip. Questions about this bill? Call (609)\n555-0118.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for PatientShield demo mode - Page 1 of 1"
+   }
+  ],
+  "columns": [
+   "billed"
+  ],
+  "line_items": [
+   {
+    "id": "bill-1",
+    "service_date": "2026-09-02",
+    "code": "99214",
+    "description": "Office visit, established patient",
+    "amounts": {
+     "billed": 21000
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 273,
+     "end": 331,
+     "quote": "09/02/2026 99214 Office visit, established patient $210.00"
+    }
+   },
+   {
+    "id": "bill-2",
+    "service_date": "2026-09-02",
+    "code": "80053",
+    "description": "Comprehensive metabolic panel",
+    "amounts": {
+     "billed": 6400
+    },
+    "status": "listed",
+    "citation": {
+     "page": 1,
+     "start": 332,
+     "end": 385,
+     "quote": "09/02/2026 80053 Comprehensive metabolic panel $64.00"
+    }
+   }
+  ],
+  "totals": [
+   {
+    "key": "total_charges",
+    "label": "Total charges",
+    "amount_cents": 27400,
+    "citation": {
+     "page": 1,
+     "start": 386,
+     "end": 408,
+     "quote": "Total charges: $274.00"
+    }
+   },
+   {
+    "key": "insurance_paid",
+    "label": "Insurance payments",
+    "amount_cents": -11728,
+    "citation": {
+     "page": 1,
+     "start": 409,
+     "end": 437,
+     "quote": "Insurance payments: -$117.28"
+    }
+   },
+   {
+    "key": "adjustments",
+    "label": "Adjustments",
+    "amount_cents": -12740,
+    "citation": {
+     "page": 1,
+     "start": 438,
+     "end": 459,
+     "quote": "Adjustments: -$127.40"
+    }
+   },
+   {
+    "key": "amount_due",
+    "label": "Amount due on the bill",
+    "amount_cents": 2932,
+    "citation": {
+     "page": 1,
+     "start": 460,
+     "end": 478,
+     "quote": "Amount due: $29.32"
+    }
+   }
+  ],
+  "warnings": [],
+  "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+ },
+ "comparison": {
+  "matches": [
+   {
+    "bill_item_id": "bill-1",
+    "eob_item_id": "eob-1",
+    "matched_on": [
+     "date",
+     "code",
+     "charge",
+     "description"
+    ]
+   },
+   {
+    "bill_item_id": "bill-2",
+    "eob_item_id": "eob-2",
+    "matched_on": [
+     "date",
+     "code",
+     "charge",
+     "description"
+    ]
+   }
+  ],
+  "flags": [],
+  "eob_patient_owes_cents": 2932,
+  "bill_amount_due_cents": 2932,
+  "next_steps": [
+   {
+    "id": "compare_before_paying",
+    "text": "CMS suggests comparing your bill with your EOB, both the services and the amount you owe, and paying only after you’ve checked that they match.",
+    "sources": [
+     {
+      "id": "cms-read-bill",
+      "title": "How to read your medical bill",
+      "citation": null,
+      "authority": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/how-read-your-bill",
+      "source_type": "agency-guidance",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   },
+   {
+    "id": "ask_itemized_bill",
+    "text": "CMS suggests asking the provider’s billing department for a list of the costs for each item or service you’re being billed for.",
+    "sources": [
+     {
+      "id": "cms-bill-errors",
+      "title": "Check your medical bill for errors",
+      "citation": null,
+      "authority": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/check-your-bill-errors",
+      "source_type": "agency-guidance",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   },
+   {
+    "id": "billing_questions_contact_provider",
+    "text": "For questions about a bill, or an error on your bill or EOB, CMS says to contact your provider or facility.",
+    "sources": [
+     {
+      "id": "cms-read-bill",
+      "title": "How to read your medical bill",
+      "citation": null,
+      "authority": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/how-read-your-bill",
+      "source_type": "agency-guidance",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   },
+   {
+    "id": "eob_not_a_bill",
+    "text": "CMS says an Explanation of Benefits (EOB) isn’t a bill. It shows how much your plan covers and what you’ll pay when you get a bill from your provider.",
+    "sources": [
+     {
+      "id": "cms-read-eob",
+      "title": "How to read a health insurance explanation of benefits",
+      "citation": null,
+      "authority": "Centers for Medicare & Medicaid Services",
+      "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights/get-help/guides-resources/read-explanation-benefits",
+      "source_type": "agency-guidance",
+      "verification": "verified"
+     }
+    ],
+    "needs_review": false
+   }
+  ],
+  "disclaimer": "These are differences worth asking about, not findings that anything is wrong. A bill and an EOB can differ for ordinary reasons, such as a payment you already made or a service on a separate EOB. PatientShield doesn't decide whether a bill is correct; your provider and your plan can explain each line."
+ }
+}

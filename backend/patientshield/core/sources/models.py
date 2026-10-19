@@ -34,6 +34,8 @@ class Topic(str, Enum):
     medicare = "medicare"
     denial_notice = "denial-notice"
     complaints = "complaints"
+    billing = "billing"
+    surprise_billing = "surprise-billing"
 
 
 class Verification(str, Enum):

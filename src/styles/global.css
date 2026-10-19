@@ -2214,3 +2214,95 @@ mark.cite.active {
 .library-loading {
   margin-top: 24px;
 }
+
+/* ---------- Bill check ---------- */
+.upload-pair {
+  display: grid;
+  gap: 18px;
+  text-align: left;
+  justify-items: start;
+}
+.file-pick {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+}
+.file-pick-label {
+  font-weight: 700;
+}
+.file-pick-hint,
+.file-pick-chosen {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.file-pick input[type='file'] {
+  max-width: 100%;
+  font: inherit;
+}
+.flag-ask {
+  border-left-color: var(--amber-800);
+}
+.flag-info {
+  border-left-color: var(--border-strong);
+}
+.bill-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 20px 0 8px;
+}
+.bill-disclaimer {
+  max-width: 75ch;
+  margin-bottom: 24px;
+}
+.table-scroll {
+  overflow-x: auto;
+  margin: 0 0 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+.table-scroll:focus-visible {
+  outline: 3px solid var(--teal-700);
+  outline-offset: 2px;
+}
+.line-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.line-table caption {
+  padding: 12px 14px 4px;
+  text-align: left;
+  font-weight: 700;
+}
+.line-table th,
+.line-table td {
+  padding: 8px 14px;
+  border-top: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+.line-table thead th {
+  border-top: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.line-table tbody th {
+  font-weight: 600;
+}
+.line-table td:nth-child(3),
+.line-table td:nth-child(4),
+.line-table td:nth-child(5) {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.bill-docs .doc-viewer + .card-heading {
+  margin-top: 24px;
+}
+@media (max-width: 560px) {
+  .bill-summary {
+    grid-template-columns: 1fr;
+  }
+}

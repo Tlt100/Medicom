@@ -11,6 +11,8 @@ export const TOPIC_LABEL: Record<string, string> = {
   medicare: 'Medicare',
   'denial-notice': 'Denial notices',
   complaints: 'Complaints',
+  billing: 'Bills and EOBs',
+  'surprise-billing': 'Surprise bills',
 };
 
 export const WEIGHT_OPTIONS = [

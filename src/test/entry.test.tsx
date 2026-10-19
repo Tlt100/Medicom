@@ -30,10 +30,10 @@ describe('What did you receive?', () => {
     mockFetchJson(registryFixture);
     renderAt('/');
     expect(screen.getByRole('link', { name: 'A denial letter' })).not.toHaveTextContent(/coming soon/i);
-    expect(screen.getByRole('link', { name: 'A bill, and I have insurance Coming soon' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'A bill, and I have insurance' })).not.toHaveTextContent(/coming soon/i);
     expect(screen.getByRole('link', { name: 'A bill, and I don’t have insurance Coming soon' })).toBeInTheDocument();
     const soon = ENTRY_PATHS.filter((p) => !p.ready).map((p) => p.id);
-    expect(soon).toEqual(['bill-check', 'uninsured']);
+    expect(soon).toEqual(['uninsured']);
   });
 
   it('the denial path opens the working Denial Navigator', async () => {
@@ -51,10 +51,7 @@ describe('What did you receive?', () => {
   });
 });
 
-describe.each([
-  ['/bill-check', /a bill, and i have insurance/i],
-  ['/uninsured', /a bill, and i don’t have insurance/i],
-])('Coming-soon page %s', (path, title) => {
+describe.each([['/uninsured', /a bill, and i don’t have insurance/i]])('Coming-soon page %s', (path, title) => {
   it('says plainly that it is not available and offers no way to upload', async () => {
     const fetchSpy = mockFetchJson({});
     const { container } = renderAt(path);

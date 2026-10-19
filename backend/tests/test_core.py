@@ -41,12 +41,19 @@ def test_features_do_not_import_each_other():
 # ---------------------------------------------------------------- document pipeline
 
 
-def test_denial_extractor_is_registered_and_others_are_not_yet():
-    assert pipeline.supported_types() == ["denial"]
+def test_every_built_feature_registers_its_document_types():
+    assert pipeline.supported_types() == ["bill", "denial", "eob"]
+
+
+@pytest.fixture
+def without_bill_check(monkeypatch):
+    """Simulates a document type whose feature isn't built yet."""
+    extractors = {k: v for k, v in pipeline._EXTRACTORS.items() if k not in {"eob", "bill"}}
+    monkeypatch.setattr(pipeline, "_EXTRACTORS", extractors)
 
 
 @pytest.mark.parametrize("doc_type,label", [("eob", "an Explanation of Benefits"), ("bill", "a medical bill")])
-def test_unbuilt_document_types_are_refused_honestly(doc_type, label):
+def test_unregistered_document_types_are_refused_honestly(without_bill_check, doc_type, label):
     with pytest.raises(DocumentError) as err:
         pipeline.process("x.txt", LETTER, doc_type)  # type: ignore[arg-type]
     assert err.value.code == "not_available"
@@ -70,7 +77,7 @@ def test_upload_defaults_to_a_denial_letter(api_client):
     assert res.status_code == 200 and res.json()["document"]["doc_type"] == "denial"
 
 
-def test_upload_of_an_unbuilt_type_says_coming_soon(api_client):
+def test_upload_of_an_unregistered_type_says_coming_soon(api_client, without_bill_check):
     res = _upload(api_client, "eob")
     assert res.status_code == 422
     assert res.json()["error"] == "not_available"

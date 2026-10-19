@@ -20,12 +20,16 @@ Browser (React + TypeScript, Vite)
                     │                              GET /api/triage/flow, POST /api/triage/suggest, POST /api/triage,
                     │                              POST /api/extract (X-Document-Type: denial | eob | bill)
                     └─ features/                   one package per document workflow; features never import each other
-                        └─ denials/                denial-letter fields + signals (registered as the "denial" extractor),
-                                                   synthetic letters, GET /api/samples…, POST /api/plan (action plan)
+                        ├─ denials/                denial-letter fields + signals (registered as the "denial" extractor),
+                        │                          synthetic letters, GET /api/samples…, POST /api/plan (action plan)
+                        └─ bill_check/             EOB and bill line items (registered as "eob" and "bill"), matching and
+                                                   flags, synthetic pairs: POST /api/bill-check/compare,
+                                                   GET /api/bill-check/samples, POST /api/bill-check/samples/{id}
 ```
 
 The frontend mirrors the split: `src/core/` (api clients for http, documents, sources and triage; the layout, document viewer,
-triage and source-link components; shared helpers) and `src/features/denials/` (Navigator page, field cards, action plan).
+triage and source-link components; shared helpers), `src/features/denials/` (Navigator page, field cards, action plan) and
+`src/features/bill-check/` (bill check page).
 `src/pages/` holds the general pages (landing, sources, about). Tests on both sides fail if core imports a feature, or one feature
 imports another.
 
@@ -33,8 +37,8 @@ imports another.
 
 A feature registers an extractor for its document type with `core.documents.pipeline.register_extractor(doc_type, fn)` and
 exposes its routers in `ROUTERS`; `app.py` mounts them. Until a type is registered, uploads of that type get a plain
-"coming soon" response (HTTP 422, `not_available`), so a half-built feature cannot be reached by accident. Today only
-`denial` is registered; `eob` and `bill` are reserved for the bill-check and uninsured modules.
+"coming soon" response (HTTP 422, `not_available`), so a half-built feature cannot be reached by accident. Today `denial`,
+`eob` and `bill` are registered.
 
 - **Frontend:** static SPA built by Vite, served by Vercel's CDN. Routes: `/`, `/navigator`, `/bill-check`, `/uninsured`,
   `/sources`, `/about`. The landing page's main action is "What did you receive?" (`core/components/EntryChooser.tsx`), driven by
@@ -79,6 +83,22 @@ need a label; URLs must be https; ids are unique.
 
 Uploads are sent as the raw request body with `X-File-Name` and `X-Document-Type` headers (no multipart parser), read in chunks with a hard cap, and
 never written to disk or logged. Sample letters run through the same PDF path, using PDFs generated in memory.
+
+## Bill check (EOB vs. bill)
+
+1. **Reading** (`features/bill_check/lineitems.py`): a service row is a line that starts with a date of service and has at least
+   one dollar amount. Amount columns are named from the table header ("Billed Allowed Plan paid You owe"); when the header can't
+   be read or a row doesn't line up with it, the row is listed but its amounts are left unlabelled, with a warning. A bill row
+   with one amount is its charge. Totals come from labelled lines ("Amount due", "Total you owe") or a "Total" row. Every row
+   and total cites its exact line, verified like any other document citation. Money is whole cents.
+2. **Comparing** (`compare.py`): bill lines are matched one-to-one with EOB lines. Different dates or different billing codes
+   never match; otherwise a match needs a code, the same charge, or a similar description, and the strongest evidence wins.
+   The browser sends back values only (dates, codes, short descriptions, amounts), never page text or account numbers.
+3. **Flags** are "worth asking about" or "good to know": the bill asks for more than the EOB says you owe, a line repeats, a
+   bill line isn't on this EOB, a charge differs, an EOB line was denied, a bill has no service lines. Each cites claims from
+   the source library (CMS bill and EOB guides, the HealthCare.gov balance-billing definition, No Surprises Act and NJ
+   out-of-network protections) or is marked a practical suggestion. A test fails if any flag uses accusatory words such as
+   "overcharge", "error" or "illegal".
 
 ## Plan-type triage
 
@@ -126,7 +146,8 @@ See [SECURITY.md](../SECURITY.md) for the threat model and the latest review.
 
 ## Testing
 
-- **Backend (pytest):** registry validation rules, official-domain URLs, uncertainty flags, API responses, security headers, invalid
+- **Backend (pytest):** bill check (money and column parsing, line-item matching, each flag, sample arithmetic, wording),
+  registry validation rules, official-domain URLs, uncertainty flags, API responses, security headers, invalid
   input handling, body-size limit, module boundaries, document-type routing (unbuilt types refused), citation checks.
 - **Frontend (Vitest + Testing Library + axe):** landing content, live coverage, loading/error/retry states, response-schema rejection
   (including non-https links), routing, mobile menu, module boundaries, and automated accessibility checks.

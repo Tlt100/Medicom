@@ -13,7 +13,7 @@ export function About() {
       <h2>Scope</h2>
       <ul>
         <li>New Jersey residents and applicable U.S. federal law.</li>
-        <li>Denials of coverage or payment by a health plan. Checking medical bills against an insurer’s Explanation of Benefits, and bills for uninsured New Jersey patients, are being added next.</li>
+        <li>Denials of coverage or payment by a health plan. Medical bills checked against an insurer’s Explanation of Benefits. Bills for uninsured New Jersey patients are being added next.</li>
         <li>
           Plan types it distinguishes: NJ state-regulated (fully insured), self-funded employer (ERISA), ACA marketplace (Get Covered New
           Jersey), NJ FamilyCare / Medicaid, Medicare / Medicare Advantage, and “not sure.”
@@ -40,7 +40,7 @@ export function About() {
 
       <h2>Your data</h2>
       <ul>
-        <li>This is a portfolio prototype. Use the synthetic sample letters. It is not approved for real protected health information.</li>
+        <li>This is a portfolio prototype. Use the synthetic samples. It is not approved for real protected health information.</li>
         <li>No account and no database. Uploaded letters are processed in memory for a single request and not stored or logged.</li>
         <li>PatientShield does not claim HIPAA compliance or certification.</li>
       </ul>

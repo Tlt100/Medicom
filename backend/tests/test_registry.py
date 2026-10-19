@@ -8,15 +8,16 @@ import pytest
 from pydantic import ValidationError
 
 from patientshield.core.sources.models import Source, SourceType, Verification
-from patientshield.core.sources.registry import RAW_SOURCES
+from patientshield.core.sources.registry import LAST_REVIEWED, RAW_SOURCES
 from patientshield.core.sources.service import RegistryError, all_sources, coverage, load_sources
 
 OFFICIAL_HOSTS = re.compile(r"^https://(www\.)?([a-z0-9-]+\.)*(gov|nj\.gov)/")
 
 
-def test_registry_loads_and_has_mvp_size():
+def test_registry_loads_and_stays_hand_reviewable():
+    # Every entry is checked by hand, so the registry stays small enough to re-check in one sitting.
     sources = load_sources()
-    assert 8 <= len(sources) <= 12
+    assert 8 <= len(sources) <= 30
 
 
 def test_every_source_is_an_official_https_government_url():
@@ -33,9 +34,9 @@ def test_verified_sources_have_verbatim_excerpts_and_needs_review_explains_why()
 
 
 def test_dates_are_labelled_and_checks_are_not_in_the_future():
-    today = dt.date(2026, 10, 17)
+    assert LAST_REVIEWED <= dt.date.today()
     for s in all_sources():
-        assert s.last_checked <= today, s.id
+        assert s.last_checked <= LAST_REVIEWED, s.id
         if s.date:
             assert s.date_label, s.id
 
