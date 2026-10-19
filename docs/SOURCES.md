@@ -1,6 +1,6 @@
 # Source verification report
 
-Last reviewed: **2026-10-19**. Registry version 4. The registry itself is in
+Last reviewed: **2026-10-19**. Registry version 5. The registry itself is in
 [`backend/patientshield/core/sources/registry.py`](../backend/patientshield/core/sources/registry.py).
 
 Federal regulations were read from the eCFR versioner API (text current as of 2026-10-15). Agency pages were read directly in a
@@ -45,6 +45,18 @@ rules only as "may apply" context, never as a conclusion.
 | Charity Care | Free or reduced-charge care at NJ acute care hospitals; 0% at or below 200% of HHS guidelines, 20/40/60/80% up to 300%, 100% above; assets $7,500 individual / $15,000 family; apply within one year; hotline 1-866-588-5696 or 609-292-4709 | NJ Department of Health, *New Jersey Charity Care Fact Sheet* (May 2026) |
 | Poverty guidelines | 2026, 48 states and DC: $15,960 for one person, $5,680 per additional person; effective January 13, 2026 | HHS ASPE poverty guidelines page; Federal Register notice 2026-00755 (91 FR 1797) |
 | Good faith estimates | Uninsured or self-pay patients usually get a good faith estimate; a bill $400 or more above it may be disputed | CMS, *Medical bill rights* |
+
+### Price context (checked 2026-10-19)
+
+| Topic | What was confirmed | Source |
+| --- | --- | --- |
+| Medicare physician fee schedule amounts | Payment formula (non-facility and facility); facility rates apply in hospitals, emergency rooms, SNFs and ASCs; conversion factor 33.4009 (non-QP); NJ GPCIs (Northern NJ 1.063/1.160/1.068, rest of NJ 1.040/1.092/1.097); Northern NJ counties; RVUs for 16 codes; none capped in OPPSCAP | CMS RVU26D download (updated 08/26/2026): RVU26D.pdf, PPRRVU2026_Oct_nonQPP.csv, GPCI2026.csv, 26LOCCO.csv, OPPSCAP_Oct.csv |
+| 2026 conversion factor | $33.40 for non-qualifying APM clinicians | CMS fact sheet, CY 2026 PFS final rule (CMS-1832-F), October 31, 2025 |
+| Hospital price transparency | Hospitals must publish standard charges for all items and services; at least 300 shoppable services or a price estimator; definitions of gross charge and discounted cash price | 45 CFR §§ 180.20, 180.50(a)(1), 180.60(a) (eCFR, current as of 2026-10-15) |
+
+Not used: hospital outpatient (OPPS Addendum B) payment rates. CMS serves that file only after accepting the AMA CPT license
+on its download page, which needs the project owner's decision. Without it, the app shows physician fee schedule amounts
+only and says that hospital facility payments are not included.
 
 ## Not confirmed (flagged for human review)
 

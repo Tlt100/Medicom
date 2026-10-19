@@ -14,6 +14,7 @@ export const TOPIC_LABEL: Record<string, string> = {
   billing: 'Bills and EOBs',
   'surprise-billing': 'Surprise bills',
   uninsured: 'Uninsured patients',
+  prices: 'Prices and Medicare rates',
 };
 
 export const WEIGHT_OPTIONS = [

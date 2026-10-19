@@ -4,6 +4,7 @@ import { checkFile } from '../../core/api/documents';
 import { formatDate } from '../../core/api/http';
 import { DocumentViewer } from '../../core/components/DocumentViewer';
 import { Icon } from '../../core/components/Icon';
+import { PriceContext } from '../../core/components/PriceContext';
 import { ClaimBlock } from '../../core/components/SourceLinks';
 import type { Span } from '../../core/lib/highlight';
 import { useAsync } from '../../core/lib/useAsync';
@@ -336,6 +337,12 @@ function Results({ result, onDelete }: { result: BillCheckResult; onDelete: () =
 
           <h3 className="card-heading">Line by line</h3>
           <LineTable result={result} />
+
+          <PriceContext
+            title="Price context for these services"
+            intro="Charges from your bill next to what Medicare pays for the same service, for services PatientShield has amounts for."
+            rows={bill.line_items.filter((i) => i.code && i.amounts.billed !== undefined).map((i) => ({ key: i.id, code: i.code!, chargeCents: i.amounts.billed }))}
+          />
 
           <h3 className="card-heading">Before you pay</h3>
           {comparison.next_steps.map((c) => (

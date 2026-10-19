@@ -4,6 +4,7 @@ import { Icon } from './Icon';
 
 const NAV = [
   { to: '/navigator', label: 'Denial Navigator' },
+  { to: '/prices', label: 'Price context' },
   { to: '/sources', label: 'Source library' },
   { to: '/about', label: 'About & limits' },
 ];

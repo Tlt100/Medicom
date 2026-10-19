@@ -260,6 +260,37 @@ _CLAIMS = [
         "advance or ask for one. You may be able to dispute a bill that’s at least $400 more than the estimate.",
         ("cms-medical-bill-rights",),
     ),
+    # ---------------------------------------------------------------- price context
+    Claim(
+        "medicare_estimate_how",
+        "PatientShield’s Medicare estimates follow CMS’s 2026 physician fee schedule formula: each service’s relative value "
+        "units, adjusted for New Jersey costs, times the conversion factor. CMS set the 2026 conversion factor at $33.40 for "
+        "most clinicians.",
+        ("cms-pfs-rvu26d", "cms-pfs-2026-final-rule"),
+    ),
+    Claim(
+        "medicare_facility_rate",
+        "CMS uses a separate facility rate for services in hospitals, emergency rooms, skilled nursing facilities and surgery "
+        "centers, and a non-facility rate everywhere else, such as a doctor’s office.",
+        ("cms-pfs-rvu26d",),
+    ),
+    Claim(
+        "price_transparency_list",
+        "Federal rules require hospitals to publish online a list of their standard charges for all items and services.",
+        ("cfr-45-180",),
+    ),
+    Claim(
+        "price_transparency_shoppable",
+        "Hospitals must also show prices for at least 300 shoppable services in a consumer-friendly way, or offer an online "
+        "price estimator.",
+        ("cfr-45-180",),
+    ),
+    Claim(
+        "price_terms",
+        "In those lists, the gross charge is the hospital’s chargemaster price before any discounts, and the discounted cash "
+        "price is what applies to someone paying cash.",
+        ("cfr-45-180",),
+    ),
 ]
 
 CLAIMS: Dict[str, Claim] = {c.id: c for c in _CLAIMS}

@@ -6,6 +6,7 @@ import { BillCheck } from './features/bill-check/BillCheck';
 import { Navigator } from './features/denials/Navigator';
 import { Uninsured } from './features/uninsured/Uninsured';
 import { NotFound } from './pages/NotFound';
+import { Prices } from './features/prices/Prices';
 import { Sources } from './pages/Sources';
 
 export function App() {
@@ -16,6 +17,7 @@ export function App() {
         <Route path="navigator" element={<Navigator />} />
         <Route path="bill-check" element={<BillCheck />} />
         <Route path="uninsured" element={<Uninsured />} />
+        <Route path="prices" element={<Prices />} />
         <Route path="sources" element={<Sources />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />

@@ -160,7 +160,9 @@ function CapCalculator({ rules }: { rules: Rules }) {
       <h4>Check a charge against the {pct}% limit</h4>
       <p className="muted">
         Enter a charge from your bill and the Medicare payment amount for the same service. The hospital can tell you the Medicare rate it
-        used. <span className="badge badge-guidance">Practical suggestion</span>
+        used. <span className="badge badge-guidance">Practical suggestion</span> PatientShield’s{' '}
+        <Link to="/prices">price context</Link> shows Medicare physician fee schedule amounts, which can differ from the hospital rate the law
+        refers to.
       </p>
       <div className="cap-inputs">
         <div className="mini-field">

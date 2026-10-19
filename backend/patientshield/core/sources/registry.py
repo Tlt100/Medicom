@@ -13,7 +13,7 @@ Federal regulation text was retrieved from the eCFR versioner API (current as of
 import datetime as dt
 from typing import Any, Dict, List
 
-REGISTRY_VERSION = 4
+REGISTRY_VERSION = 5
 LAST_REVIEWED = dt.date(2026, 10, 19)
 
 _CHECKED = "2026-10-16"
@@ -624,6 +624,106 @@ RAW_SOURCES: List[Dict[str, Any]] = [
             {
                 "locator": "What is the No Surprises Act?",
                 "text": "Usually, if you don't have or use health insurance, providers must give you a good faith estimate of what your care will cost. You get the estimate when you schedule care in advance or if you ask for one. You may be able to dispute your bill if it’s at least $400 more than the estimate.",
+            },
+        ],
+    },
+    # ------------------------------------------------------------------ Price context (checked 2026-10-19)
+    {
+        "id": "cms-pfs-rvu26d",
+        "title": "Medicare Physician Fee Schedule relative value files, RVU26D",
+        "citation": "RVU26D (updated 08/26/2026)",
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files/rvu26d",
+        "jurisdiction": "US-Federal",
+        "source_type": "official-resource",
+        "topics": ["prices"],
+        "date": "2026-08-26",
+        "date_label": "File updated",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "review_note": "Excerpts other than the page title come from the files in the download on this page (RVU26D.pdf, PPRRVU2026_Oct_nonQPP.csv, GPCI2026.csv, 26LOCCO.csv). These are physician fee schedule amounts; hospital outpatient and inpatient payments are set under other Medicare systems and are not included.",
+        "version": 1,
+        "excerpts": [
+            {"locator": "Download page", "text": "RVU26D - Updated 08/26/2026"},
+            {
+                "locator": "RVU26D.pdf, payment formula",
+                "text": "2026 Non-Facility Pricing Amount = [(Work RVU * Work GPCI) + (Non-Facility PE RVU * PE GPCI) + (MP RVU * MP GPCI)] * Conversion Factor (CF)",
+            },
+            {
+                "locator": "RVU26D.pdf, payment formula",
+                "text": "2026 Facility Pricing Amount = [(Work RVU * Work GPCI) + (Facility PE RVU * PE GPCI) + (MP RVU * MP GPCI)] * Conversion Factor",
+            },
+            {
+                "locator": "RVU26D.pdf, practice expense",
+                "text": "Generally, under the resource-based system, the facility practice expense RVUs will be used for services performed in inpatient or outpatient hospital settings, emergency rooms, skilled nursing facilities, or ambulatory surgical centers (ASCs). The non-facility practice expense relative value units will be used for services furnished in all other settings.",
+            },
+            {
+                "locator": "PPRRVU2026_Oct_nonQPP.csv, conversion factor column (example row)",
+                "text": 'G0438,,"Ppps, initial visit",A,,2.60,2.45,,2.45,NA,0.17,5.22,5.22,0,XXX,0.00,0.00,0.00,0,0,0,0,0,9,,33.4009,09,0,99,0.00,0.00,0.00',
+            },
+            {"locator": "GPCI2026.csv, New Jersey", "text": "12402,NJ,01,NORTHERN NJ,1.063,1.160,1.068"},
+            {"locator": "GPCI2026.csv, New Jersey", "text": "12402,NJ,99,REST OF NEW JERSEY,1.040,1.092,1.097"},
+            {
+                "locator": "26LOCCO.csv, New Jersey",
+                "text": 'NORTHERN NJ ,"BERGEN, ESSEX, HUDSON, HUNTERDON, MIDDLESEX, MORRIS, PASSAIC, SOMERSET, SUSSEX, UNION AND WARREN"',
+            },
+        ],
+    },
+    {
+        "id": "cms-pfs-2026-final-rule",
+        "title": "Calendar Year (CY) 2026 Medicare Physician Fee Schedule Final Rule (CMS-1832-F)",
+        "citation": "CMS-1832-F",
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f",
+        "jurisdiction": "US-Federal",
+        "source_type": "agency-guidance",
+        "topics": ["prices"],
+        "date": "2025-10-31",
+        "date_label": "Fact sheet published",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "Conversion factor",
+                "text": "Similarly, the final CY 2026 nonqualifying APM conversion factor of $33.40 represents a projected increase of $1.05 (+3.26%) from the current conversion factor of $32.35.",
+            },
+        ],
+    },
+    {
+        "id": "cfr-45-180",
+        "title": "Hospital price transparency",
+        "citation": "45 CFR part 180 (§§ 180.20, 180.50, 180.60)",
+        "authority": "U.S. Department of Health and Human Services",
+        "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-E/part-180",
+        "jurisdiction": "US-Federal",
+        "source_type": "regulation",
+        "topics": ["prices"],
+        "date": "2026-10-15",
+        "date_label": "eCFR text current as of",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "§ 180.50(a)(1)",
+                "text": "A hospital must establish, update, and make public a list of all standard charges for all items and services online in the form and manner specified in this section.",
+            },
+            {
+                "locator": "§ 180.20",
+                "text": "Discounted cash price means the charge that applies to an individual who pays cash (or cash equivalent) for a hospital item or service.",
+            },
+            {
+                "locator": "§ 180.20",
+                "text": "Gross charge means the charge for an individual item or service that is reflected on a hospital's chargemaster, absent any discounts.",
+            },
+            {
+                "locator": "§ 180.60(a)(1)",
+                "text": "A hospital must make public the standard charges identified in paragraphs (b)(3) through (6) of this section, for as many of the 70 CMS-specified shoppable services that are provided by the hospital, and as many additional hospital-selected shoppable services as is necessary for a combined total of at least 300 shoppable services.",
+            },
+            {
+                "locator": "§ 180.60(a)(2)",
+                "text": "A hospital is deemed by CMS to meet the requirements of this section if the hospital maintains an internet-based price estimator tool which meets the following requirements.",
             },
         ],
     },

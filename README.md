@@ -37,7 +37,7 @@ The tone is calm and neutral. The goal is member clarity, not an adversarial sta
 | Expansion, step 3 | “What did you receive?” entry point: denial letter (working), bill with EOB and bill with no insurance (honest “coming soon” pages, no upload) | **Done** |
 | Expansion, step 4a | Bill check: compare an EOB with a bill line by line; differences worth asking about, each cited; three synthetic sample pairs | **Done** |
 | Expansion, step 4b | Uninsured NJ hospital bills: Charity Care bands and the 2008 limit (under 500% of poverty: no more than 115% of Medicare), versioned 2026 poverty guidelines; estimate runs in the browser, income never sent | **Done** |
-| Expansion, step 4c | Price context (benchmark rates) | Next |
+| Expansion, step 4c | Price context: 16 common services with New Jersey Medicare physician fee schedule amounts (CMS RVU26D, both NJ localities), next to the bill's charge and the hospital's published price; on `/prices` and inside the bill check | **Done** |
 
 Later phases (not being built yet): medical-records access, privacy complaints, policy-document explorer, privacy-preserving analytics.
 

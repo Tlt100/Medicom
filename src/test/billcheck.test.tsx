@@ -8,12 +8,14 @@ import { jsonResponse } from './fixtures';
 import clean from './fixtures/billcheck-clean-office-visit.json';
 import er from './fixtures/billcheck-er-visit-differences.json';
 import samples from './fixtures/billcheck-samples.json';
+import benchmarks from './fixtures/benchmarks.json';
 
 type Route = (url: string, init?: RequestInit) => Response | Promise<Response>;
 
 function mockApi(extra: Record<string, Route> = {}) {
   const routes: Record<string, Route> = {
     '/api/bill-check/samples': () => jsonResponse(samples),
+    '/api/benchmarks': () => jsonResponse(benchmarks),
     '/api/bill-check/samples/er-visit-differences': () => jsonResponse(er),
     '/api/bill-check/samples/clean-office-visit': () => jsonResponse(clean),
     ...extra,
@@ -134,6 +136,18 @@ describe('Bill check: comparing a sample', () => {
     const table = screen.getByRole('table', { name: /each line on the bill/i });
     const rows = within(table).getAllByRole('row').slice(1);
     expect(rows.map((r) => r.lastElementChild?.textContent)).toEqual(['Matches EOB', 'Charge differs', 'Denied on EOB', 'Not on this EOB']);
+  });
+
+  it('puts the bill’s charges next to Medicare amounts, without comparing the emergency visit', async () => {
+    mockApi();
+    renderPage();
+    await openSample(/emergency visit/i);
+    const table = await screen.findByRole('table', { name: /medicare’s 2026 amounts/i });
+    const rows = within(table).getAllByRole('row').slice(1);
+    expect(rows).toHaveLength(2); // 99284 and 70450; the supply and drug codes aren't in the list
+    expect(rows[0]).toHaveTextContent(/not compared/i);
+    expect(rows[1]).toHaveTextContent('$2,250.00');
+    expect(rows[1]).toHaveTextContent(/The charge is about \d+(\.\d)? to \d+(\.\d)? times the Medicare amount\./);
   });
 
   it('says plainly when nothing stands out', async () => {

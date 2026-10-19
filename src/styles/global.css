@@ -2361,3 +2361,47 @@ mark.cite.active {
 .cap-result {
   margin: 0;
 }
+
+/* ---------- Price context ---------- */
+.price-context {
+  margin: 8px 0 28px;
+}
+.price-context select {
+  font: inherit;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+}
+.price-context .mini-field {
+  margin: 12px 0 16px;
+}
+.price-table input {
+  font: inherit;
+  width: 8.5em;
+  min-height: 40px;
+  padding: 6px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+}
+.price-table td:nth-child(2),
+.price-table td:nth-child(4) {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.price-covers {
+  margin: 4px 0 0;
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--muted);
+  max-width: 34ch;
+}
+.price-provenance {
+  font-size: 0.85rem;
+  color: var(--muted);
+}

@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from patientshield import __version__
+from patientshield.core.benchmarks import routes as benchmarks
 from patientshield.core.config import Settings, get_settings
 from patientshield.core.routes import claims, documents, health, sources, triage
 from patientshield.core.security import BodySizeLimitMiddleware, BodyTooLarge, SecurityHeadersMiddleware, safe_error_fields, too_large_body
@@ -54,7 +55,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
         return JSONResponse({"error": "server_error", "message": "Something went wrong on our side."}, status_code=500)
 
     # Core routes shared by every feature.
-    for module in (health, sources, claims, triage, documents):
+    for module in (health, sources, claims, triage, documents, benchmarks):
         app.include_router(module.router, prefix="/api")
     # Feature routes.
     for router in [*denials.ROUTERS, *bill_check.ROUTERS, *uninsured.ROUTERS]:

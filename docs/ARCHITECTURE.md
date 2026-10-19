@@ -15,6 +15,7 @@ Browser (React + TypeScript, Vite)
                     │   ├─ sources/                Source models, verified registry (versioned), lookups
                     │   ├─ claims.py               plain-language legal statements → source ids
                     │   ├─ triage/                 plan-type question tree, classifier, plan profiles
+                    │   ├─ benchmarks/             Medicare reference amounts (GET /api/benchmarks), shared by features
                     │   ├─ dates.py, config.py, security.py
                     │   └─ routes/                 GET /api/health, /api/sources[/{id}], /api/claims,
                     │                              GET /api/triage/flow, POST /api/triage/suggest, POST /api/triage,
@@ -30,7 +31,9 @@ Browser (React + TypeScript, Vite)
 
 The frontend mirrors the split: `src/core/` (api clients for http, documents, sources and triage; the layout, document viewer,
 triage and source-link components; shared helpers), `src/features/denials/` (Navigator page, field cards, action plan) and
-`src/features/bill-check/` (bill check page) and `src/features/uninsured/` (questions, eligibility math, 115% calculator).
+`src/features/bill-check/` (bill check page), `src/features/uninsured/` (questions, eligibility math, 115% calculator) and
+`src/features/prices/` (price context page). The price table itself is `core/components/PriceContext.tsx`, used by the
+prices page and the bill check.
 `src/pages/` holds the general pages (landing, sources, about). Tests on both sides fail if core imports a feature, or one feature
 imports another.
 
@@ -117,6 +120,20 @@ household income never leaves the device and there is no endpoint that accepts i
   Statuses are "may be eligible", "check with the hospital", "not based on income" or "doesn't apply"; tests ban promises
   and words like "illegal".
 
+## Price context (Medicare reference amounts)
+
+`core/benchmarks/data.py` holds 16 common services (office visits, emergency visits, imaging, ECG, therapy). Each amount is
+CMS's own physician fee schedule formula, [(work RVU × work GPCI) + (PE RVU × PE GPCI) + (MP RVU × MP GPCI)] × conversion
+factor, with RVUs from RVU26D (file updated 08/26/2026, retrieved 2026-10-19), New Jersey's two localities (Northern NJ, rest
+of NJ, chosen from the county) and the $33.4009 non-QP conversion factor. Tests check every amount against an independent
+run of the formula on the raw file and trace the constants to source excerpts.
+
+What the amounts are not: hospital facility payments (hospital outpatient and inpatient systems) are not included, and
+each service says what its amount covers. Emergency visits use the facility rate (the doctor's fee) and are marked
+`comparable: false`, so the table never shows a "times Medicare" ratio against a hospital's emergency charge. Descriptions
+are PatientShield's own wording, not CPT descriptors. The hospital's published price is typed in by the person from the
+hospital's own price list (45 CFR part 180); PatientShield doesn't fetch hospital price files.
+
 ## Plan-type triage
 
 The question tree lives in `core/triage/flow.py` and is served to the UI, which only walks it. Submitted answers are validated against
@@ -163,7 +180,7 @@ See [SECURITY.md](../SECURITY.md) for the threat model and the latest review.
 
 ## Testing
 
-- **Backend (pytest):** uninsured rules traced to source text and no income endpoint; bill check (money and column parsing, line-item matching, each flag, sample arithmetic, wording),
+- **Backend (pytest):** Medicare amounts for both NJ localities match CMS's formula, constants traced to sources; uninsured rules traced to source text and no income endpoint; bill check (money and column parsing, line-item matching, each flag, sample arithmetic, wording),
   registry validation rules, official-domain URLs, uncertainty flags, API responses, security headers, invalid
   input handling, body-size limit, module boundaries, document-type routing (unbuilt types refused), citation checks.
 - **Frontend (Vitest + Testing Library + axe):** poverty-line boundaries just under, at and over 200/300/500%, 115% cap math,

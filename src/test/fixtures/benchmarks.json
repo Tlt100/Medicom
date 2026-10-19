@@ -1,0 +1,343 @@
+{
+ "year": 2026,
+ "version": "RVU26D",
+ "file_updated": "2026-08-26",
+ "retrieved": "2026-10-19",
+ "conversion_factor": "33.4009",
+ "localities": [
+  {
+   "id": "01",
+   "name": "Northern New Jersey"
+  },
+  {
+   "id": "99",
+   "name": "Rest of New Jersey"
+  }
+ ],
+ "northern_nj_counties": [
+  "Bergen",
+  "Essex",
+  "Hudson",
+  "Hunterdon",
+  "Middlesex",
+  "Morris",
+  "Passaic",
+  "Somerset",
+  "Sussex",
+  "Union",
+  "Warren"
+ ],
+ "nj_counties": [
+  "Atlantic",
+  "Bergen",
+  "Burlington",
+  "Camden",
+  "Cape May",
+  "Cumberland",
+  "Essex",
+  "Gloucester",
+  "Hudson",
+  "Hunterdon",
+  "Mercer",
+  "Middlesex",
+  "Monmouth",
+  "Morris",
+  "Ocean",
+  "Passaic",
+  "Salem",
+  "Somerset",
+  "Sussex",
+  "Union",
+  "Warren"
+ ],
+ "rates": [
+  {
+   "code": "99203",
+   "label": "New patient office visit (low complexity)",
+   "category": "office",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount for this service in a doctor’s office.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 13071,
+    "99": 12564
+   }
+  },
+  {
+   "code": "99204",
+   "label": "New patient office visit (moderate complexity)",
+   "category": "office",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount for this service in a doctor’s office.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 19657,
+    "99": 18920
+   }
+  },
+  {
+   "code": "99213",
+   "label": "Established patient office visit (low complexity)",
+   "category": "office",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount for this service in a doctor’s office.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 10593,
+    "99": 10171
+   }
+  },
+  {
+   "code": "99214",
+   "label": "Established patient office visit (moderate complexity)",
+   "category": "office",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount for this service in a doctor’s office.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 15065,
+    "99": 14477
+   }
+  },
+  {
+   "code": "99215",
+   "label": "Established patient office visit (high complexity)",
+   "category": "office",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount for this service in a doctor’s office.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 21345,
+    "99": 20526
+   }
+  },
+  {
+   "code": "99283",
+   "label": "Emergency department visit (low complexity)",
+   "category": "emergency",
+   "setting": "facility",
+   "covers": "The doctor’s fee for the visit only, at Medicare’s facility rate. The hospital’s own emergency room charges are not included.",
+   "comparable": false,
+   "amounts_cents": {
+    "01": 7479,
+    "99": 7312
+   }
+  },
+  {
+   "code": "99284",
+   "label": "Emergency department visit (moderate complexity)",
+   "category": "emergency",
+   "setting": "facility",
+   "covers": "The doctor’s fee for the visit only, at Medicare’s facility rate. The hospital’s own emergency room charges are not included.",
+   "comparable": false,
+   "amounts_cents": {
+    "01": 12720,
+    "99": 12442
+   }
+  },
+  {
+   "code": "99285",
+   "label": "Emergency department visit (high complexity)",
+   "category": "emergency",
+   "setting": "facility",
+   "covers": "The doctor’s fee for the visit only, at Medicare’s facility rate. The hospital’s own emergency room charges are not included.",
+   "comparable": false,
+   "amounts_cents": {
+    "01": 18433,
+    "99": 18024
+   }
+  },
+  {
+   "code": "71046",
+   "label": "Chest X-ray, 2 views",
+   "category": "imaging",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount at an office or independent imaging center, including the reading. Hospital outpatient payments are not included.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 3762,
+    "99": 3575
+   }
+  },
+  {
+   "code": "70450",
+   "label": "CT scan of the head, without contrast",
+   "category": "imaging",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount at an office or independent imaging center, including the reading. Hospital outpatient payments are not included.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 12072,
+    "99": 11492
+   }
+  },
+  {
+   "code": "72148",
+   "label": "MRI of the lower back (lumbar spine), without contrast",
+   "category": "imaging",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount at an office or independent imaging center, including the reading. Hospital outpatient payments are not included.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 21742,
+    "99": 20688
+   }
+  },
+  {
+   "code": "73721",
+   "label": "MRI of a leg joint such as the knee, without contrast",
+   "category": "imaging",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount at an office or independent imaging center, including the reading. Hospital outpatient payments are not included.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 23257,
+    "99": 22094
+   }
+  },
+  {
+   "code": "74177",
+   "label": "CT of the abdomen and pelvis, with contrast",
+   "category": "imaging",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount at an office or independent imaging center, including the reading. Hospital outpatient payments are not included.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 34218,
+    "99": 32485
+   }
+  },
+  {
+   "code": "76700",
+   "label": "Ultrasound of the abdomen, complete",
+   "category": "imaging",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount at an office or independent imaging center, including the reading. Hospital outpatient payments are not included.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 12976,
+    "99": 12338
+   }
+  },
+  {
+   "code": "93000",
+   "label": "Electrocardiogram (ECG) with reading",
+   "category": "imaging",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount at an office or independent imaging center, including the reading. Hospital outpatient payments are not included.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 1721,
+    "99": 1649
+   }
+  },
+  {
+   "code": "97110",
+   "label": "Therapeutic exercise (physical therapy), 15 minutes",
+   "category": "therapy",
+   "setting": "nonfacility",
+   "covers": "The Medicare amount in an office or outpatient therapy practice, for each 15 minutes.",
+   "comparable": true,
+   "amounts_cents": {
+    "01": 3222,
+    "99": 3095
+   }
+  }
+ ],
+ "source_ids": [
+  "cms-pfs-rvu26d",
+  "cms-pfs-2026-final-rule"
+ ],
+ "claims": {
+  "medicare_estimate_how": {
+   "id": "medicare_estimate_how",
+   "text": "PatientShield’s Medicare estimates follow CMS’s 2026 physician fee schedule formula: each service’s relative value units, adjusted for New Jersey costs, times the conversion factor. CMS set the 2026 conversion factor at $33.40 for most clinicians.",
+   "sources": [
+    {
+     "id": "cms-pfs-rvu26d",
+     "title": "Medicare Physician Fee Schedule relative value files, RVU26D",
+     "citation": "RVU26D (updated 08/26/2026)",
+     "authority": "Centers for Medicare & Medicaid Services",
+     "url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files/rvu26d",
+     "source_type": "official-resource",
+     "verification": "verified"
+    },
+    {
+     "id": "cms-pfs-2026-final-rule",
+     "title": "Calendar Year (CY) 2026 Medicare Physician Fee Schedule Final Rule (CMS-1832-F)",
+     "citation": "CMS-1832-F",
+     "authority": "Centers for Medicare & Medicaid Services",
+     "url": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f",
+     "source_type": "agency-guidance",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "medicare_facility_rate": {
+   "id": "medicare_facility_rate",
+   "text": "CMS uses a separate facility rate for services in hospitals, emergency rooms, skilled nursing facilities and surgery centers, and a non-facility rate everywhere else, such as a doctor’s office.",
+   "sources": [
+    {
+     "id": "cms-pfs-rvu26d",
+     "title": "Medicare Physician Fee Schedule relative value files, RVU26D",
+     "citation": "RVU26D (updated 08/26/2026)",
+     "authority": "Centers for Medicare & Medicaid Services",
+     "url": "https://www.cms.gov/medicare/payment/fee-schedules/physician/pfs-relative-value-files/rvu26d",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "price_transparency_list": {
+   "id": "price_transparency_list",
+   "text": "Federal rules require hospitals to publish online a list of their standard charges for all items and services.",
+   "sources": [
+    {
+     "id": "cfr-45-180",
+     "title": "Hospital price transparency",
+     "citation": "45 CFR part 180 (§§ 180.20, 180.50, 180.60)",
+     "authority": "U.S. Department of Health and Human Services",
+     "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-E/part-180",
+     "source_type": "regulation",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "price_transparency_shoppable": {
+   "id": "price_transparency_shoppable",
+   "text": "Hospitals must also show prices for at least 300 shoppable services in a consumer-friendly way, or offer an online price estimator.",
+   "sources": [
+    {
+     "id": "cfr-45-180",
+     "title": "Hospital price transparency",
+     "citation": "45 CFR part 180 (§§ 180.20, 180.50, 180.60)",
+     "authority": "U.S. Department of Health and Human Services",
+     "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-E/part-180",
+     "source_type": "regulation",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "price_terms": {
+   "id": "price_terms",
+   "text": "In those lists, the gross charge is the hospital’s chargemaster price before any discounts, and the discounted cash price is what applies to someone paying cash.",
+   "sources": [
+    {
+     "id": "cfr-45-180",
+     "title": "Hospital price transparency",
+     "citation": "45 CFR part 180 (§§ 180.20, 180.50, 180.60)",
+     "authority": "U.S. Department of Health and Human Services",
+     "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-E/part-180",
+     "source_type": "regulation",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  }
+ },
+ "disclaimer": "Medicare amounts are a reference point, not what you owe. Your coverage, the hospital’s contracts and its financial assistance rules decide what you pay. A difference from the Medicare amount is context for a question, not evidence that a charge is wrong."
+}
