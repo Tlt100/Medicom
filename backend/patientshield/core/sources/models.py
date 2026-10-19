@@ -36,6 +36,7 @@ class Topic(str, Enum):
     complaints = "complaints"
     billing = "billing"
     surprise_billing = "surprise-billing"
+    uninsured = "uninsured"
 
 
 class Verification(str, Enum):

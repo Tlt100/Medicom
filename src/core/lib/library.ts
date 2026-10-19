@@ -13,6 +13,7 @@ export const TOPIC_LABEL: Record<string, string> = {
   complaints: 'Complaints',
   billing: 'Bills and EOBs',
   'surprise-billing': 'Surprise bills',
+  uninsured: 'Uninsured patients',
 };
 
 export const WEIGHT_OPTIONS = [

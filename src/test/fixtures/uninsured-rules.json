@@ -1,0 +1,255 @@
+{
+ "guideline": {
+  "year": 2026,
+  "region": "48 contiguous states and DC",
+  "effective": "2026-01-13",
+  "first_person_cents": 1596000,
+  "additional_person_cents": 568000,
+  "by_household_size": [
+   1596000,
+   2164000,
+   2732000,
+   3300000,
+   3868000,
+   4436000,
+   5004000,
+   5572000
+  ],
+  "source_ids": [
+   "hhs-poverty-guidelines-2026",
+   "fr-2026-00755"
+  ]
+ },
+ "charity_care_bands": [
+  {
+   "max_percent": 200,
+   "patient_share_percent": 0
+  },
+  {
+   "max_percent": 225,
+   "patient_share_percent": 20
+  },
+  {
+   "max_percent": 250,
+   "patient_share_percent": 40
+  },
+  {
+   "max_percent": 275,
+   "patient_share_percent": 60
+  },
+  {
+   "max_percent": 300,
+   "patient_share_percent": 80
+  }
+ ],
+ "charity_care_source_id": "nj-doh-charity-care",
+ "uninsured_cap": {
+  "below_percent": 500,
+  "medicare_percent": 115,
+  "source_id": "nj-pl-2008-c60"
+ },
+ "claims": {
+  "nj_uninsured_cap": {
+   "id": "nj_uninsured_cap",
+   "text": "A 2008 New Jersey law (P.L.2008, c.60) says a licensed NJ hospital may charge an uninsured NJ resident whose family gross income is less than 500% of the federal poverty level no more than 115% of the applicable Medicare payment rate for the care.",
+   "sources": [
+    {
+     "id": "nj-pl-2008-c60",
+     "title": "Limitation on hospital charges for certain uninsured patients",
+     "citation": "P.L.2008, c.60 (N.J.S.A. 26:2H-12.52 and 26:2H-12.53)",
+     "authority": "New Jersey Legislature",
+     "url": "https://pub.njleg.gov/bills/2008/PL08/60_.HTM",
+     "source_type": "statute",
+     "verification": "needs-review"
+    }
+   ],
+   "needs_review": true
+  },
+  "nj_uninsured_sliding_scale": {
+   "id": "nj_uninsured_sliding_scale",
+   "text": "The same law directs the NJ Department of Health to set an income-based sliding scale for what these patients pay. We haven’t confirmed that scale, so ask the hospital how it applies the law to your bill.",
+   "sources": [
+    {
+     "id": "nj-pl-2008-c60",
+     "title": "Limitation on hospital charges for certain uninsured patients",
+     "citation": "P.L.2008, c.60 (N.J.S.A. 26:2H-12.52 and 26:2H-12.53)",
+     "authority": "New Jersey Legislature",
+     "url": "https://pub.njleg.gov/bills/2008/PL08/60_.HTM",
+     "source_type": "statute",
+     "verification": "needs-review"
+    }
+   ],
+   "needs_review": true
+  },
+  "charity_care_what": {
+   "id": "charity_care_what",
+   "text": "New Jersey Charity Care (the Hospital Care Payment Assistance Program) is free or reduced-charge care for necessary inpatient and outpatient services at NJ acute care hospitals. It isn’t health insurance.",
+   "sources": [
+    {
+     "id": "nj-doh-charity-care",
+     "title": "New Jersey Charity Care Fact Sheet (May 2026)",
+     "citation": null,
+     "authority": "New Jersey Department of Health, Office of Health Care Financing",
+     "url": "https://www.nj.gov/health/hcf/documents/nj-charity-care-fact-sheet-english.pdf",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "charity_care_who": {
+   "id": "charity_care_who",
+   "text": "Charity Care is for NJ residents who have no health coverage (or coverage that pays only part of the bill), aren’t eligible for Medicaid, and meet income and asset limits.",
+   "sources": [
+    {
+     "id": "nj-doh-charity-care",
+     "title": "New Jersey Charity Care Fact Sheet (May 2026)",
+     "citation": null,
+     "authority": "New Jersey Department of Health, Office of Health Care Financing",
+     "url": "https://www.nj.gov/health/hcf/documents/nj-charity-care-fact-sheet-english.pdf",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "charity_care_income": {
+   "id": "charity_care_income",
+   "text": "Under Charity Care, a patient whose income is at or below 200% of the HHS poverty guidelines pays 0% of the charge. Above 200% and up to 300%, the patient pays 20%, 40%, 60% or 80% of the charge, in income bands that end at 225%, 250%, 275% and 300%. Above 300%, the patient pays 100%.",
+   "sources": [
+    {
+     "id": "nj-doh-charity-care",
+     "title": "New Jersey Charity Care Fact Sheet (May 2026)",
+     "citation": null,
+     "authority": "New Jersey Department of Health, Office of Health Care Financing",
+     "url": "https://www.nj.gov/health/hcf/documents/nj-charity-care-fact-sheet-english.pdf",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "charity_care_assets": {
+   "id": "charity_care_assets",
+   "text": "Charity Care also has asset limits: $7,500 for an individual and $15,000 for a family. Assets above the limit can be spent down on the hospital bill.",
+   "sources": [
+    {
+     "id": "nj-doh-charity-care",
+     "title": "New Jersey Charity Care Fact Sheet (May 2026)",
+     "citation": null,
+     "authority": "New Jersey Department of Health, Office of Health Care Financing",
+     "url": "https://www.nj.gov/health/hcf/documents/nj-charity-care-fact-sheet-english.pdf",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "charity_care_apply": {
+   "id": "charity_care_apply",
+   "text": "You apply for Charity Care at the hospital that treated you, at its business or admissions office, and you have up to one year from the date of service. You’ll need proof of income, assets and NJ residency.",
+   "sources": [
+    {
+     "id": "nj-doh-charity-care",
+     "title": "New Jersey Charity Care Fact Sheet (May 2026)",
+     "citation": null,
+     "authority": "New Jersey Department of Health, Office of Health Care Financing",
+     "url": "https://www.nj.gov/health/hcf/documents/nj-charity-care-fact-sheet-english.pdf",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "charity_care_medicaid_first": {
+   "id": "charity_care_medicaid_first",
+   "text": "The hospital first screens you for Medicaid and other programs. Charity Care is for people who aren’t eligible for them.",
+   "sources": [
+    {
+     "id": "nj-doh-charity-care",
+     "title": "New Jersey Charity Care Fact Sheet (May 2026)",
+     "citation": null,
+     "authority": "New Jersey Department of Health, Office of Health Care Financing",
+     "url": "https://www.nj.gov/health/hcf/documents/nj-charity-care-fact-sheet-english.pdf",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "charity_care_not_everything": {
+   "id": "charity_care_not_everything",
+   "text": "Charity Care may not cover physician fees, anesthesiology, radiology interpretation or outpatient prescriptions, which are often billed separately.",
+   "sources": [
+    {
+     "id": "nj-doh-charity-care",
+     "title": "New Jersey Charity Care Fact Sheet (May 2026)",
+     "citation": null,
+     "authority": "New Jersey Department of Health, Office of Health Care Financing",
+     "url": "https://www.nj.gov/health/hcf/documents/nj-charity-care-fact-sheet-english.pdf",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "charity_care_hotline": {
+   "id": "charity_care_hotline",
+   "text": "The NJ Department of Health’s Charity Care unit answers questions at 1-866-588-5696 or 609-292-4709.",
+   "sources": [
+    {
+     "id": "nj-doh-charity-care",
+     "title": "New Jersey Charity Care Fact Sheet (May 2026)",
+     "citation": null,
+     "authority": "New Jersey Department of Health, Office of Health Care Financing",
+     "url": "https://www.nj.gov/health/hcf/documents/nj-charity-care-fact-sheet-english.pdf",
+     "source_type": "official-resource",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "poverty_guidelines_2026": {
+   "id": "poverty_guidelines_2026",
+   "text": "The 2026 HHS poverty guideline for the 48 contiguous states and DC is $15,960 for one person, plus $5,680 for each additional person. Some programs use a different effective date.",
+   "sources": [
+    {
+     "id": "hhs-poverty-guidelines-2026",
+     "title": "HHS Poverty Guidelines for 2026",
+     "citation": "91 FR 1797 (January 15, 2026)",
+     "authority": "U.S. Department of Health and Human Services, ASPE",
+     "url": "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines",
+     "source_type": "agency-guidance",
+     "verification": "verified"
+    },
+    {
+     "id": "fr-2026-00755",
+     "title": "Annual Update of the HHS Poverty Guidelines (Federal Register notice)",
+     "citation": "91 FR 1797; FR Doc. 2026-00755",
+     "authority": "U.S. Department of Health and Human Services, Office of the Secretary",
+     "url": "https://www.govinfo.gov/content/pkg/FR-2026-01-15/pdf/2026-00755.pdf",
+     "source_type": "agency-guidance",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  },
+  "good_faith_estimate": {
+   "id": "good_faith_estimate",
+   "text": "If you don’t have or use insurance, providers usually must give you a good faith estimate when you schedule care in advance or ask for one. You may be able to dispute a bill that’s at least $400 more than the estimate.",
+   "sources": [
+    {
+     "id": "cms-medical-bill-rights",
+     "title": "Medical bill rights",
+     "citation": null,
+     "authority": "Centers for Medicare & Medicaid Services",
+     "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights",
+     "source_type": "agency-guidance",
+     "verification": "verified"
+    }
+   ],
+   "needs_review": false
+  }
+ },
+ "disclaimer": "This is an estimate of what you may be eligible for, not a decision. The hospital decides Charity Care and how it applies New Jersey’s limit on charges, using its own application and documents. PatientShield doesn’t decide whether a bill is correct."
+}

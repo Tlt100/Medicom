@@ -36,7 +36,8 @@ The tone is calm and neutral. The goal is member clarity, not an adversarial sta
 | Expansion, step 2 | Shared core (document pipeline with document types, citations, sources, triage) + feature modules; denials moved into `features/denials` | **Done** |
 | Expansion, step 3 | “What did you receive?” entry point: denial letter (working), bill with EOB and bill with no insurance (honest “coming soon” pages, no upload) | **Done** |
 | Expansion, step 4a | Bill check: compare an EOB with a bill line by line; differences worth asking about, each cited; three synthetic sample pairs | **Done** |
-| Expansion, step 4b–c | Uninsured NJ bill checker; price context | Next |
+| Expansion, step 4b | Uninsured NJ hospital bills: Charity Care bands and the 2008 limit (under 500% of poverty: no more than 115% of Medicare), versioned 2026 poverty guidelines; estimate runs in the browser, income never sent | **Done** |
+| Expansion, step 4c | Price context (benchmark rates) | Next |
 
 Later phases (not being built yet): medical-records access, privacy complaints, policy-document explorer, privacy-preserving analytics.
 

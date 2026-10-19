@@ -167,7 +167,4 @@ function labelled(which: string, err: Error): Error {
   return out;
 }
 
-export function formatCents(cents: number): string {
-  const s = (Math.abs(cents) / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  return cents < 0 ? `-$${s}` : `$${s}`;
-}
+export { formatCents } from '../../core/lib/money';

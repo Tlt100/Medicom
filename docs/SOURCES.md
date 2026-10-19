@@ -1,6 +1,6 @@
 # Source verification report
 
-Last reviewed: **2026-10-19**. Registry version 3. The registry itself is in
+Last reviewed: **2026-10-19**. Registry version 4. The registry itself is in
 [`backend/patientshield/core/sources/registry.py`](../backend/patientshield/core/sources/registry.py).
 
 Federal regulations were read from the eCFR versioner API (text current as of 2026-10-15). Agency pages were read directly in a
@@ -37,12 +37,23 @@ Caveats recorded in the registry: the No Surprises Act protections depend on the
 entry is DOBI's summary, not the statute text, and reaches self-funded plans only if they opted in. The app shows surprise-billing
 rules only as "may apply" context, never as a conclusion.
 
+### Uninsured New Jersey patients (checked 2026-10-19)
+
+| Topic | What was confirmed | Source |
+| --- | --- | --- |
+| Limit on charges | A licensed NJ hospital shall charge an uninsured NJ resident with family gross income less than 500% of the federal poverty level no more than 115% of the applicable Medicare rate; the Department is to set an income-based sliding scale | P.L.2008, c.60 as enacted (N.J.S.A. 26:2H-12.52, -12.53), approved August 8, 2008, NJ Legislature |
+| Charity Care | Free or reduced-charge care at NJ acute care hospitals; 0% at or below 200% of HHS guidelines, 20/40/60/80% up to 300%, 100% above; assets $7,500 individual / $15,000 family; apply within one year; hotline 1-866-588-5696 or 609-292-4709 | NJ Department of Health, *New Jersey Charity Care Fact Sheet* (May 2026) |
+| Poverty guidelines | 2026, 48 states and DC: $15,960 for one person, $5,680 per additional person; effective January 13, 2026 | HHS ASPE poverty guidelines page; Federal Register notice 2026-00755 (91 FR 1797) |
+| Good faith estimates | Uninsured or self-pay patients usually get a good faith estimate; a bill $400 or more above it may be disputed | CMS, *Medical bill rights* |
+
 ## Not confirmed (flagged for human review)
 
 | Item | Why it is flagged |
 | --- | --- |
 | IHCAP filing deadline | The DOBI program page does not state one, and the underlying NJ statute has not been retrieved. The app will tell users to use the deadline in their final internal appeal decision. |
 | CMS-0057-F and Get Covered New Jersey plans | The CMS fact sheet limits the QHP requirements to federal-exchange issuers. NJ runs its own state-based exchange, but 45 CFR 156.223(a) does not name an exchange type. Applicability to NJ marketplace plans is unconfirmed. |
+| P.L.2008, c.60 current text and sliding scale | We read the law as enacted in 2008. The current codified text, any later amendments, and the Department of Health's sliding scale under N.J.S.A. 26:2H-12.53 were not retrieved; hospital policies we saw describe the 115% cap for incomes above the Charity Care limit, but they are not official sources. The app labels the limit "may apply" and tells users to ask the hospital how it applied the law. |
+| Which year's poverty guideline a hospital uses | Programs may set their own effective date; NJ's Charity Care schedule is published separately. The app uses the 2026 HHS figures and says so. |
 | NJ FamilyCare fair hearing deadline | DMAHS Medicaid Communication 26-06 (June 23, 2026) reinstates a 20-day rule (described to beneficiaries as 30 days) and ends automatic continuation of benefits from July 1, 2026, but is addressed to eligibility agencies. An older NJ FamilyCare FAQ says 120 days after a plan appeal decision, and federal rule allows 90–120 days. Which applies to a managed care denial needs review. Users are told to follow the deadline on their notice. |
 
 ## Research statistics (README)

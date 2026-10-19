@@ -494,9 +494,6 @@ main:focus {
 .hero-secondary {
   margin: 0 0 16px;
 }
-.callout-soon {
-  margin: 24px 0 8px;
-}
 @media (prefers-reduced-motion: reduce) {
   .chooser-option:hover {
     transform: none;
@@ -2305,4 +2302,62 @@ mark.cite.active {
   .bill-summary {
     grid-template-columns: 1fr;
   }
+}
+
+/* ---------- Uninsured ---------- */
+.uninsured-form {
+  display: grid;
+  gap: 20px;
+  max-width: 760px;
+}
+.uninsured-form .btn {
+  justify-self: start;
+}
+.mini-field input:not([type]),
+.mini-field input[type='text'] {
+  font: inherit;
+  width: min(100%, 280px);
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+}
+.mini-field .field-help {
+  margin: 0 0 6px;
+}
+.results-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.program-card {
+  margin-top: 16px;
+}
+.program-headline {
+  font-weight: 600;
+}
+.program-reasons {
+  margin: 0 0 12px;
+  padding-left: 20px;
+}
+.cap-calc {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.cap-calc h4 {
+  margin: 0 0 6px;
+}
+.cap-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin: 12px 0;
+}
+.cap-result {
+  margin: 0;
 }

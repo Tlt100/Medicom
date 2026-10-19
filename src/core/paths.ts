@@ -31,8 +31,8 @@ export const ENTRY_PATHS: readonly EntryPath[] = [
     id: 'uninsured',
     route: '/uninsured',
     title: 'A bill, and I don’t have insurance',
-    description: 'For New Jersey hospital bills: see whether you may be eligible for limits on what uninsured patients can be charged.',
-    ready: false,
+    description: 'For New Jersey hospital bills: see whether you may be eligible for Charity Care or for limits on what uninsured patients can be charged.',
+    ready: true,
   },
 ];
 

@@ -13,7 +13,7 @@ Federal regulation text was retrieved from the eCFR versioner API (current as of
 import datetime as dt
 from typing import Any, Dict, List
 
-REGISTRY_VERSION = 3
+REGISTRY_VERSION = 4
 LAST_REVIEWED = dt.date(2026, 10, 19)
 
 _CHECKED = "2026-10-16"
@@ -473,6 +473,157 @@ RAW_SOURCES: List[Dict[str, Any]] = [
             {
                 "locator": "Out-of-network Balance Billing Protection",
                 "text": "Any attempts by the out-of-network health care provider to bill the covered person for these types of services above the covered person’s in-network cost-sharing liability should be reported to the covered person’s carrier",
+            },
+        ],
+    },
+    # ------------------------------------------------------------------ Uninsured New Jersey patients (checked 2026-10-19)
+    {
+        "id": "nj-pl-2008-c60",
+        "title": "Limitation on hospital charges for certain uninsured patients",
+        "citation": "P.L.2008, c.60 (N.J.S.A. 26:2H-12.52 and 26:2H-12.53)",
+        "authority": "New Jersey Legislature",
+        "url": "https://pub.njleg.gov/bills/2008/PL08/60_.HTM",
+        "jurisdiction": "NJ",
+        "source_type": "statute",
+        "topics": ["uninsured"],
+        "date": "2008-08-08",
+        "date_label": "Approved",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "needs-review",
+        "review_note": "This is the law as enacted in 2008. We have not retrieved the current codified text or any later amendments, or the Department of Health’s sliding scale under N.J.S.A. 26:2H-12.53, which sets what share of the charge a patient pays. Hospital policies we saw describe the 115% cap for incomes above the Charity Care limit, but those are not official sources.",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "Section 1 (C.26:2H-12.52)",
+                "text": "A hospital licensed by the Department of Health and Senior Services pursuant to P.L.1971, c.136 (C.26:2H-1 et al.) shall charge a patient who is an uninsured resident of this State, and whose family gross income is less than 500% of the federal poverty level, an amount no greater than 115% of the applicable payment rate under the federal Medicare program, established pursuant to Pub.L.89-97 (42 U.S.C.s.1395 et seq.), for the health care services rendered to the patient.",
+            },
+            {
+                "locator": "Section 1 (C.26:2H-12.52)",
+                "text": "The amount shall be in accordance with the sliding scale based on income developed by the department pursuant to this act.",
+            },
+            {
+                "locator": "Section 2 (C.26:2H-12.53)",
+                "text": "The Department of Health and Senior Services shall establish a sliding scale based on income which stipulates the percentage of a hospital charge that an uninsured resident of this State whose family gross income is less than 500% of the federal poverty level is required to pay for health care services rendered at a hospital.",
+            },
+        ],
+    },
+    {
+        "id": "nj-doh-charity-care",
+        "title": "New Jersey Charity Care Fact Sheet (May 2026)",
+        "citation": None,
+        "authority": "New Jersey Department of Health, Office of Health Care Financing",
+        "url": "https://www.nj.gov/health/hcf/documents/nj-charity-care-fact-sheet-english.pdf",
+        "jurisdiction": "NJ",
+        "source_type": "official-resource",
+        "topics": ["uninsured"],
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "review_note": "The fact sheet summarizes the Hospital Care Payment Assistance Program; the regulations (N.J.A.C. 10:52) control. Hospitals decide eligibility.",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "What is Charity Care?",
+                "text": "The New Jersey Hospital Care Payment Assistance Program (Charity Care) is free or reduced charge care that is provided to patients who receive inpatient and outpatient services at acute care hospitals throughout the State of New Jersey.",
+            },
+            {
+                "locator": "What is Charity Care?",
+                "text": "Some services such as physician fees, anesthesiology fees, radiology interpretation, and outpatient prescriptions may not be covered.",
+            },
+            {
+                "locator": "Who is eligible for Charity Care?",
+                "text": "Have no health coverage or have coverage that pays only for part of the bill 2. Are ineligible for any Medicaid program coverage 3. Meet the income and asset criteria listed below.",
+            },
+            {
+                "locator": "Income Criteria",
+                "text": "less than or equal to 200% 0% greater than 200% but less than or equal to 225% 20% greater than 225% but less than or equal to 250% 40% greater than 250% but less than or equal to 275% 60% greater than 275% but less than or equal to 300% 80% greater than 300% 100%",
+            },
+            {
+                "locator": "Assets Criteria",
+                "text": "Individual assets cannot exceed $7,500 and family assets cannot exceed $15,000.",
+            },
+            {
+                "locator": "How does someone apply for hospital care payment assistance?",
+                "text": "The applicant has up to one year from the date of service to apply for hospital assistance and provide the hospital with a completed application.",
+            },
+            {
+                "locator": "How does someone apply for hospital care payment assistance?",
+                "text": "Please call the Charity Care unit during business hours at 1-866-588-5696 or 609-292-4709.",
+            },
+            {
+                "locator": "What are the screening procedures for third party payers and Medicaid?",
+                "text": "Patients should only apply for Charity Care when they are determined to be ineligible for Medicaid or any other medical assistance programs.",
+            },
+        ],
+    },
+    {
+        "id": "hhs-poverty-guidelines-2026",
+        "title": "HHS Poverty Guidelines for 2026",
+        "citation": "91 FR 1797 (January 15, 2026)",
+        "authority": "U.S. Department of Health and Human Services, ASPE",
+        "url": "https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines",
+        "jurisdiction": "US-Federal",
+        "source_type": "agency-guidance",
+        "topics": ["uninsured"],
+        "date": "2026-01-13",
+        "date_label": "Effective date (Federal Register notice)",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "review_note": "Figures are for the 48 contiguous states and DC. A program can set its own effective date for new guidelines, and a hospital may use the guidelines in effect on your date of service.",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "2026 poverty guidelines, 48 contiguous states and DC",
+                "text": "2026 POVERTY GUIDELINES FOR THE 48 CONTIGUOUS STATES AND THE DISTRICT OF COLUMBIA Persons in family/household Poverty guideline 1 $15,960 2 $21,640 3 $27,320 4 $33,000 5 $38,680 6 $44,360 7 $50,040 8 $55,720",
+            },
+            {
+                "locator": "2026 poverty guidelines, 48 contiguous states and DC",
+                "text": "For families/households with more than 8 persons, add $5,680 for each additional person.",
+            },
+        ],
+    },
+    {
+        "id": "fr-2026-00755",
+        "title": "Annual Update of the HHS Poverty Guidelines (Federal Register notice)",
+        "citation": "91 FR 1797; FR Doc. 2026-00755",
+        "authority": "U.S. Department of Health and Human Services, Office of the Secretary",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2026-01-15/pdf/2026-00755.pdf",
+        "jurisdiction": "US-Federal",
+        "source_type": "agency-guidance",
+        "topics": ["uninsured"],
+        "date": "2026-01-15",
+        "date_label": "Published",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "DATES",
+                "text": "Effective Date: January 13, 2026 unless an office administering a program using the guidelines specifies a different effective date for that particular program.",
+            },
+            {
+                "locator": "2026 poverty guidelines, 48 contiguous states and DC",
+                "text": "1 .................................................. $15,960",
+            },
+        ],
+    },
+    {
+        "id": "cms-medical-bill-rights",
+        "title": "Medical bill rights",
+        "citation": None,
+        "authority": "Centers for Medicare & Medicaid Services",
+        "url": "https://www.cms.gov/initiatives/your-patient-rights/medical-bill-rights",
+        "jurisdiction": "US-Federal",
+        "source_type": "agency-guidance",
+        "topics": ["uninsured", "billing"],
+        "date": "2026-10-05",
+        "date_label": "Page last modified",
+        "last_checked": _CHECKED_BILLS,
+        "verification": "verified",
+        "version": 1,
+        "excerpts": [
+            {
+                "locator": "What is the No Surprises Act?",
+                "text": "Usually, if you don't have or use health insurance, providers must give you a good faith estimate of what your care will cost. You get the estimate when you schedule care in advance or if you ask for one. You may be able to dispute your bill if it’s at least $400 more than the estimate.",
             },
         ],
     },

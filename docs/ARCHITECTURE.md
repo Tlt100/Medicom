@@ -22,14 +22,15 @@ Browser (React + TypeScript, Vite)
                     └─ features/                   one package per document workflow; features never import each other
                         ├─ denials/                denial-letter fields + signals (registered as the "denial" extractor),
                         │                          synthetic letters, GET /api/samples…, POST /api/plan (action plan)
-                        └─ bill_check/             EOB and bill line items (registered as "eob" and "bill"), matching and
-                                                   flags, synthetic pairs: POST /api/bill-check/compare,
-                                                   GET /api/bill-check/samples, POST /api/bill-check/samples/{id}
+                        ├─ bill_check/             EOB and bill line items (registered as "eob" and "bill"), matching and
+                        │                          flags, synthetic pairs: POST /api/bill-check/compare,
+                        │                          GET /api/bill-check/samples, POST /api/bill-check/samples/{id}
+                        └─ uninsured/              versioned rules only: GET /api/uninsured/rules (no endpoint accepts income)
 ```
 
 The frontend mirrors the split: `src/core/` (api clients for http, documents, sources and triage; the layout, document viewer,
 triage and source-link components; shared helpers), `src/features/denials/` (Navigator page, field cards, action plan) and
-`src/features/bill-check/` (bill check page).
+`src/features/bill-check/` (bill check page) and `src/features/uninsured/` (questions, eligibility math, 115% calculator).
 `src/pages/` holds the general pages (landing, sources, about). Tests on both sides fail if core imports a feature, or one feature
 imports another.
 
@@ -100,6 +101,22 @@ never written to disk or logged. Sample letters run through the same PDF path, u
    out-of-network protections) or is marked a practical suggestion. A test fails if any flag uses accusatory words such as
    "overcharge", "error" or "illegal".
 
+## Uninsured New Jersey patients
+
+`GET /api/uninsured/rules` publishes the numbers and cited statements; the browser does the math (`eligibility.ts`), so
+household income never leaves the device and there is no endpoint that accepts it (a test checks the route list).
+
+- **Poverty guidelines** are versioned by year (`features/uninsured/rules.py`, 2026: $15,960 for one person plus $5,680 per
+  additional person, 48 states and DC, effective January 13, 2026). A test checks every figure against the source excerpts.
+- **Charity Care**: at or below 200% of the guideline pays 0%; bands at or below 225/250/275/300% pay 20/40/60/80%; above
+  300% the bands end. Full coverage or a hospital outside NJ means it doesn't apply; non-residents are sent to the hospital.
+- **The 2008 limit** (P.L.2008, c.60): family gross income *less than* 500% of the poverty level, so exactly 500% is outside
+  it; the charge may be no more than 115% of the Medicare rate. The source is flagged for review because the current codified
+  text and the Department of Health's sliding scale were not retrieved; the result says so every time.
+- Comparisons use integer cents and percents (`income × 100 ≤ line × pct`), so results at a limit follow the rule's wording.
+  Statuses are "may be eligible", "check with the hospital", "not based on income" or "doesn't apply"; tests ban promises
+  and words like "illegal".
+
 ## Plan-type triage
 
 The question tree lives in `core/triage/flow.py` and is served to the UI, which only walks it. Submitted answers are validated against
@@ -146,10 +163,11 @@ See [SECURITY.md](../SECURITY.md) for the threat model and the latest review.
 
 ## Testing
 
-- **Backend (pytest):** bill check (money and column parsing, line-item matching, each flag, sample arithmetic, wording),
+- **Backend (pytest):** uninsured rules traced to source text and no income endpoint; bill check (money and column parsing, line-item matching, each flag, sample arithmetic, wording),
   registry validation rules, official-domain URLs, uncertainty flags, API responses, security headers, invalid
   input handling, body-size limit, module boundaries, document-type routing (unbuilt types refused), citation checks.
-- **Frontend (Vitest + Testing Library + axe):** landing content, live coverage, loading/error/retry states, response-schema rejection
+- **Frontend (Vitest + Testing Library + axe):** poverty-line boundaries just under, at and over 200/300/500%, 115% cap math,
+  income never sent; landing content, live coverage, loading/error/retry states, response-schema rejection
   (including non-https links), routing, mobile menu, module boundaries, and automated accessibility checks.
 
 ## Deployment

@@ -187,6 +187,79 @@ _CLAIMS = [
         "Report such a bill to your insurer.",
         ("nj-dobi-out-of-network",),
     ),
+    # ---------------------------------------------------------------- uninsured New Jersey patients
+    Claim(
+        "nj_uninsured_cap",
+        "A 2008 New Jersey law (P.L.2008, c.60) says a licensed NJ hospital may charge an uninsured NJ resident whose family "
+        "gross income is less than 500% of the federal poverty level no more than 115% of the applicable Medicare payment rate "
+        "for the care.",
+        ("nj-pl-2008-c60",),
+    ),
+    Claim(
+        "nj_uninsured_sliding_scale",
+        "The same law directs the NJ Department of Health to set an income-based sliding scale for what these patients pay. "
+        "We haven’t confirmed that scale, so ask the hospital how it applies the law to your bill.",
+        ("nj-pl-2008-c60",),
+    ),
+    Claim(
+        "charity_care_what",
+        "New Jersey Charity Care (the Hospital Care Payment Assistance Program) is free or reduced-charge care for necessary "
+        "inpatient and outpatient services at NJ acute care hospitals. It isn’t health insurance.",
+        ("nj-doh-charity-care",),
+    ),
+    Claim(
+        "charity_care_who",
+        "Charity Care is for NJ residents who have no health coverage (or coverage that pays only part of the bill), aren’t "
+        "eligible for Medicaid, and meet income and asset limits.",
+        ("nj-doh-charity-care",),
+    ),
+    Claim(
+        "charity_care_income",
+        "Under Charity Care, a patient whose income is at or below 200% of the HHS poverty guidelines pays 0% of the charge. "
+        "Above 200% and up to 300%, the patient pays 20%, 40%, 60% or 80% of the charge, in income bands that end at 225%, "
+        "250%, 275% and 300%. Above 300%, the patient pays 100%.",
+        ("nj-doh-charity-care",),
+    ),
+    Claim(
+        "charity_care_assets",
+        "Charity Care also has asset limits: $7,500 for an individual and $15,000 for a family. Assets above the limit can be "
+        "spent down on the hospital bill.",
+        ("nj-doh-charity-care",),
+    ),
+    Claim(
+        "charity_care_apply",
+        "You apply for Charity Care at the hospital that treated you, at its business or admissions office, and you have up to "
+        "one year from the date of service. You’ll need proof of income, assets and NJ residency.",
+        ("nj-doh-charity-care",),
+    ),
+    Claim(
+        "charity_care_medicaid_first",
+        "The hospital first screens you for Medicaid and other programs. Charity Care is for people who aren’t eligible for them.",
+        ("nj-doh-charity-care",),
+    ),
+    Claim(
+        "charity_care_not_everything",
+        "Charity Care may not cover physician fees, anesthesiology, radiology interpretation or outpatient prescriptions, which "
+        "are often billed separately.",
+        ("nj-doh-charity-care",),
+    ),
+    Claim(
+        "charity_care_hotline",
+        "The NJ Department of Health’s Charity Care unit answers questions at 1-866-588-5696 or 609-292-4709.",
+        ("nj-doh-charity-care",),
+    ),
+    Claim(
+        "poverty_guidelines_2026",
+        "The 2026 HHS poverty guideline for the 48 contiguous states and DC is $15,960 for one person, plus $5,680 for each "
+        "additional person. Some programs use a different effective date.",
+        ("hhs-poverty-guidelines-2026", "fr-2026-00755"),
+    ),
+    Claim(
+        "good_faith_estimate",
+        "If you don’t have or use insurance, providers usually must give you a good faith estimate when you schedule care in "
+        "advance or ask for one. You may be able to dispute a bill that’s at least $400 more than the estimate.",
+        ("cms-medical-bill-rights",),
+    ),
 ]
 
 CLAIMS: Dict[str, Claim] = {c.id: c for c in _CLAIMS}

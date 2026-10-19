@@ -26,14 +26,12 @@ describe('What did you receive?', () => {
     expect(links[2]).toHaveAccessibleDescription(/New Jersey hospital bills/);
   });
 
-  it('labels unbuilt paths "Coming soon" before anyone clicks, and only those', () => {
+  it('marks every path as working, with no "Coming soon" left', () => {
     mockFetchJson(registryFixture);
     renderAt('/');
-    expect(screen.getByRole('link', { name: 'A denial letter' })).not.toHaveTextContent(/coming soon/i);
-    expect(screen.getByRole('link', { name: 'A bill, and I have insurance' })).not.toHaveTextContent(/coming soon/i);
-    expect(screen.getByRole('link', { name: 'A bill, and I don’t have insurance Coming soon' })).toBeInTheDocument();
-    const soon = ENTRY_PATHS.filter((p) => !p.ready).map((p) => p.id);
-    expect(soon).toEqual(['uninsured']);
+    expect(ENTRY_PATHS.every((p) => p.ready)).toBe(true);
+    expect(within(chooser()).queryByText(/coming soon/i)).toBeNull();
+    expect(screen.getByRole('link', { name: 'A bill, and I don’t have insurance' })).toHaveAttribute('href', '/uninsured');
   });
 
   it('the denial path opens the working Denial Navigator', async () => {
@@ -48,34 +46,5 @@ describe('What did you receive?', () => {
     const { container } = renderAt('/');
     await screen.findByText('Verified against the source');
     expect(await axe(container)).toHaveNoViolations();
-  });
-});
-
-describe.each([['/uninsured', /a bill, and i don’t have insurance/i]])('Coming-soon page %s', (path, title) => {
-  it('says plainly that it is not available and offers no way to upload', async () => {
-    const fetchSpy = mockFetchJson({});
-    const { container } = renderAt(path);
-    expect(screen.getByRole('heading', { level: 1, name: title })).toBeInTheDocument();
-    expect(screen.getByRole('note', { name: /not available yet/i })).toHaveTextContent(/isn’t available yet/i);
-    expect(container.querySelector('input, form, textarea')).toBeNull();
-    expect(screen.queryByRole('button', { name: /upload|choose a file|check/i })).toBeNull();
-    expect(fetchSpy).not.toHaveBeenCalled();
-    expect(await axe(container)).toHaveNoViolations();
-  });
-
-  it('describes limits instead of promising outcomes', () => {
-    mockFetchJson({});
-    renderAt(path);
-    const main = screen.getByRole('main');
-    expect(within(main).getByRole('heading', { name: /what it won’t do/i })).toBeInTheDocument();
-    expect(main).not.toHaveTextContent(/\bguaranteed\b|\bwill save\b|\byou are owed\b/i);
-  });
-
-  it('leads back to the chooser and to the working denial path', async () => {
-    mockFetchJson(registryFixture);
-    renderAt(path);
-    expect(screen.getByRole('link', { name: /i also have a denial letter/i })).toHaveAttribute('href', '/navigator');
-    await userEvent.click(screen.getByRole('link', { name: /back to “what did you receive\?”/i }));
-    expect(chooser()).toBeInTheDocument();
   });
 });
