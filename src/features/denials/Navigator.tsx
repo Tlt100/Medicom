@@ -3,6 +3,7 @@ import { ActionPlanView } from './ActionPlanView';
 import { DocumentViewer } from '../../core/components/DocumentViewer';
 import { FieldCard } from './FieldCard';
 import { Icon } from '../../core/components/Icon';
+import { More } from '../../core/components/SourceLinks';
 import { PlanResult } from '../../core/components/PlanResult';
 import { SituationForm } from './SituationForm';
 import { Triage } from '../../core/components/Triage';
@@ -162,8 +163,11 @@ function Results({ result, onDelete, onContinue }: { result: Extraction; onDelet
       </div>
 
       <p className="retention">
-        <Icon name="lock" size={16} /> {result.retention}
+        <Icon name="lock" size={16} /> Not saved. Delete it any time.
       </p>
+      <More summary="How your file is handled">
+        <p>{result.retention}</p>
+      </More>
 
       {result.warnings.map((w) => (
         <div key={w} className="callout callout-tight" role="alert">
@@ -323,10 +327,7 @@ export function Navigator() {
       <h1 ref={topRef} tabIndex={-1}>
         Understand your denial letter
       </h1>
-      <p className="lede">
-        Add a denial letter and PatientShield will point to the stated reason, the appeal instructions and deadlines, and the reference numbers,
-        each linked to the exact passage in your letter.
-      </p>
+      <p className="lede">Upload a letter or try a sample. Every detail links to where it appears.</p>
       <Steps view={view} />
 
       <div ref={statusRef} tabIndex={-1} className="status-region" aria-live="polite">
@@ -351,10 +352,7 @@ export function Navigator() {
         <section aria-labelledby="triage-heading">
           <p className="eyebrow">Step 2 · Your plan type</p>
           <h2 id="triage-heading">A few questions about your coverage</h2>
-          <p className="muted">
-            Your answers decide which appeal rules apply. If you’re not sure, say so. PatientShield will show you how to find out instead of
-            guessing.
-          </p>
+          <p className="muted">Your answers decide which appeal rules apply. Not sure? Say so.</p>
           <Triage
             signals={signals}
             initialAnswers={plan?.answers}

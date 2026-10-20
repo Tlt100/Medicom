@@ -5,7 +5,7 @@ import { formatDate } from '../../core/api/http';
 import { DocumentViewer } from '../../core/components/DocumentViewer';
 import { Icon } from '../../core/components/Icon';
 import { PriceContext } from '../../core/components/PriceContext';
-import { ClaimBlock } from '../../core/components/SourceLinks';
+import { ClaimBlock, More } from '../../core/components/SourceLinks';
 import type { Span } from '../../core/lib/highlight';
 import { useAsync } from '../../core/lib/useAsync';
 import {
@@ -292,8 +292,11 @@ function Results({ result, onDelete }: { result: BillCheckResult; onDelete: () =
       </div>
 
       <p className="retention">
-        <Icon name="lock" size={16} /> {eob.retention}
+        <Icon name="lock" size={16} /> Not saved. Delete them any time.
       </p>
+      <More summary="How your files are handled">
+        <p>{eob.retention}</p>
+      </More>
 
       {[...eob.warnings.map((w) => `EOB: ${w}`), ...bill.warnings.map((w) => `Bill: ${w}`)].map((w) => (
         <div key={w} className="callout callout-tight" role="alert">
@@ -316,7 +319,10 @@ function Results({ result, onDelete }: { result: BillCheckResult; onDelete: () =
           <dd>{ask.length}</dd>
         </div>
       </dl>
-      <p className="muted bill-disclaimer">{comparison.disclaimer}</p>
+      <p className="muted bill-disclaimer">Differences to ask about, not proof of a mistake.</p>
+      <More summary="What this means">
+        <p>{comparison.disclaimer}</p>
+      </More>
 
       <div className="results-grid">
         <div className="results-fields">
@@ -406,10 +412,7 @@ export function BillCheck() {
     <div className="container page">
       <p className="eyebrow">Bill check</p>
       <h1>Compare a bill with your EOB</h1>
-      <p className="lede">
-        Add the Explanation of Benefits from your insurer and the bill from your provider. PatientShield lines up each service and points out
-        differences worth asking about, quoting the exact line on each document.
-      </p>
+      <p className="lede">Add your EOB and the bill. We line them up and flag what’s worth asking about.</p>
 
       <div ref={statusRef} tabIndex={-1} className="status-region" aria-live="polite">
         {state.status === 'loading' && (

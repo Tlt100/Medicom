@@ -78,7 +78,7 @@ describe('Bill check: comparing a sample', () => {
         <App />
       </MemoryRouter>,
     );
-    await userEvent.click(screen.getByRole('link', { name: 'A bill, and I have insurance' }));
+    await userEvent.click(screen.getByRole('link', { name: 'A bill, with insurance' }));
     const item = (await screen.findByRole('heading', { name: /emergency visit/i })).closest('li')!;
     expect(within(item).getByRole('link', { name: 'EOB PDF' })).toHaveAttribute('href', '/api/bill-check/samples/er-visit-differences/eob.pdf');
     expect(within(item).getByRole('link', { name: 'Bill PDF' })).toHaveAttribute('href', '/api/bill-check/samples/er-visit-differences/bill.pdf');

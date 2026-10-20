@@ -4,7 +4,7 @@ import { fetchBenchmarks, localityFor, timesMedicare, type Benchmarks, type Benc
 import { formatCents, parseDollars } from '../lib/money';
 import { useAsync } from '../lib/useAsync';
 import { Icon } from './Icon';
-import { ClaimBlock } from './SourceLinks';
+import { ClaimBlock, More } from './SourceLinks';
 
 export interface PriceRow {
   key: string;
@@ -128,7 +128,7 @@ export function PriceContext({
         {title}
       </Heading>
       {intro && <p className="muted">{intro}</p>}
-      <p className="muted bill-disclaimer">{b.disclaimer}</p>
+      <p className="muted bill-disclaimer">Reference only, not what you owe.</p>
 
       <div className="mini-field">
         <label htmlFor={`${headingId}-county`}>New Jersey county where you got care</label>
@@ -140,7 +140,7 @@ export function PriceContext({
             </option>
           ))}
         </select>
-        <p className="field-help">Medicare pays different amounts in Northern New Jersey and the rest of the state.</p>
+        <p className="field-help">Northern NJ and the rest of NJ have different Medicare rates.</p>
       </div>
 
       {known.length === 0 ? (
@@ -173,12 +173,15 @@ export function PriceContext({
         Medicare amounts: CMS physician fee schedule {b.version} (file updated {formatDate(b.file_updated)}, retrieved{' '}
         {formatDate(b.retrieved)}), conversion factor ${b.conversion_factor}.
       </p>
-      {c('medicare_estimate_how')}
-      {c('medicare_facility_rate')}
-      <Sub>Finding the hospital’s published price</Sub>
-      {c('price_transparency_list')}
-      {c('price_transparency_shoppable')}
-      {c('price_terms')}
+      <More summary="How these numbers work">
+        <p>{b.disclaimer}</p>
+        {c('medicare_estimate_how')}
+        {c('medicare_facility_rate')}
+        <Sub>Finding the hospital’s published price</Sub>
+        {c('price_transparency_list')}
+        {c('price_transparency_shoppable')}
+        {c('price_terms')}
+      </More>
     </section>
   );
 }

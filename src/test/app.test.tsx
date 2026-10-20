@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { axe } from 'vitest-axe';
 import { App } from '../App';
-import { jsonResponse, mockFetchJson, registryFixture } from './fixtures';
 
 function renderAt(path: string) {
   return render(
@@ -14,50 +13,44 @@ function renderAt(path: string) {
 }
 
 describe('Landing page', () => {
-  it('shows the headline, prototype warning and the "What did you receive?" choices', async () => {
-    mockFetchJson(registryFixture);
+  it('leads with a short headline, the demo notice and the three choices', () => {
     renderAt('/');
     expect(screen.getByRole('heading', { level: 1, name: /denial or a medical bill/i })).toBeInTheDocument();
-    expect(screen.getByRole('complementary', { name: /prototype notice/i })).toHaveTextContent(/do not upload real health information/i);
+    expect(screen.getByRole('complementary', { name: /prototype notice/i })).toHaveTextContent(/not real health information/i);
     expect(screen.getByRole('heading', { name: 'What did you receive?' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'A denial letter' })).toHaveAttribute('href', '/navigator');
-    await screen.findByText('Verified against the source');
   });
 
-  it('shows live source coverage from the API', async () => {
-    mockFetchJson(registryFixture);
+  it('stays short: the whole page is under 120 words', () => {
     renderAt('/');
-    const verified = await screen.findByText('Verified against the source');
-    expect(verified.nextElementSibling).toHaveTextContent('11');
-    expect(screen.getByText('Flagged for human review').nextElementSibling).toHaveTextContent('1');
+    const words = (screen.getByRole('main').textContent ?? '').split(/\s+/).filter(Boolean);
+    expect(words.length).toBeLessThan(120);
   });
 
-  it('shows a clear error and recovers on retry', async () => {
-    const spy = vi.spyOn(globalThis, 'fetch').mockRejectedValue(new TypeError('offline'));
+  it('keeps the limits one line away, with a link to the full page', () => {
     renderAt('/');
-    const alert = await screen.findByRole('alert');
-    expect(alert).toHaveTextContent(/couldn’t reach/i);
-
-    spy.mockImplementation(async () => jsonResponse(registryFixture));
-    await userEvent.click(within(alert).getByRole('button', { name: /try again/i }));
-    expect(await screen.findByText('Verified against the source')).toBeInTheDocument();
-  });
-
-  it('cites the research statistic with its scope', async () => {
-    mockFetchJson(registryFixture);
-    renderAt('/');
-    const link = screen.getByRole('link', { name: /KFF, Claims Denials and Appeals/i });
-    expect(link).toHaveAttribute('href', expect.stringMatching(/^https:\/\/www\.kff\.org\//));
-    expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-    expect(screen.getByText(/New Jersey’s state-run marketplace is not included/)).toBeInTheDocument();
-    await screen.findByText('Verified against the source');
+    expect(screen.getByText(/Educational, not legal advice/)).toHaveTextContent(/911/);
+    expect(screen.getByRole('link', { name: /scope and limits/i })).toHaveAttribute('href', '/about');
   });
 
   it('has no detectable accessibility violations', async () => {
-    mockFetchJson(registryFixture);
     const { container } = renderAt('/');
-    await screen.findByText('Verified against the source');
     expect(await axe(container)).toHaveNoViolations();
+  });
+});
+
+describe('Navigation', () => {
+  it('puts every tool one tap away in the header', () => {
+    renderAt('/');
+    const nav = screen.getByRole('navigation', { name: 'Primary' });
+    expect(within(nav).getAllByRole('link').map((a) => [a.textContent, a.getAttribute('href')])).toEqual([
+      ['Denial letter', '/navigator'],
+      ['Bill check', '/bill-check'],
+      ['No insurance', '/uninsured'],
+      ['Prices', '/prices'],
+      ['Sources', '/sources'],
+    ]);
+    expect(within(screen.getByRole('navigation', { name: 'Footer' })).getByRole('link', { name: 'About & limits' })).toHaveAttribute('href', '/about');
   });
 });
 

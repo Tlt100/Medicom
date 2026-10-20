@@ -103,7 +103,7 @@ describe('Price context page', () => {
   it('is in the main navigation', async () => {
     mockApi();
     renderPage();
-    expect(screen.getAllByRole('link', { name: 'Price context' })[0]).toHaveAttribute('href', '/prices');
+    expect(screen.getAllByRole('link', { name: 'Prices' })[0]).toHaveAttribute('href', '/prices');
   });
 
   it('has no detectable accessibility violations', async () => {

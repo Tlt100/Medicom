@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { SOURCE_TYPE_LABEL, type SourceRef } from '../api/sources';
 import { Icon } from './Icon';
 
@@ -21,16 +22,37 @@ export function SourceLink({ source }: { source: SourceRef }) {
   );
 }
 
-/** A plain-language rule and the official sources behind it. */
+/**
+ * A plain-language rule and the official sources behind it. The rule is always visible; the source list is one tap away,
+ * and its summary still names the source and says when it is flagged for review.
+ */
 export function ClaimBlock({ claim }: { claim: { id: string; text: string; sources: SourceRef[]; needs_review: boolean } }) {
+  const [first, ...rest] = claim.sources;
   return (
     <div className={claim.needs_review ? 'claim claim-review' : 'claim'}>
       <p>{claim.text}</p>
-      <ul className="source-refs" aria-label="Sources">
-        {claim.sources.map((s) => (
-          <SourceLink key={s.id} source={s} />
-        ))}
-      </ul>
+      <details className="claim-sources">
+        <summary>
+          {claim.sources.length === 1 ? 'Source' : 'Sources'}: {first ? first.citation ?? first.title : 'none'}
+          {rest.length > 0 && ` +${rest.length}`}
+          {claim.needs_review && <span className="badge badge-review">Flagged for review</span>}
+        </summary>
+        <ul className="source-refs" aria-label="Sources">
+          {claim.sources.map((s) => (
+            <SourceLink key={s.id} source={s} />
+          ))}
+        </ul>
+      </details>
     </div>
+  );
+}
+
+/** Longer explanations, one tap away instead of up front. */
+export function More({ summary, children }: { summary: string; children: ReactNode }) {
+  return (
+    <details className="more">
+      <summary>{summary}</summary>
+      <div className="more-body">{children}</div>
+    </details>
   );
 }

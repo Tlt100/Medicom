@@ -276,10 +276,7 @@ export function Sources() {
     <div className="container page">
       <p className="eyebrow">Source library</p>
       <h1>Every source behind PatientShield</h1>
-      <p className="lede">
-        The official New Jersey and federal sources PatientShield relies on: who issued each one, whether it’s binding law or guidance, when
-        we last checked it, and the exact words we rely on.
-      </p>
+      <p className="lede">The official sources behind every rule, with the exact words we rely on.</p>
       {state.status === 'loading' && (
         <div aria-busy="true" className="library-loading">
           <span className="skeleton skeleton-line" />

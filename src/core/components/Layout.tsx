@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { ENTRY_PATHS } from '../paths';
 import { Icon } from './Icon';
 
 const NAV = [
-  { to: '/navigator', label: 'Denial Navigator' },
-  { to: '/prices', label: 'Price context' },
-  { to: '/sources', label: 'Source library' },
-  { to: '/about', label: 'About & limits' },
+  ...ENTRY_PATHS.map((p) => ({ to: p.route, label: p.navLabel })),
+  { to: '/prices', label: 'Prices' },
+  { to: '/sources', label: 'Sources' },
 ];
+const FOOTER_NAV = [...NAV, { to: '/about', label: 'About & limits' }];
 
 export function Logo() {
   return (
@@ -46,7 +47,7 @@ export function Layout() {
       <aside className="prototype-banner" aria-label="Prototype notice">
         <Icon name="alert" size={16} />
         <span>
-          Portfolio prototype using <strong>synthetic samples</strong>. Do not upload real health information.
+          Demo: use the <strong>synthetic samples</strong>, not real health information.
         </span>
       </aside>
       <header className="site-header">
@@ -84,13 +85,11 @@ export function Layout() {
           <div>
             <Logo />
             <p className="footer-note">
-              An educational tool for understanding health insurance denials and medical bills in New Jersey. Not a law firm, insurer, medical provider,
-              or government service, and not legal advice. PatientShield does not claim HIPAA compliance and is not approved for real
-              protected health information.
+              Educational tool for New Jersey health bills and denials. Not legal advice. Not approved for real health information.
             </p>
           </div>
           <nav aria-label="Footer" className="footer-links">
-            {NAV.map((n) => (
+            {FOOTER_NAV.map((n) => (
               <Link key={n.to} to={n.to}>
                 {n.label}
               </Link>

@@ -2,7 +2,7 @@ import { useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../core/api/http';
 import { Icon } from '../../core/components/Icon';
-import { ClaimBlock } from '../../core/components/SourceLinks';
+import { ClaimBlock, More } from '../../core/components/SourceLinks';
 import { formatCents, formatDollars, parseDollars } from '../../core/lib/money';
 import { useAsync } from '../../core/lib/useAsync';
 import { fetchRules, type Rules } from './api';
@@ -159,11 +159,14 @@ function CapCalculator({ rules }: { rules: Rules }) {
     <div className="cap-calc">
       <h4>Check a charge against the {pct}% limit</h4>
       <p className="muted">
-        Enter a charge from your bill and the Medicare payment amount for the same service. The hospital can tell you the Medicare rate it
-        used. <span className="badge badge-guidance">Practical suggestion</span> PatientShield’s{' '}
-        <Link to="/prices">price context</Link> shows Medicare physician fee schedule amounts, which can differ from the hospital rate the law
-        refers to.
+        Ask the hospital which Medicare rate it used. <span className="badge badge-guidance">Practical suggestion</span>
       </p>
+      <More summary="Why not use the Prices page?">
+        <p>
+          The <Link to="/prices">Prices</Link> page shows Medicare physician fee schedule amounts, which can differ from the hospital rate the
+          law refers to.
+        </p>
+      </More>
       <div className="cap-inputs">
         <div className="mini-field">
           <label htmlFor="cap-charge">The hospital’s charge</label>
@@ -219,7 +222,10 @@ function Results({ rules, answers, result, onEdit, onClear }: { rules: Rules; an
           </button>
         </div>
       </div>
-      <p className="muted bill-disclaimer">{rules.disclaimer}</p>
+      <p className="muted bill-disclaimer">An estimate, not a decision. The hospital decides.</p>
+      <More summary="What this estimate means">
+        <p>{rules.disclaimer}</p>
+      </More>
 
       <ProgramCard id="program-charity" title="NJ Charity Care" result={result.charityCare}>
         {charityRelevant
@@ -258,13 +264,9 @@ export function Uninsured() {
       <h1 ref={topRef} tabIndex={-1}>
         A hospital bill without insurance
       </h1>
-      <p className="lede">
-        Answer a few questions to see whether you may be eligible for New Jersey Charity Care, or for the state’s limit on what hospitals can
-        charge some uninsured patients. Each rule links to its official source.
-      </p>
+      <p className="lede">A few questions to see if NJ Charity Care or the state’s price limit may apply.</p>
       <p className="retention">
-        <Icon name="lock" size={16} /> Your answers stay in this browser. PatientShield doesn’t send or store your income; the estimate is
-        calculated on your device.
+        <Icon name="lock" size={16} /> Calculated on your device. Your income isn’t sent or stored.
       </p>
 
       {rules.status === 'loading' && (

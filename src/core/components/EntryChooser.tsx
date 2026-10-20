@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ENTRY_PATHS } from '../paths';
 import { Icon } from './Icon';
 
-/** "What did you receive?": the main way into the app. Paths that aren't built yet say so before anyone clicks. */
+/** "What did you receive?": the main way into the app. */
 export function EntryChooser({ headingLevel = 2 }: { headingLevel?: 2 | 3 }) {
   const Heading = `h${headingLevel}` as const;
   return (
@@ -13,22 +13,17 @@ export function EntryChooser({ headingLevel = 2 }: { headingLevel?: 2 | 3 }) {
       <ul className="chooser-list">
         {ENTRY_PATHS.map((p) => (
           <li key={p.id}>
-            <Link to={p.route} className={p.ready ? 'chooser-option chooser-option-ready' : 'chooser-option chooser-option-soon'} aria-labelledby={p.ready ? `chooser-${p.id}-title` : `chooser-${p.id}-title chooser-${p.id}-status`}
-              aria-describedby={`chooser-${p.id}-desc`}
-            >
-              <span className="chooser-title">
-                <span id={`chooser-${p.id}-title`}>{p.title}</span>
-                {p.ready ? (
-                  <Icon name="arrow" size={18} />
-                ) : (
-                  <span id={`chooser-${p.id}-status`} className="badge badge-soon">
-                    Coming soon
-                  </span>
-                )}
+            <Link to={p.route} className="chooser-option" aria-labelledby={`chooser-${p.id}-title`} aria-describedby={`chooser-${p.id}-desc`}>
+              <span className="chooser-icon" aria-hidden="true">
+                <Icon name={p.icon} size={22} />
+              </span>
+              <span id={`chooser-${p.id}-title`} className="chooser-title">
+                {p.title}
               </span>
               <span id={`chooser-${p.id}-desc`} className="chooser-desc">
                 {p.description}
               </span>
+              <Icon name="arrow" size={18} className="chooser-arrow" />
             </Link>
           </li>
         ))}
