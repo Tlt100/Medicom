@@ -184,10 +184,13 @@ main:focus {
 }
 .header-inner {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 68px;
-  gap: 16px;
+  gap: 6px;
+  padding-top: 12px;
+  padding-bottom: 8px;
 }
 .logo {
   display: inline-flex;
@@ -214,6 +217,8 @@ main:focus {
 }
 .nav {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 4px;
 }
 .nav-link {
@@ -243,8 +248,17 @@ main:focus {
 }
 
 @media (max-width: 760px) {
+  .header-inner {
+    flex-direction: row;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
   .menu-toggle {
     display: inline-flex;
+    position: absolute;
+    top: 50%;
+    right: var(--gutter);
+    transform: translateY(-50%);
   }
   .nav {
     display: none;
@@ -1952,7 +1966,7 @@ mark.cite.active {
   border-left: 4px solid var(--teal-600);
   border-radius: var(--radius-lg);
   background: var(--paper);
-  scroll-margin-top: 96px;
+  scroll-margin-top: 136px;
 }
 .source-card:focus {
   outline: none;
