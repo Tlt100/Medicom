@@ -3,7 +3,7 @@
 **Understand your insurance denial, line by line.** PatientShield reads a health insurance denial letter, shows exactly where each
 detail appears, and explains which New Jersey or federal rules apply to the reader's type of plan, with a source for every claim.
 
-**Live demo:** https://medicom-8qmu.vercel.app
+**Live demo:** https://medicom-one.vercel.app
 
 > **Portfolio prototype.** It uses synthetic sample letters only and is **not approved for real protected health information**.
 > It is an educational tool, not legal advice, and does not claim HIPAA compliance.
