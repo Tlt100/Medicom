@@ -27,7 +27,8 @@ compliance. This document records the threat model, the controls in place, and t
 - **Prompt injection.** No LLM is used. Text addressed to software is flagged and quoted, never followed.
 - **Legal accuracy.** Every legal statement cites verified sources; a test checks that every number in a statement appears in a
   cited source; uncertain sources are flagged and never presented as fact.
-- **Supply chain.** Exact pins for runtime Python dependencies; `pip-audit` and `npm audit` in the review checklist.
+- **Supply chain.** Exact pins for runtime Python dependencies; `pip-audit` and `npm audit --audit-level=high` run in CI on every
+  push and pull request to `main`, and a known vulnerability fails the build.
 
 ## Review — October 17, 2026
 

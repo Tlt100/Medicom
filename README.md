@@ -1,5 +1,7 @@
 # PatientShield
 
+[![CI](https://github.com/Tlt100/Medicom/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Tlt100/Medicom/actions/workflows/ci.yml)
+
 **Understand your insurance denial, line by line.** PatientShield reads a health insurance denial letter, shows exactly where each
 detail appears, and explains which New Jersey or federal rules apply to the reader's type of plan, with a source for every claim.
 
