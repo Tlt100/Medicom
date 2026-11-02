@@ -11,7 +11,7 @@ from patientshield.core.citations import DocumentCitation
 from patientshield.core.documents.models import DocumentInfo, Page
 from patientshield.core.triage.models import ClaimOut
 
-# Columns PatientShield recognizes on an EOB or a bill. Anything else on the row is ignored, never guessed.
+# Columns Medicom recognizes on an EOB or a bill. Anything else on the row is ignored, never guessed.
 ColumnKey = Literal[
     "billed",  # the provider's charge
     "allowed",  # the plan's allowed amount

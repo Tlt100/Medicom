@@ -1,6 +1,6 @@
 """The citation system shared by every feature.
 
-A statement in PatientShield is backed by one of two kinds of citation:
+A statement in Medicom is backed by one of two kinds of citation:
 - a DocumentCitation: an exact span of the user's own document (page + offsets + the quoted text), or
 - a SourceCitation: an entry in the verified source library (see core.sources), optionally a specific excerpt.
 

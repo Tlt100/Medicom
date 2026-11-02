@@ -4,9 +4,9 @@ export function About() {
   return (
     <div className="container page narrow">
       <p className="eyebrow">About & limits</p>
-      <h1>What PatientShield is, and what it isn’t</h1>
+      <h1>What Medicom is, and what it isn’t</h1>
       <p className="lede">
-        PatientShield helps people understand a health insurance denial: what the letter actually says, which rules apply to their plan,
+        Medicom helps people understand a health insurance denial: what the letter actually says, which rules apply to their plan,
         and what the verified next steps are.
       </p>
 
@@ -29,7 +29,7 @@ export function About() {
           Deadlines it shows are general rules from official sources. Your plan documents and letters control. When in doubt, act early and
           confirm in writing.
         </li>
-        <li>Medicare and Medicaid have their own appeal systems; PatientShield points you to them but does not cover every level.</li>
+        <li>Medicare and Medicaid have their own appeal systems; Medicom points you to them but does not cover every level.</li>
       </ul>
 
       <h2>Urgent situations</h2>
@@ -42,7 +42,7 @@ export function About() {
       <ul>
         <li>This is a portfolio prototype. Use the synthetic samples. It is not approved for real protected health information.</li>
         <li>No account and no database. Uploaded letters are processed in memory for a single request and not stored or logged.</li>
-        <li>PatientShield does not claim HIPAA compliance or certification.</li>
+        <li>Medicom does not claim HIPAA compliance or certification.</li>
       </ul>
 
       <h2>How sources work</h2>

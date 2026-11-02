@@ -23,7 +23,7 @@ export async function request<T>(path: string, schema: z.ZodType<T>, init: Reque
     res = await fetch(path, { credentials: 'same-origin', ...init, headers: { Accept: 'application/json', ...init.headers } });
   } catch (err) {
     if ((err as Error).name === 'AbortError') throw err;
-    throw new ApiError('We couldn’t reach the PatientShield service. Check your connection and try again.');
+    throw new ApiError('We couldn’t reach the Medicom service. Check your connection and try again.');
   }
   let body: unknown;
   try {

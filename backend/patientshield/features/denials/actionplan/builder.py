@@ -4,7 +4,7 @@ Rules:
 - Legal statements only come from CLAIMS (each cites verified sources). Practical advice is labelled "practical".
 - Letter facts are always shown as quotes with page numbers, never paraphrased into rules.
 - Deadlines say what they're counted from and whether they come from the letter or a general rule.
-  When both exist, the user is told to plan around the earlier one; PatientShield never says a plan broke a rule.
+  When both exist, the user is told to plan around the earlier one; Medicom never says a plan broke a rule.
 - Unknown plan types get no rule-based deadlines, only how to find out.
 """
 
@@ -18,7 +18,7 @@ from patientshield.core.triage.service import claim_out, source_ref, triage
 from patientshield.features.denials.actionplan.models import ActionPlan, Comparison, Contact, Deadline, PlanRequest, StatedDeadline, Step
 
 DISCLAIMER = (
-    "PatientShield is an educational tool, not legal advice, and it can’t predict or guarantee the outcome of an appeal. "
+    "Medicom is an educational tool, not legal advice, and it can’t predict or guarantee the outcome of an appeal. "
     "Deadlines here are general rules and what your letter says; your plan’s documents control. When in doubt, act early and "
     "confirm in writing. For urgent care, contact your plan now and ask for an expedited appeal. For emergencies, call 911."
 )
@@ -263,7 +263,7 @@ class _Builder:
                 letter_summary=f"Within {stated.text}" if stated else "No deadline found in the letter.",
                 rules=[self.claim(c) for c in internal],
                 rules_summary=unknown_note
-                or (None if internal else "PatientShield doesn’t cover this deadline for your plan type yet. Follow your notice."),
+                or (None if internal else "Medicom doesn’t cover this deadline for your plan type yet. Follow your notice."),
                 note=note,
             )
         )

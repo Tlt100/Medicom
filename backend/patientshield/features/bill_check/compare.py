@@ -13,7 +13,7 @@ from patientshield.features.bill_check.models import Comparison, DocumentIn, Fla
 
 DISCLAIMER = (
     "These are differences worth asking about, not findings that anything is wrong. A bill and an EOB can differ for "
-    "ordinary reasons, such as a payment you already made or a service on a separate EOB. PatientShield doesn't decide "
+    "ordinary reasons, such as a payment you already made or a service on a separate EOB. Medicom doesn't decide "
     "whether a bill is correct; your provider and your plan can explain each line."
 )
 

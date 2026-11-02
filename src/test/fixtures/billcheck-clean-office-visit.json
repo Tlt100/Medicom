@@ -12,7 +12,7 @@
   "pages": [
    {
     "number": 1,
-    "text": "Maplewood Health Plan\nP.O. Box 7700, Princeton, NJ 08540 | Member Services: (800) 555-0163\nEXPLANATION OF BENEFITS - THIS IS NOT A BILL\nMember: Riley Example | Member ID: MHP-209114-02 | Date processed: September 20, 2026\nClaim number: MHP-26-0902-5521 | Provider: Riverside Family Medicine (In-network)\nDate Service Code Billed Allowed Plan paid You owe\n09/02/2026 Office visit, established patient 99214 $210.00 $128.40 $102.72 $25.68\n09/02/2026 Comprehensive metabolic panel 80053 $64.00 $18.20 $14.56 $3.64\nTotal $274.00 $146.60 $117.28 $29.32\nThe amount you owe is your share of the cost under your plan. Your provider may bill you for\nit. If you already paid part of it at the visit, your bill should show that payment.\nQuestions? Call Member Services at (800) 555-0163.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for PatientShield demo mode - Page 1 of 1"
+    "text": "Maplewood Health Plan\nP.O. Box 7700, Princeton, NJ 08540 | Member Services: (800) 555-0163\nEXPLANATION OF BENEFITS - THIS IS NOT A BILL\nMember: Riley Example | Member ID: MHP-209114-02 | Date processed: September 20, 2026\nClaim number: MHP-26-0902-5521 | Provider: Riverside Family Medicine (In-network)\nDate Service Code Billed Allowed Plan paid You owe\n09/02/2026 Office visit, established patient 99214 $210.00 $128.40 $102.72 $25.68\n09/02/2026 Comprehensive metabolic panel 80053 $64.00 $18.20 $14.56 $3.64\nTotal $274.00 $146.60 $117.28 $29.32\nThe amount you owe is your share of the cost under your plan. Your provider may bill you for\nit. If you already paid part of it at the visit, your bill should show that payment.\nQuestions? Call Member Services at (800) 555-0163.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for Medicom demo mode - Page 1 of 1"
    }
   ],
   "columns": [
@@ -75,7 +75,7 @@
    }
   ],
   "warnings": [],
-  "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+  "retention": "Your file was processed in memory for this request only. Medicom did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
  },
  "bill": {
   "document": {
@@ -90,7 +90,7 @@
   "pages": [
    {
     "number": 1,
-    "text": "Riverside Family Medicine\n40 Example Avenue, Lawrenceville, NJ 08648 | Billing questions: (609) 555-0118\nPATIENT STATEMENT\nPatient: Riley Example | Account number: RFM-0048813 | Statement date: October 1, 2026\nInsurance: Maplewood Health Plan\nDate Code Description Charges\n09/02/2026 99214 Office visit, established patient $210.00\n09/02/2026 80053 Comprehensive metabolic panel $64.00\nTotal charges: $274.00\nInsurance payments: -$117.28\nAdjustments: -$127.40\nAmount due: $29.32\nPlease pay by the due date shown on the payment slip. Questions about this bill? Call (609)\n555-0118.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for PatientShield demo mode - Page 1 of 1"
+    "text": "Riverside Family Medicine\n40 Example Avenue, Lawrenceville, NJ 08648 | Billing questions: (609) 555-0118\nPATIENT STATEMENT\nPatient: Riley Example | Account number: RFM-0048813 | Statement date: October 1, 2026\nInsurance: Maplewood Health Plan\nDate Code Description Charges\n09/02/2026 99214 Office visit, established patient $210.00\n09/02/2026 80053 Comprehensive metabolic panel $64.00\nTotal charges: $274.00\nInsurance payments: -$117.28\nAdjustments: -$127.40\nAmount due: $29.32\nPlease pay by the due date shown on the payment slip. Questions about this bill? Call (609)\n555-0118.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for Medicom demo mode - Page 1 of 1"
    }
   ],
   "columns": [
@@ -177,7 +177,7 @@
    }
   ],
   "warnings": [],
-  "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+  "retention": "Your file was processed in memory for this request only. Medicom did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
  },
  "comparison": {
   "matches": [
@@ -271,6 +271,6 @@
     "needs_review": false
    }
   ],
-  "disclaimer": "These are differences worth asking about, not findings that anything is wrong. A bill and an EOB can differ for ordinary reasons, such as a payment you already made or a service on a separate EOB. PatientShield doesn't decide whether a bill is correct; your provider and your plan can explain each line."
+  "disclaimer": "These are differences worth asking about, not findings that anything is wrong. A bill and an EOB can differ for ordinary reasons, such as a payment you already made or a service on a separate EOB. Medicom doesn't decide whether a bill is correct; your provider and your plan can explain each line."
  }
 }

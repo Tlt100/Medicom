@@ -17,7 +17,7 @@ def _warnings(doc: ParsedDocument, fields: List[ExtractedField], sigs: List[Sign
     if any(s.kind == "suspicious" for s in sigs):
         out.append(
             "This document contains text addressed to software (for example, telling it to approve a claim). "
-            "PatientShield ignores such text and only quotes it. Read the original letter carefully."
+            "Medicom ignores such text and only quotes it. Read the original letter carefully."
         )
     if (
         by_key["denial_reason"].status == "not_found"

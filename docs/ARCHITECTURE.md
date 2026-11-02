@@ -131,8 +131,8 @@ run of the formula on the raw file and trace the constants to source excerpts.
 What the amounts are not: hospital facility payments (hospital outpatient and inpatient systems) are not included, and
 each service says what its amount covers. Emergency visits use the facility rate (the doctor's fee) and are marked
 `comparable: false`, so the table never shows a "times Medicare" ratio against a hospital's emergency charge. Descriptions
-are PatientShield's own wording, not CPT descriptors. The hospital's published price is typed in by the person from the
-hospital's own price list (45 CFR part 180); PatientShield doesn't fetch hospital price files.
+are Medicom's own wording, not CPT descriptors. The hospital's published price is typed in by the person from the
+hospital's own price list (45 CFR part 180); Medicom doesn't fetch hospital price files.
 
 ## Plan-type triage
 
@@ -152,7 +152,7 @@ Unknown plan types get letter-stated dates only and start with confirming the pl
 
 ## Source library
 
-`/sources` loads the registry and every claim, so each source shows the statements in PatientShield that cite it (traceability in both
+`/sources` loads the registry and every claim, so each source shows the statements in Medicom that cite it (traceability in both
 directions). Filters (jurisdiction, legal weight, topic, review status) and search live in the URL, so a filtered view can be shared;
 unknown filter values are ignored. A source is marked *due for re-check* 180 days after it was last checked. Every source reference
 elsewhere in the app links to `/sources#source-<id>`, which highlights that entry. Those links open in a new tab because the Navigator

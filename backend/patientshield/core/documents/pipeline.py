@@ -14,7 +14,7 @@ from patientshield.core.documents.models import DOCUMENT_TYPE_LABELS, DocumentIn
 from patientshield.core.documents.parsing import DocumentError, ParsedDocument, parse_document
 
 RETENTION_NOTICE = (
-    "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, "
+    "Your file was processed in memory for this request only. Medicom did not save it, log its contents, "
     "or send it to any other service. Closing or clearing this page removes it from your browser."
 )
 

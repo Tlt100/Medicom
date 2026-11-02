@@ -64,7 +64,7 @@ function SourceCard({ source, claims, highlighted }: { source: Source; claims: C
           </div>
         )}
         <div>
-          <dt>Last checked by PatientShield</dt>
+          <dt>Last checked by Medicom</dt>
           <dd>{formatDate(source.last_checked)}</dd>
         </div>
         <div>
@@ -99,7 +99,7 @@ function SourceCard({ source, claims, highlighted }: { source: Source; claims: C
       )}
 
       <div className="used-by">
-        <p className="used-by-title">Statements in PatientShield that cite this source</p>
+        <p className="used-by-title">Statements in Medicom that cite this source</p>
         {claims.length ? (
           <ul>
             {claims.map((c) => (
@@ -177,7 +177,7 @@ function Library({ registry, claims }: { registry: Registry; claims: ClaimSummar
         <summary>How these sources are verified</summary>
         <ul>
           <li>Each source was read on an official government website. Federal regulations come from the eCFR, with the date its text was current.</li>
-          <li>Excerpts are copied word for word; PatientShield’s plain-language statements cite the sources they rely on.</li>
+          <li>Excerpts are copied word for word; Medicom’s plain-language statements cite the sources they rely on.</li>
           <li>
             Anything confirmed only secondhand, or that conflicts with another source, is <strong>flagged for review</strong> and is never
             presented as fact.
@@ -275,7 +275,7 @@ export function Sources() {
   return (
     <div className="container page">
       <p className="eyebrow">Source library</p>
-      <h1>Every source behind PatientShield</h1>
+      <h1>Every source behind Medicom</h1>
       <p className="lede">The official sources behind every rule, with the exact words we rely on.</p>
       {state.status === 'loading' && (
         <div aria-busy="true" className="library-loading">

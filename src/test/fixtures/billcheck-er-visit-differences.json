@@ -12,7 +12,7 @@
   "pages": [
    {
     "number": 1,
-    "text": "Maplewood Health Plan\nP.O. Box 7700, Princeton, NJ 08540 | Member Services: (800) 555-0163\nEXPLANATION OF BENEFITS - THIS IS NOT A BILL\nMember: Riley Example | Member ID: MHP-209114-02 | Date processed: September 2, 2026\nClaim number: MHP-26-0814-3307 | Provider: Lakeside Regional Hospital (In-network)\nDate Service Code Billed Allowed Plan paid You owe\n08/14/2026 Emergency department visit 99284 $1,980.00 $820.00 $656.00 $164.00\n08/14/2026 CT head without contrast 70450 $2,100.00 $540.00 $432.00 $108.00\n08/14/2026 Wound care supplies A6216 $95.00 $0.00 $0.00 $95.00 DENIED - not covered\nTotal $4,175.00 $1,360.00 $1,088.00 $367.00\nThe amount you owe is your share of the cost under your plan. Your provider may bill you for\nit. If you already paid part of it at the visit, your bill should show that payment.\nQuestions? Call Member Services at (800) 555-0163.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for PatientShield demo mode - Page 1 of 1"
+    "text": "Maplewood Health Plan\nP.O. Box 7700, Princeton, NJ 08540 | Member Services: (800) 555-0163\nEXPLANATION OF BENEFITS - THIS IS NOT A BILL\nMember: Riley Example | Member ID: MHP-209114-02 | Date processed: September 2, 2026\nClaim number: MHP-26-0814-3307 | Provider: Lakeside Regional Hospital (In-network)\nDate Service Code Billed Allowed Plan paid You owe\n08/14/2026 Emergency department visit 99284 $1,980.00 $820.00 $656.00 $164.00\n08/14/2026 CT head without contrast 70450 $2,100.00 $540.00 $432.00 $108.00\n08/14/2026 Wound care supplies A6216 $95.00 $0.00 $0.00 $95.00 DENIED - not covered\nTotal $4,175.00 $1,360.00 $1,088.00 $367.00\nThe amount you owe is your share of the cost under your plan. Your provider may bill you for\nit. If you already paid part of it at the visit, your bill should show that payment.\nQuestions? Call Member Services at (800) 555-0163.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for Medicom demo mode - Page 1 of 1"
    }
   ],
   "columns": [
@@ -94,7 +94,7 @@
    }
   ],
   "warnings": [],
-  "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+  "retention": "Your file was processed in memory for this request only. Medicom did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
  },
  "bill": {
   "document": {
@@ -109,7 +109,7 @@
   "pages": [
    {
     "number": 1,
-    "text": "Lakeside Regional Hospital\n200 Sample Boulevard, Toms River, NJ 08753 | Billing questions: (732) 555-0135\nPATIENT STATEMENT\nPatient: Riley Example | Account number: LRH-77031952 | Statement date: September 18, 2026\nInsurance: Maplewood Health Plan\nDate Code Description Charges\n08/14/2026 99284 Emergency department visit $1,980.00\n08/14/2026 70450 CT head without contrast $2,250.00\n08/14/2026 A6216 Wound care supplies $95.00\n08/14/2026 J1885 Ketorolac injection, 15 mg $42.00\nTotal charges: $4,367.00\nInsurance payments: -$1,088.00\nAdjustments: -$2,870.00\nAmount due: $409.00\nPlease pay by the due date shown on the payment slip. Questions about this bill? Call (732)\n555-0135.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for PatientShield demo mode - Page 1 of 1"
+    "text": "Lakeside Regional Hospital\n200 Sample Boulevard, Toms River, NJ 08753 | Billing questions: (732) 555-0135\nPATIENT STATEMENT\nPatient: Riley Example | Account number: LRH-77031952 | Statement date: September 18, 2026\nInsurance: Maplewood Health Plan\nDate Code Description Charges\n08/14/2026 99284 Emergency department visit $1,980.00\n08/14/2026 70450 CT head without contrast $2,250.00\n08/14/2026 A6216 Wound care supplies $95.00\n08/14/2026 J1885 Ketorolac injection, 15 mg $42.00\nTotal charges: $4,367.00\nInsurance payments: -$1,088.00\nAdjustments: -$2,870.00\nAmount due: $409.00\nPlease pay by the due date shown on the payment slip. Questions about this bill? Call (732)\n555-0135.\nSYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for Medicom demo mode - Page 1 of 1"
    }
   ],
   "columns": [
@@ -228,7 +228,7 @@
    }
   ],
   "warnings": [],
-  "retention": "Your file was processed in memory for this request only. PatientShield did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
+  "retention": "Your file was processed in memory for this request only. Medicom did not save it, log its contents, or send it to any other service. Closing or clearing this page removes it from your browser."
  },
  "comparison": {
   "matches": [
@@ -538,6 +538,6 @@
     "needs_review": false
    }
   ],
-  "disclaimer": "These are differences worth asking about, not findings that anything is wrong. A bill and an EOB can differ for ordinary reasons, such as a payment you already made or a service on a separate EOB. PatientShield doesn't decide whether a bill is correct; your provider and your plan can explain each line."
+  "disclaimer": "These are differences worth asking about, not findings that anything is wrong. A bill and an EOB can differ for ordinary reasons, such as a payment you already made or a service on a separate EOB. Medicom doesn't decide whether a bill is correct; your provider and your plan can explain each line."
  }
 }

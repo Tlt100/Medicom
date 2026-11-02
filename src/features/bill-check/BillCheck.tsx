@@ -346,7 +346,7 @@ function Results({ result, onDelete }: { result: BillCheckResult; onDelete: () =
 
           <PriceContext
             title="Price context for these services"
-            intro="Charges from your bill next to what Medicare pays for the same service, for services PatientShield has amounts for."
+            intro="Charges from your bill next to what Medicare pays for the same service, for services Medicom has amounts for."
             rows={bill.line_items.filter((i) => i.code && i.amounts.billed !== undefined).map((i) => ({ key: i.id, code: i.code!, chargeCents: i.amounts.billed }))}
           />
 

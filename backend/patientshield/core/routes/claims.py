@@ -16,5 +16,5 @@ class ClaimSummary(BaseModel):
 
 @router.get("/claims", response_model=List[ClaimSummary])
 def list_claims() -> List[ClaimSummary]:
-    """Every plain-language legal statement PatientShield can show, with the sources it cites."""
+    """Every plain-language legal statement Medicom can show, with the sources it cites."""
     return [ClaimSummary(id=c.id, text=c.text, source_ids=list(c.source_ids)) for c in CLAIMS.values()]

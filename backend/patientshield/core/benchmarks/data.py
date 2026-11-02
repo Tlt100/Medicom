@@ -8,7 +8,7 @@ and the non-QP conversion factor. Amounts are rounded to the nearest cent.
 RVUs were copied from PPRRVU2026_Oct_nonQPP.csv (global rows, no modifier) on 2026-10-19. None of these codes appear
 in the OPPS imaging cap file (OPPSCAP_Oct.csv), so no cap applies.
 
-Descriptions are PatientShield's own plain-language wording, not CPT descriptors.
+Descriptions are Medicom's own plain-language wording, not CPT descriptors.
 These are physician fee schedule amounts only. Hospital facility payments are set under other Medicare systems and
 are not included; each service says what its amount covers.
 """

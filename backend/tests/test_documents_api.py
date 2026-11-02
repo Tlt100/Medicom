@@ -52,7 +52,7 @@ def test_upload_text_file(api):
 def test_upload_rejects_bad_files_with_clear_messages(api):
     res = upload(api, "photo.png", b"\x89PNG\r\n\x1a\n", "image/png")
     assert res.status_code == 422
-    assert res.json() == {"error": "unsupported_type", "message": "PatientShield accepts PDF (.pdf) and plain-text (.txt) files only."}
+    assert res.json() == {"error": "unsupported_type", "message": "Medicom accepts PDF (.pdf) and plain-text (.txt) files only."}
 
     empty = upload(api, "empty.pdf", b"")
     assert empty.status_code == 422 and empty.json()["error"] == "empty"

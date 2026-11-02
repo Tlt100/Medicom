@@ -23,7 +23,7 @@ PAGE_W, PAGE_H = 612, 792
 MARGIN_X, TOP_Y, BOTTOM_Y = 72, 720, 72
 SIZE, LEADING = 10.5, 15
 WRAP = 92
-FOOTER = "SYNTHETIC SAMPLE - NOT A REAL LETTER - created for PatientShield demo mode"
+FOOTER = "SYNTHETIC SAMPLE - NOT A REAL LETTER - created for Medicom demo mode"
 
 
 def _escape(text: str) -> str:
@@ -94,7 +94,7 @@ def render_pdf(letter: Renderable) -> bytes:
     objects[pages_obj - 1] = f"<< /Type /Pages /Kids [{kid_refs}] /Count {len(kids)} >>".encode("ascii")
     title = _escape(f"Synthetic sample: {letter.title}")
 
-    info = add(f"<< /Title ({title}) /Producer (PatientShield synthetic sample generator) >>".encode("ascii"))
+    info = add(f"<< /Title ({title}) /Producer (Medicom synthetic sample generator) >>".encode("ascii"))
 
     buf = bytearray(b"%PDF-1.4\n%\xe2\xe3\xcf\xd3\n")
     offsets = []

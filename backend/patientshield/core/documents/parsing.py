@@ -75,7 +75,7 @@ def detect_kind(name: str, data: bytes) -> str:
         raise DocumentError("unsupported_type", "This file is named .pdf but isn't a valid PDF.")
     if ext in {"txt", "text", "md"} or not ext:
         return "text"
-    raise DocumentError("unsupported_type", "PatientShield accepts PDF (.pdf) and plain-text (.txt) files only.")
+    raise DocumentError("unsupported_type", "Medicom accepts PDF (.pdf) and plain-text (.txt) files only.")
 
 
 def normalize_text(text: str) -> str:
@@ -219,7 +219,7 @@ def parse_document(name: str, data: bytes) -> ParsedDocument:
     if not any(p.strip() for p in pages):
         raise DocumentError(
             "no_text",
-            "We couldn't find any text in this file. If it's a scanned image, PatientShield can't read it yet. "
+            "We couldn't find any text in this file. If it's a scanned image, Medicom can't read it yet. "
             "Try a text-based PDF or a .txt file.",
         )
     return ParsedDocument(name=safe_name(name), kind=kind, size_bytes=len(data), pages=pages, truncated=truncated)

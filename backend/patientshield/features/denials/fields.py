@@ -329,7 +329,7 @@ def signals(passages: List[Passage]) -> List[Signal]:
             Signal(
                 kind="suspicious",
                 code="instructions-to-software",
-                label="Contains text addressed to software. PatientShield treats it as plain text and ignores it.",
+                label="Contains text addressed to software. Medicom treats it as plain text and ignores it.",
                 citations=[cite(s) for s in suspicious[:5]],
             )
         )

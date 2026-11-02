@@ -212,7 +212,7 @@ def _profile(plan: PlanType, answers: Dict[str, str]) -> Tuple[str, Optional[Reg
         )
         uncertainties.append(
             "New Jersey changed parts of its Medicaid fair hearing process on July 1, 2026, and official sources give different "
-            "deadlines. PatientShield has flagged this for review. Use the deadline printed on your notice and act quickly."
+            "deadlines. Medicom has flagged this for review. Use the deadline printed on your notice and act quickly."
         )
         return summary, regulator, ["medicaid_appeal_60", "medicaid_fair_hearing", "prior_auth_reason"], uncertainties
 
@@ -226,7 +226,7 @@ def _profile(plan: PlanType, answers: Dict[str, str]) -> Tuple[str, Optional[Reg
         else:
             summary = "Medicare has its own appeal system, separate from New Jersey insurance rules. Your notice explains the first step."
             uncertainties.append(
-                "PatientShield doesn’t yet cover Original Medicare’s deadlines. Follow the instructions and dates printed on your notice."
+                "Medicom doesn’t yet cover Original Medicare’s deadlines. Follow the instructions and dates printed on your notice."
                 if kind == "original"
                 else "Find out whether you have Original Medicare or a Medicare Advantage plan; the first appeal step and deadline differ."
             )
@@ -242,13 +242,13 @@ def _profile(plan: PlanType, answers: Dict[str, str]) -> Tuple[str, Optional[Reg
     if plan == "government-or-religious":
         summary = (
             "Plans sponsored by government employers, and by most religious organizations, are exceptions to the usual federal claims "
-            "rules for private employer plans. PatientShield doesn’t cover these plans yet. Ask the plan administrator which appeal "
+            "rules for private employer plans. Medicom doesn’t cover these plans yet. Ask the plan administrator which appeal "
             "rules apply."
         )
         return summary, None, ["erisa_scope"], uncertainties
 
     summary = (
-        "Your appeal rights depend on what kind of plan you have, so PatientShield won’t show plan-specific steps yet. "
+        "Your appeal rights depend on what kind of plan you have, so Medicom won’t show plan-specific steps yet. "
         "The steps below can tell you your plan type in a few minutes."
     )
     return summary, None, ["ihcap_scope", "erisa_scope"], uncertainties

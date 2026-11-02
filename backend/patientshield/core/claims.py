@@ -263,7 +263,7 @@ _CLAIMS = [
     # ---------------------------------------------------------------- price context
     Claim(
         "medicare_estimate_how",
-        "PatientShield’s Medicare estimates follow CMS’s 2026 physician fee schedule formula: each service’s relative value "
+        "Medicom’s Medicare estimates follow CMS’s 2026 physician fee schedule formula: each service’s relative value "
         "units, adjusted for New Jersey costs, times the conversion factor. CMS set the 2026 conversion factor at $33.40 for "
         "most clinicians.",
         ("cms-pfs-rvu26d", "cms-pfs-2026-final-rule"),

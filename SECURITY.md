@@ -1,6 +1,6 @@
 # Security
 
-PatientShield is a portfolio prototype. It is **not approved for real protected health information** and does not claim HIPAA
+Medicom is a portfolio prototype. It is **not approved for real protected health information** and does not claim HIPAA
 compliance. This document records the threat model, the controls in place, and the results of the security review.
 
 ## Threat model

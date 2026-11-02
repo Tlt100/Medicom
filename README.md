@@ -1,8 +1,8 @@
-# PatientShield
+# Medicom
 
 [![CI](https://github.com/Tlt100/Medicom/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Tlt100/Medicom/actions/workflows/ci.yml)
 
-**Understand your insurance denial, line by line.** PatientShield reads a health insurance denial letter, shows exactly where each
+**Understand your insurance denial, line by line.** Medicom reads a health insurance denial letter, shows exactly where each
 detail appears, and explains which New Jersey or federal rules apply to the reader's type of plan, with a source for every claim.
 
 **Live demo:** https://medicom-one.vercel.app
@@ -18,7 +18,7 @@ consumers appealed **less than 1%** of those denials
 That data covers HealthCare.gov marketplace plans only. It excludes state-based marketplaces such as New Jersey's, and employer plans,
 so it is context, not a New Jersey figure.
 
-Existing tools mostly help write persuasive appeal letters. PatientShield focuses on the step before that, **understanding**:
+Existing tools mostly help write persuasive appeal letters. Medicom focuses on the step before that, **understanding**:
 
 1. What does the denial letter actually say? (quoted, with page numbers)
 2. Which rules apply to *this* plan? (NJ-regulated, self-funded/ERISA, marketplace, Medicaid, Medicare, or unknown)

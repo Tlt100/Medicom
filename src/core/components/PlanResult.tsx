@@ -99,7 +99,7 @@ export function PlanResult({ result, onChangeAnswers, onBackToLetter, children }
       {children}
 
       <p className="disclaimer">
-        PatientShield is an educational tool, not legal advice. It can’t predict or guarantee the outcome of an appeal. For urgent care,
+        Medicom is an educational tool, not legal advice. It can’t predict or guarantee the outcome of an appeal. For urgent care,
         contact your plan now and ask for an expedited appeal.
       </p>
     </section>

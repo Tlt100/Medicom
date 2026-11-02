@@ -24,7 +24,7 @@ def create_app(settings: Optional[Settings] = None) -> FastAPI:
     load_sources()  # fail fast on a malformed registry
 
     app = FastAPI(
-        title="PatientShield API",
+        title="Medicom API",
         version=__version__,
         docs_url="/api/docs" if settings.enable_docs else None,
         redoc_url=None,

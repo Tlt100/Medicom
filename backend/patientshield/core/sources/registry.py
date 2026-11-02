@@ -1,4 +1,4 @@
-"""PatientShield verified source registry.
+"""Medicom verified source registry.
 
 RULES FOR EDITING
 - Excerpt `text` is copied verbatim from `url` on `last_checked`. Never paraphrase inside it.

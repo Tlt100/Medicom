@@ -12,12 +12,12 @@ const FOOTER_NAV = [...NAV, { to: '/about', label: 'About & limits' }];
 
 export function Logo() {
   return (
-    <Link to="/" className="logo" aria-label="PatientShield home">
+    <Link to="/" className="logo" aria-label="Medicom home">
       <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" focusable="false">
         <path d="M16 2.5 4.5 6.8v8.4c0 7.2 4.9 12.6 11.5 14.3 6.6-1.7 11.5-7.1 11.5-14.3V6.8z" className="logo-shield" />
         <path d="M10.5 16.2l3.6 3.6 7.4-7.6" className="logo-check" />
       </svg>
-      <span>PatientShield</span>
+      <span>Medicom</span>
     </Link>
   );
 }

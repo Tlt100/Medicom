@@ -14,7 +14,7 @@ comparison is exercised on realistic numbers. ASCII only, for the minimal PDF ge
 from dataclasses import dataclass, field
 from typing import Dict, List
 
-FOOTER = "SYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for PatientShield demo mode"
+FOOTER = "SYNTHETIC SAMPLE - NOT A REAL BILL OR EOB - created for Medicom demo mode"
 
 
 @dataclass(frozen=True)

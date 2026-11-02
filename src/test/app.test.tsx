@@ -57,7 +57,7 @@ describe('Navigation', () => {
 describe('Routing', () => {
   it('renders the about page with limits and no accessibility violations', async () => {
     const { container } = renderAt('/about');
-    expect(screen.getByRole('heading', { name: /what patientshield is/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /what medicom is/i })).toBeInTheDocument();
     expect(within(screen.getByRole('main')).getByText(/does not claim HIPAA compliance/i)).toBeInTheDocument();
     expect(await axe(container)).toHaveNoViolations();
   });

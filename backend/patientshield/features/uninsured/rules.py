@@ -74,6 +74,6 @@ CLAIM_IDS = [
 
 DISCLAIMER = (
     "This is an estimate of what you may be eligible for, not a decision. The hospital decides Charity Care and how it "
-    "applies New Jersey’s limit on charges, using its own application and documents. PatientShield doesn’t decide "
+    "applies New Jersey’s limit on charges, using its own application and documents. Medicom doesn’t decide "
     "whether a bill is correct."
 )

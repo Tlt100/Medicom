@@ -78,7 +78,7 @@ function Row({ row, rate, b, locality }: { row: PriceRow; rate: BenchmarkRate; b
 }
 
 /** Medicare reference amounts next to a charge, with where every number comes from. */
-/** Shows the given rows, or every service PatientShield has amounts for when `rows` is omitted. */
+/** Shows the given rows, or every service Medicom has amounts for when `rows` is omitted. */
 export function PriceContext({
   rows,
   title = 'Price context',
@@ -144,7 +144,7 @@ export function PriceContext({
       </div>
 
       {known.length === 0 ? (
-        <p>None of these services are in PatientShield’s list of {b.rates.length} common services yet.</p>
+        <p>None of these services are in Medicom’s list of {b.rates.length} common services yet.</p>
       ) : (
         // Focusable so keyboard users can scroll the table sideways on a narrow screen (axe: scrollable-region-focusable).
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
