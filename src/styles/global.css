@@ -2248,7 +2248,7 @@ mark.cite.active {
 }
 .price-table input {
   font: inherit;
-  width: 8.5em;
+  width: 7em;
   min-height: 40px;
   padding: 6px 8px;
   border: 1px solid var(--border-strong);
@@ -2260,6 +2260,82 @@ mark.cite.active {
 .price-table td:nth-child(4) {
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
+}
+/* The price table has to fit its card: headers and the comparison sentence wrap instead of widening the table,
+   and the service name keeps enough room to read on a few lines. */
+.price-table thead th {
+  white-space: normal;
+}
+.price-table tbody th {
+  min-width: 15ch;
+}
+.price-table td:nth-child(5) {
+  white-space: normal;
+  min-width: 18ch;
+}
+@media (max-width: 900px) {
+  /* "$130.71 Northern New Jersey": the area name drops under the amount so the column stays narrow. */
+  .price-table td:nth-child(4) {
+    white-space: normal;
+    min-width: 12ch;
+  }
+  .price-table input {
+    width: 5.5em;
+  }
+  .price-table td:nth-child(4) .muted {
+    display: block;
+  }
+  .price-table td:nth-child(4) > div + div {
+    margin-top: 6px;
+  }
+}
+@media (max-width: 640px) {
+  /* Phones: each service becomes a stacked block, with each cell's column name shown above its value. */
+  .price-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .price-table,
+  .price-table tbody,
+  .price-table tr,
+  .price-table tbody th,
+  .price-table td {
+    display: block;
+  }
+  .price-table caption {
+    display: block;
+  }
+  .price-table tr {
+    padding: 12px 14px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .price-table tbody th,
+  .price-table td {
+    min-width: 0;
+    padding: 0;
+    border-top: 0;
+    white-space: normal;
+  }
+  .price-table td {
+    margin-top: 10px;
+  }
+  .price-table td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .price-table td:nth-child(4) .muted {
+    display: inline;
+  }
+  .price-table input {
+    width: min(100%, 12em);
+  }
 }
 .price-covers {
   margin: 4px 0 0;
