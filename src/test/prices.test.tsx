@@ -81,6 +81,41 @@ describe('Price context page', () => {
     expect(mri).toHaveTextContent('The published price is about 3 times the Medicare amount.');
   });
 
+  it('says how much more or less than Medicare a price is, in dollars and percent', async () => {
+    mockApi();
+    renderPage();
+    await screen.findByRole('table');
+    await userEvent.selectOptions(screen.getByLabelText(/county where you got care/i), 'Mercer');
+    const mri = rowFor('72148');
+    await userEvent.type(within(mri).getByLabelText(/charge on your bill/i), '1450');
+    await userEvent.type(within(mri).getByLabelText(/published price/i), '150');
+    const above = within(mri).getByText(/more than Medicare/);
+    expect(above).toHaveTextContent('$1,243.12 more than Medicare (+601%)');
+    expect(above).toHaveClass('price-diff-above');
+    const below = within(mri).getByText(/less than Medicare/);
+    expect(below).toHaveTextContent('$56.88 less than Medicare (−27%)');
+    expect(below).toHaveClass('price-diff-below');
+  });
+
+  it('shows a range, or says so, when the county is not chosen', async () => {
+    mockApi();
+    renderPage();
+    await screen.findByRole('table');
+    const visit = rowFor('99203');
+    await userEvent.type(within(visit).getByLabelText(/charge on your bill/i), '128');
+    expect(within(visit).getByText(/between the two medicare amounts/i)).toHaveClass('price-diff-between');
+    await userEvent.clear(within(visit).getByLabelText(/charge on your bill/i));
+    await userEvent.type(within(visit).getByLabelText(/charge on your bill/i), '100');
+    expect(within(visit).getByText(/less than Medicare/)).toHaveTextContent(/\$25\.64 to \$30\.71 less than Medicare \(−20% to −23%\)/);
+  });
+
+  it('explains that Medicare is a yardstick for anyone, not only people on Medicare', async () => {
+    mockApi();
+    renderPage();
+    await screen.findByRole('table');
+    expect(screen.getByRole('main')).toHaveTextContent(/don’t need to be on Medicare/);
+  });
+
   it('does not compare an emergency visit charge with a doctor’s fee', async () => {
     mockApi();
     renderPage();

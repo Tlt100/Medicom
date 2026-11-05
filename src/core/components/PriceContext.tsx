@@ -17,6 +17,43 @@ function Amount({ cents }: { cents: number | null }) {
   return <>{cents === null ? '—' : formatCents(cents)}</>;
 }
 
+const range = (lo: string, hi: string) => (lo === hi ? lo : `${lo} to ${hi}`);
+
+/** Above, below or about the same as Medicare, in dollars and percent. Color is backed by an arrow and words. */
+function Difference({ what, cents, amounts }: { what: string; cents: number; amounts: number[] }) {
+  const diffs = amounts.map((a) => cents - a);
+  const pcts = amounts.map((a) => Math.round(((cents - a) * 100) / a));
+  const lo = Math.min(...diffs);
+  const hi = Math.max(...diffs);
+  const sameAs = pcts.every((p) => Math.abs(p) < 1);
+  const direction = sameAs ? 'same' : lo > 0 ? 'above' : hi < 0 ? 'below' : 'between';
+  const times = amounts.map((a) => timesMedicare(cents, a));
+  const [tLo, tHi] = [Math.min(...times), Math.max(...times)];
+  const [pLo, pHi] = [Math.min(...pcts.map(Math.abs)), Math.max(...pcts.map(Math.abs))];
+  const pct = (sign: string) => range(`${sign}${pLo}%`, `${sign}${pHi}%`);
+  const dollars = range(formatCents(Math.min(Math.abs(lo), Math.abs(hi))), formatCents(Math.max(Math.abs(lo), Math.abs(hi))));
+
+  const headline = {
+    above: `${dollars} more than Medicare (${pct('+')})`,
+    below: `${dollars} less than Medicare (${pct('−')})`,
+    same: 'About the same as Medicare',
+    between: 'Between the two Medicare amounts',
+  }[direction];
+  const icon = { above: '↑', below: '↓', same: '=', between: '↕' }[direction];
+
+  return (
+    <div className="price-diff-block">
+      <p className="price-diff-label">{what}</p>
+      <p className={`price-diff price-diff-${direction}`}>
+        <span aria-hidden="true">{icon}</span> {headline}
+      </p>
+      <p className="price-times">
+        {what} is about {range(String(tLo), String(tHi))} times the Medicare amount.
+      </p>
+    </div>
+  );
+}
+
 function Row({ row, rate, b, locality }: { row: PriceRow; rate: BenchmarkRate; b: Benchmarks; locality: string | null }) {
   const [charge, setCharge] = useState('');
   const [published, setPublished] = useState('');
@@ -27,13 +64,11 @@ function Row({ row, rate, b, locality }: { row: PriceRow; rate: BenchmarkRate; b
   const amounts = shown.map((l) => rate.amounts_cents[l]!).filter((n) => n !== undefined);
   const name = (l: string) => b.localities.find((x) => x.id === l)?.name ?? l;
 
-  const compare = (cents: number | null, what: string) => {
-    if (cents === null || !amounts.length || amounts.some((a) => a === 0)) return null;
-    const times = amounts.map((a) => timesMedicare(cents, a));
-    const lo = Math.min(...times);
-    const hi = Math.max(...times);
-    return `${what} is about ${lo === hi ? lo : `${lo} to ${hi}`} times the Medicare amount.`;
-  };
+  const comparable = amounts.length > 0 && amounts.every((a) => a > 0);
+  const comparisons = [
+    { what: 'The charge', cents: chargeCents },
+    { what: 'The published price', cents: publishedCents },
+  ].filter((c): c is { what: string; cents: number } => comparable && c.cents !== null);
 
   return (
     <tr>
@@ -69,9 +104,11 @@ function Row({ row, rate, b, locality }: { row: PriceRow; rate: BenchmarkRate; b
         ))}
       </td>
       <td data-label="Comparison" aria-live="polite">
-        {rate.comparable
-          ? [compare(chargeCents, 'The charge'), compare(publishedCents, 'The published price')].filter(Boolean).join(' ') || '—'
-          : 'Not compared: this amount leaves out the hospital’s own emergency room charges.'}
+        {!rate.comparable
+          ? 'Not compared: this amount leaves out the hospital’s own emergency room charges.'
+          : comparisons.length
+            ? comparisons.map((c) => <Difference key={c.what} what={c.what} cents={c.cents} amounts={amounts} />)
+            : '—'}
       </td>
     </tr>
   );
@@ -129,6 +166,10 @@ export function PriceContext({
       </Heading>
       {intro && <p className="muted">{intro}</p>}
       <p className="muted bill-disclaimer">Reference only, not what you owe.</p>
+      <p className="price-why">
+        <strong>You don’t need to be on Medicare to use this.</strong> Medicare’s rates are public and set by a federal formula, so
+        they work as a yardstick for a price at any age, whatever insurance you have.
+      </p>
 
       <div className="mini-field">
         <label htmlFor={`${headingId}-county`}>New Jersey county where you got care</label>
@@ -175,6 +216,12 @@ export function PriceContext({
       </p>
       <More summary="How these numbers work">
         <p>{b.disclaimer}</p>
+        <Sub>Why compare with Medicare?</Sub>
+        <p>
+          Medicare publishes what it pays for each service in each area, so it gives everyone the same public reference
+          point. New Jersey also uses it in law:
+        </p>
+        {c('nj_uninsured_cap')}
         {c('medicare_estimate_how')}
         {c('medicare_facility_rate')}
         <Sub>Finding the hospital’s published price</Sub>

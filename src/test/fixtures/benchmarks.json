@@ -337,6 +337,22 @@
     }
    ],
    "needs_review": false
+  },
+  "nj_uninsured_cap": {
+   "id": "nj_uninsured_cap",
+   "text": "A 2008 New Jersey law (P.L.2008, c.60) says a licensed NJ hospital may charge an uninsured NJ resident whose family gross income is less than 500% of the federal poverty level no more than 115% of the applicable Medicare payment rate for the care.",
+   "sources": [
+    {
+     "id": "nj-pl-2008-c60",
+     "title": "Limitation on hospital charges for certain uninsured patients",
+     "citation": "P.L.2008, c.60 (N.J.S.A. 26:2H-12.52 and 26:2H-12.53)",
+     "authority": "New Jersey Legislature",
+     "url": "https://pub.njleg.gov/bills/2008/PL08/60_.HTM",
+     "source_type": "statute",
+     "verification": "needs-review"
+    }
+   ],
+   "needs_review": true
   }
  },
  "disclaimer": "Medicare amounts are a reference point, not what you owe. Your coverage, the hospital’s contracts and its financial assistance rules decide what you pay. A difference from the Medicare amount is context for a question, not evidence that a charge is wrong."

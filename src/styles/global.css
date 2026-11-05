@@ -19,6 +19,8 @@
   --amber-50: #fff8eb;
   --red-700: #b42318;
   --red-50: #fef3f2;
+  --green-700: #15703a; /* 5.9:1 on --green-50 */
+  --green-50: #effaf3;
 
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
   --font-sans: 'Public Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -2350,6 +2352,43 @@ mark.cite.active {
   .price-table input {
     width: min(100%, 12em);
   }
+}
+.price-why {
+  max-width: 75ch;
+  margin: -12px 0 20px;
+  font-size: 0.92rem;
+}
+.price-diff-block + .price-diff-block {
+  margin-top: 12px;
+}
+.price-diff-label {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.price-diff {
+  display: inline-block;
+  margin: 0;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface);
+  color: var(--navy-800);
+}
+.price-diff-above {
+  background: var(--red-50);
+  color: var(--red-700);
+}
+.price-diff-below {
+  background: var(--green-50);
+  color: var(--green-700);
+}
+.price-times {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
 }
 .price-covers {
   margin: 4px 0 0;
