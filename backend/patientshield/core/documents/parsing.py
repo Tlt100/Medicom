@@ -4,7 +4,8 @@ Security posture:
 - File type is decided from the bytes (magic number), not the client's filename or Content-Type.
 - Size, page, character and time budgets bound the work an attacker can force.
 - PDFs are parsed for text only with pypdf: nothing in the file is executed, rendered or followed
-  (no JavaScript, forms, links or embedded files). Encrypted PDFs are rejected.
+  (no JavaScript, forms, links or embedded files). PDFs that need a password to open are rejected; PDFs that are
+  encrypted only to restrict printing or editing (empty open password) are read like any other PDF.
 - Nothing is written to disk. Callers hold the bytes only for the duration of one request.
 """
 
@@ -24,12 +25,17 @@ TIME_BUDGET_SECONDS = 8.0
 
 # Text extraction cost grows with a page's content-stream size and number of text-drawing operators,
 # and a tiny file can describe an enormous page. These limits are checked BEFORE extraction runs.
-# A typical letter page uses a few KB and tens of operators; the limits leave ample headroom.
-MAX_PAGE_CONTENT_BYTES = 256 * 1024
-MAX_PAGE_TEXT_OPS = 1500
-MAX_DOC_CONTENT_BYTES = 768 * 1024
-MAX_DOC_TEXT_OPS = 4500
+# Cost is roughly linear across pages and in operator count, but grows faster than linearly with the amount
+# of text on a single page (about 0.5 s at 512 KB, 7 s at 2.3 MB), so the per-page byte limit is the tight one.
+# Real documents sit far below these: a browser-printed letter page is ~10 KB and ~20 operators, a dense EOB
+# table page ~100 KB and ~700 operators, and PDFs that draw one character per operator ~5,000 operators a page.
+MAX_PAGE_CONTENT_BYTES = 512 * 1024
+MAX_PAGE_TEXT_OPS = 10_000
+MAX_DOC_CONTENT_BYTES = 4 * 1024 * 1024
+MAX_DOC_TEXT_OPS = 100_000
 MAX_XOBJECT_DEPTH = 3
+# The PDF spec allows bytes before the "%PDF-" header; readers accept it anywhere in the first 1024 bytes.
+PDF_HEADER_WINDOW = 1024
 
 _TEXT_OPS = re.compile(rb"(?:Tj|TJ|'|\")(?=[\s\]]|$)")
 _DO_OPS = re.compile(rb"/([^\s/\[\]()<>{}%]+)\s+Do\b")
@@ -69,7 +75,7 @@ def safe_name(name: str) -> str:
 
 def detect_kind(name: str, data: bytes) -> str:
     ext = name.lower().rsplit(".", 1)[-1] if "." in name else ""
-    if data[:5] == b"%PDF-":
+    if b"%PDF-" in data[:PDF_HEADER_WINDOW]:
         return "pdf"
     if ext == "pdf":
         raise DocumentError("unsupported_type", "This file is named .pdf but isn't a valid PDF.")
@@ -170,6 +176,15 @@ def check_page_complexity(pages) -> None:
             raise DocumentError("too_complex", _TOO_COMPLEX)
 
 
+def _open_without_password(reader) -> bool:
+    """Opens PDFs encrypted only to restrict printing or editing; their open (user) password is empty."""
+    try:
+        return bool(reader.decrypt(""))
+    except Exception as exc:  # noqa: BLE001 - unsupported encryption is treated like a password
+        logger.info("pdf decrypt failed: %s", type(exc).__name__)
+        return False
+
+
 def parse_pdf(data: bytes) -> List[str]:
     from pypdf import PdfReader  # imported lazily: only PDF requests pay for it
     from pypdf.errors import PdfReadError
@@ -177,7 +192,7 @@ def parse_pdf(data: bytes) -> List[str]:
     started = time.monotonic()
     try:
         reader = PdfReader(io.BytesIO(data), strict=False)
-        if reader.is_encrypted:
+        if reader.is_encrypted and not _open_without_password(reader):
             raise DocumentError("encrypted", "This PDF is password-protected. Remove the password and try again.")
         count = len(reader.pages)
     except DocumentError:
