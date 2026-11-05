@@ -11,7 +11,14 @@ from patientshield.core.triage.service import claim_out
 
 router = APIRouter(tags=["benchmarks"])
 
-CLAIM_IDS = ["medicare_estimate_how", "medicare_facility_rate", "price_transparency_list", "price_transparency_shoppable", "price_terms"]
+CLAIM_IDS = [
+    "medicare_estimate_how",
+    "medicare_facility_rate",
+    "price_transparency_list",
+    "price_transparency_shoppable",
+    "price_terms",
+    "nj_uninsured_cap",
+]
 
 DISCLAIMER = (
     "Medicare amounts are a reference point, not what you owe. Your coverage, the hospital’s contracts and its financial "

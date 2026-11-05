@@ -86,6 +86,7 @@ def test_endpoint_serves_rates_with_dates_sources_and_claims(api_client):
         "price_transparency_list",
         "price_transparency_shoppable",
         "price_terms",
+        "nj_uninsured_cap",
     }
     assert all(get_source(sid) for sid in body["source_ids"])
 
