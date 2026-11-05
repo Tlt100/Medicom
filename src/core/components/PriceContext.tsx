@@ -41,14 +41,14 @@ function Row({ row, rate, b, locality }: { row: PriceRow; rate: BenchmarkRate; b
         {rate.label} <span className="muted">({rate.code})</span>
         <p className="price-covers">{rate.covers}</p>
       </th>
-      <td>
+      <td data-label="Charge">
         {row.chargeCents !== undefined ? (
           formatCents(row.chargeCents)
         ) : (
           <input aria-label={`Charge on your bill for ${rate.label}`} inputMode="decimal" value={charge} onChange={(e) => setCharge(e.target.value)} />
         )}
       </td>
-      <td>
+      <td data-label="Hospital’s published price (optional)">
         <input
           aria-label={`Hospital’s published price for ${rate.label}`}
           aria-describedby={`${id}-pub`}
@@ -60,7 +60,7 @@ function Row({ row, rate, b, locality }: { row: PriceRow; rate: BenchmarkRate; b
           Optional. From the hospital’s price list, for example its discounted cash price.
         </span>
       </td>
-      <td>
+      <td data-label="Medicare amount">
         {shown.map((l) => (
           <div key={l}>
             <Amount cents={rate.amounts_cents[l] ?? null} />
@@ -68,7 +68,7 @@ function Row({ row, rate, b, locality }: { row: PriceRow; rate: BenchmarkRate; b
           </div>
         ))}
       </td>
-      <td aria-live="polite">
+      <td data-label="Comparison" aria-live="polite">
         {rate.comparable
           ? [compare(chargeCents, 'The charge'), compare(publishedCents, 'The published price')].filter(Boolean).join(' ') || '—'
           : 'Not compared: this amount leaves out the hospital’s own emergency room charges.'}
