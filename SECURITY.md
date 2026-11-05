@@ -17,7 +17,7 @@ compliance. This document records the threat model, the controls in place, and t
 - **No storage.** Letters are processed in memory for one request; nothing is written to disk, a database, or logs. Responses are
   `Cache-Control: no-store`. The browser keeps results in memory only (no `localStorage`); "Delete this letter" clears them.
 - **Untrusted input.** File type from magic bytes; size (4 MB), page (30), character, time (8 s) and **page-complexity** budgets;
-  encrypted PDFs rejected; text-only parsing (no scripts, forms, links or embedded files). Request bodies are capped by
+  PDFs that need a password to open are rejected (ones encrypted only to block printing or editing are read); text-only parsing (no scripts, forms, links or embedded files). Request bodies are capped by
   Content-Length *and* by counting streamed bytes. All request models reject unknown fields and bound every string.
 - **No echo.** Error responses never include user input; validation errors mask user-chosen keys.
 - **Rendering.** Document text is rendered only as React text nodes (an ESLint rule bans `dangerouslySetInnerHTML`). Every

@@ -5,3 +5,5 @@ starlette==1.8.0
 anyio==4.15.1
 pydantic==2.13.5
 pypdf==6.21.0
+# Lets pypdf open AES-encrypted PDFs that restrict printing or editing but have no open password.
+cryptography==50.0.2

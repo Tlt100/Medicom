@@ -65,3 +65,38 @@ def xobject_amplified(inner_ops: int, invocations: int, depth: int = 1) -> bytes
     objects[4] = _stream(b"/Fx Do\n" * invocations)
     ordered = [objects.get(i, b"null") for i in range(1, max(objects) + 1)]
     return _assemble(ordered)
+
+
+def multi_page(contents: List[bytes]) -> bytes:
+    """One page per entry in `contents`, all sharing one font."""
+    n = len(contents)
+    font = 3 + 2 * n
+    objects = [b"<< /Type /Catalog /Pages 2 0 R >>"]
+    kids = " ".join(f"{3 + 2 * i} 0 R" for i in range(n))
+    objects.append(f"<< /Type /Pages /Kids [{kids}] /Count {n} >>".encode())
+    for i, content in enumerate(contents):
+        objects.append(
+            f"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 {font} 0 R >> >> "
+            f"/Contents {4 + 2 * i} 0 R >>".encode()
+        )
+        objects.append(_stream(content))
+    objects.append(b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>")
+    return _assemble(objects)
+
+
+def per_glyph_text(text: str) -> bytes:
+    """Draws `text` one character per operator, as some printer drivers and PDF converters do."""
+    ops = [b"BT /F1 9 Tf"]
+    x, y = 40, 750
+    for ch in text:
+        if ch == "\n" or x > 560:
+            x, y = 40, y - 11
+            if ch == "\n":
+                continue
+        glyph = ch.encode("latin-1")
+        if glyph in (b"\\", b"(", b")"):
+            glyph = b"\\" + glyph
+        ops.append(b"1 0 0 1 %d %d Tm (%s) Tj" % (x, y, glyph))
+        x += 5
+    ops.append(b"ET")
+    return b"\n".join(ops)

@@ -253,8 +253,8 @@ def test_a_tiny_pdf_describing_a_huge_page_is_rejected_quickly():
 
 
 def test_form_xobject_amplification_is_counted():
-    # 20 text operators inside a form, drawn 500 times = 10,000 operators of work from a few hundred bytes.
-    outcome, seconds = _timed_parse(xobject_amplified(inner_ops=20, invocations=500))
+    # 20 text operators inside a form, drawn 600 times = 12,000 operators of work from a few hundred bytes.
+    outcome, seconds = _timed_parse(xobject_amplified(inner_ops=20, invocations=600))
     assert outcome == "too_complex" and seconds < 2
 
 

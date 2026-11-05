@@ -73,8 +73,10 @@ need a label; URLs must be https; ids are unique.
 
 ## Extraction pipeline
 
-1. **core/documents/parsing.py**: decide the file type from its bytes (`%PDF-` magic number), enforce a 4 MB, 30-page, 150k-character and 8-second
-   budget, extract text with pypdf (text only; encrypted PDFs rejected), and normalize it (NFKC, strip control and bidi characters).
+1. **core/documents/parsing.py**: decide the file type from its bytes (`%PDF-` header within the first 1,024 bytes), enforce a 4 MB, 30-page,
+   150k-character and 8-second budget plus per-page and per-document complexity limits sized from measured extraction cost, extract
+   text with pypdf (text only; PDFs needing a password to open are rejected, ones encrypted only against printing or editing are
+   read), and normalize it (NFKC, strip control and bidi characters).
    The normalized text is what offsets refer to.
 2. **core/documents/segment.py**: rebuild passages from line structure, because PDF extraction loses paragraph breaks and wraps sentences. Label lines
    (`Claim Number: …`) and short headings stand alone; a line keeps a paragraph open only if it's near full width (it wrapped).
